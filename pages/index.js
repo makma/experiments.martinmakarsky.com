@@ -11,7 +11,7 @@ export default function Home() {
 
     // Get the visitor identifier when you need it.
     fpPromise
-      .then(fp => fp.get())
+      .then(fp => fp.get({linkedId: 'hello from next.js'}))
       .then(result => console.log(result.visitorId))
   })
 
