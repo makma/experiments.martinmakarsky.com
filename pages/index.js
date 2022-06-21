@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 export default function Home() {
   useEffect(() => {
     // Initialize an agent at application startup.
-    const fpPromise = FingerprintJS.load({ apiKey: 'tQUwQQOuG9TNwqc6F4I2', endpoint: 'https://fp.martinmakarsky.com' })
+    const fpPromise = FingerprintJS.load({ apiKey: 'tQUwQQOuG9TNwqc6F4I2', endpoint: 'https://fp.random.martinmakarsky.com' })
 
     // Get the visitor identifier when you need it.
     fpPromise
