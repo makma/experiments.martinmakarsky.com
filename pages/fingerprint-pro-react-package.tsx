@@ -7,6 +7,7 @@ import {
   CUSTOM_SUBDOMAIN,
   FINGERPRINT_PUBLIC_API_KEY,
 } from "../shared/constants";
+import { Product } from "@fingerprintjs/fingerprintjs-pro";
 
 export default function FingerprintProReactPackage() {
   return (
@@ -22,19 +23,38 @@ export default function FingerprintProReactPackage() {
 }
 
 const FingerprintData: NextPage = () => {
-  const [extendedResult, updateExtendedResult] = useState(false);
+  const [extendedResult, setExtendedResult] = useState(false);
+  const [addBotdProduct, setAddBotdProduct] = useState(false);
+  const [addIdentificationProduct, setidentificationProduct] = useState(false);
+
+  let products: Array<Product> = [];
+  if (addBotdProduct) {
+    products.push("botd");
+  }
+
+  if (addIdentificationProduct) {
+    products.push("identification");
+  }
+
   const { isLoading, error, data, getData } = useVisitorData(
-    { extendedResult },
+    { extendedResult, products },
     { immediate: true }
   );
 
   const reloadData = () => {
-    // @ts-ignore
     getData({ ignoreCache: true });
   };
 
   const onChangeExtendedResult = (e: any) => {
-    updateExtendedResult(e.target.checked);
+    setExtendedResult(e.target.checked);
+  };
+
+  const onChangeBotdOnly = (e: any) => {
+    setAddBotdProduct(e.target.checked);
+  };
+
+  const onChangeIdentificationOnly = (e: any) => {
+    setidentificationProduct(e.target.checked);
   };
 
   return (
@@ -45,25 +65,48 @@ const FingerprintData: NextPage = () => {
           <button onClick={reloadData} type="button">
             Reload data
           </button>
-          <label>
-            <input
-              type="checkbox"
-              onChange={onChangeExtendedResult}
-              checked={extendedResult}
-            />
-            Extended result
-          </label>
+          <div>
+            <label>
+              <input
+                type="checkbox"
+                onChange={onChangeExtendedResult}
+                checked={extendedResult}
+              />
+              Extended result
+            </label>
+          </div>
+          <div>
+            <label>
+              <input
+                type="checkbox"
+                onChange={onChangeBotdOnly}
+                checked={addBotdProduct}
+              />
+              Add BotD Product (if no product added, all products are enabled)
+            </label>
+          </div>
+          <div>
+            <label>
+              <input
+                type="checkbox"
+                onChange={onChangeIdentificationOnly}
+                checked={addIdentificationProduct}
+              />
+              Add Identification product (if no product added, all products are
+              enabled)
+            </label>
+          </div>
+          <h4>
+            VisitorId:{" "}
+            <span className={styles.visitorId}>
+              {isLoading ? "Loading..." : data?.visitorId}
+            </span>
+          </h4>
+          <h4>Full visitor data:</h4>
+          <pre className={styles.data}>
+            {error ? error.message : JSON.stringify(data, null, 2)}
+          </pre>
         </div>
-        <h4>
-          VisitorId:{" "}
-          <span className={styles.visitorId}>
-            {isLoading ? "Loading..." : data?.visitorId}
-          </span>
-        </h4>
-        <h4>Full visitor data:</h4>
-        <pre className={styles.data}>
-          {error ? error.message : JSON.stringify(data, null, 2)}
-        </pre>
       </div>
     </div>
   );
