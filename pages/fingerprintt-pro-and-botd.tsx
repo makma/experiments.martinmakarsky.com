@@ -1,6 +1,10 @@
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import FingerprintJS, { GetResult } from "@fingerprintjs/fingerprintjs-pro";
+import {
+  CUSTOM_SUBDOMAIN,
+  FINGERPRINT_PUBLIC_API_KEY,
+} from "../shared/constants";
 
 export default function FingerprintProBotdVanillaAgent() {
   const [fingerprintData, setFingerprintData] = useState<GetResult | string>(
@@ -10,8 +14,8 @@ export default function FingerprintProBotdVanillaAgent() {
   useEffect(() => {
     (async () => {
       const fpPromise = FingerprintJS.load({
-        apiKey: "tQUwQQOuG9TNwqc6F4I2",
-        endpoint: "https://fp.martinmakarsky.com",
+        apiKey: FINGERPRINT_PUBLIC_API_KEY,
+        endpoint: CUSTOM_SUBDOMAIN,
       });
       const fp = await fpPromise;
       const data = await fp.get({ extendedResult: true });
@@ -21,7 +25,9 @@ export default function FingerprintProBotdVanillaAgent() {
 
   return (
     <div className={styles.container}>
-      <code>{JSON.stringify(fingerprintData)}</code>
+      <pre className={styles.data}>
+        {JSON.stringify(fingerprintData, null, 2)}
+      </pre>
     </div>
   );
 }
