@@ -19,16 +19,12 @@ export default function Home() {
             <h2>Fingerprint Pro Custom subdomain &rarr;</h2>
             <p>No lib, TS NPM agent, subdomain setup, extended result</p>
           </Link>
-        </div>
 
-        <div className={styles.grid}>
           <Link className={styles.card} href="/botd-only">
             <h2>BotD only &rarr;</h2>
             <p>No lib, TS NPM agent, subdomain setup, extended result</p>
           </Link>
-        </div>
 
-        <div className={styles.grid}>
           <Link className={styles.card} href="/fingerprint-pro-react-package">
             <h2>Fingerprint Pro Custom subdomain React lib &rarr;</h2>
             <p>React NPM lib, subdomain setup, extended and basic result</p>
