@@ -2,7 +2,7 @@ import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import FingerprintJS, { GetResult } from "@fingerprintjs/fingerprintjs-pro";
 
-export default function FingerprintProVanillaAgent() {
+export default function BotDOnly() {
   const [fingerprintData, setFingerprintData] = useState<GetResult | string>(
     "Waiting for data..."
   );
@@ -14,7 +14,7 @@ export default function FingerprintProVanillaAgent() {
         endpoint: "https://fp.martinmakarsky.com",
       });
       const fp = await fpPromise;
-      const data = await fp.get({ extendedResult: true });
+      const data = await fp.get({ extendedResult: true, products: ["botd"] });
       setFingerprintData(data);
     })();
   }, []);
