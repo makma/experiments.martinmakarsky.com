@@ -14,7 +14,7 @@ export default function FingerprintProVanillaAgent() {
         endpoint: "https://fp.martinmakarsky.com",
       });
       const fp = await fpPromise;
-      const data = await fp.get();
+      const data = await fp.get({ extendedResult: true });
       setFingerprintData(data);
     })();
   }, []);
