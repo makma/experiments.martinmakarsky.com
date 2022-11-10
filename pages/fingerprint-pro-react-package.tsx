@@ -37,7 +37,7 @@ const FingerprintData: NextPage = () => {
   }
 
   const { isLoading, error, data, getData } = useVisitorData(
-    { extendedResult, products },
+    { extendedResult, products, linkedId: "someRandomLinkedId" },
     { immediate: true }
   );
 
