@@ -7,13 +7,12 @@ import {
 } from "../shared/constants";
 
 // This is antipatternm it's not possible to call Fingerprint Pro agent from the server-side context, will result in window undefined error
-function AntipaterngetStaticSiteProps({ data }) {
+function AntipaternGetServeSideProps({ data }) {
   return <pre>{JSON.stringify(data)}</pre>;
 }
 
-// This function gets called at build time on server-side.
-// It won't be called on client-side
-export async function getStaticProps() {
+// This gets called on every request
+export async function getServerSideProps() {
   let data;
   const fpPromise = FingerprintJS.load({
     apiKey: FINGERPRINT_PUBLIC_API_KEY,
@@ -33,4 +32,4 @@ export async function getStaticProps() {
   };
 }
 
-export default AntipaterngetStaticSiteProps;
+export default AntipaternGetServeSideProps;

@@ -28,9 +28,9 @@ export default function FingerprintProReactPackage() {
 }
 
 const FingerprintData: NextPage = () => {
-  const [extendedResult, setExtendedResult] = useState(false);
-  const [addBotdProduct, setAddBotdProduct] = useState(false);
-  const [addIdentificationProduct, setIdentificationProduct] = useState(false);
+  const [extendedResult, setExtendedResult] = useState(true);
+  const [addBotdProduct, setAddBotdProduct] = useState(true);
+  const [addIdentificationProduct, setIdentificationProduct] = useState(true);
   const [ignoreCache, setIgnoreCache] = useState(true);
 
   let products: Array<Product> = [];
