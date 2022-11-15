@@ -1,6 +1,9 @@
 import styles from "../styles/Home.module.css";
 import { useState } from "react";
-import { useVisitorData } from "@fingerprintjs/fingerprintjs-pro-react";
+import {
+  CacheLocation,
+  useVisitorData,
+} from "@fingerprintjs/fingerprintjs-pro-react";
 import { FpjsProvider } from "@fingerprintjs/fingerprintjs-pro-react";
 import { NextPage } from "next";
 import {
@@ -16,6 +19,8 @@ export default function FingerprintProReactPackage() {
         apiKey: FINGERPRINT_PUBLIC_API_KEY,
         endpoint: CUSTOM_SUBDOMAIN,
       }}
+      cacheLocation={CacheLocation.SessionStorage}
+      cacheTimeInSeconds={60}
     >
       <FingerprintData />
     </FpjsProvider>
@@ -25,7 +30,8 @@ export default function FingerprintProReactPackage() {
 const FingerprintData: NextPage = () => {
   const [extendedResult, setExtendedResult] = useState(false);
   const [addBotdProduct, setAddBotdProduct] = useState(false);
-  const [addIdentificationProduct, setidentificationProduct] = useState(false);
+  const [addIdentificationProduct, setIdentificationProduct] = useState(false);
+  const [ignoreCache, setIgnoreCache] = useState(true);
 
   let products: Array<Product> = [];
   if (addBotdProduct) {
@@ -42,7 +48,7 @@ const FingerprintData: NextPage = () => {
   );
 
   const reloadData = () => {
-    getData({ ignoreCache: true });
+    getData({ ignoreCache });
   };
 
   const onChangeExtendedResult = (e: any) => {
@@ -54,7 +60,11 @@ const FingerprintData: NextPage = () => {
   };
 
   const onChangeIdentificationOnly = (e: any) => {
-    setidentificationProduct(e.target.checked);
+    setIdentificationProduct(e.target.checked);
+  };
+
+  const onChangeIgnoreCache = (e: any) => {
+    setIgnoreCache(e.target.checked);
   };
 
   return (
@@ -96,6 +106,18 @@ const FingerprintData: NextPage = () => {
               enabled)
             </label>
           </div>
+
+          <div>
+            <label>
+              <input
+                type="checkbox"
+                onChange={onChangeIgnoreCache}
+                checked={ignoreCache}
+              />
+              Ignore cache - CacheLocation.SessionStorage cacheTimeInSeconds=60
+            </label>
+          </div>
+
           <h4>
             VisitorId:{" "}
             <span className={styles.visitorId}>
