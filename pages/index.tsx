@@ -29,6 +29,11 @@ export default function Home() {
             <h2>Fingerprint Pro Custom subdomain React lib &rarr;</h2>
             <p>React NPM lib, subdomain setup, extended and basic result</p>
           </Link>
+
+          <Link className={styles.card} href="/antipattern-getStaticSiteProps">
+            <h2>Fingerprint Pro not working in the server-side context</h2>
+            <p>getStaticSiteProps</p>
+          </Link>
         </div>
       </main>
 
