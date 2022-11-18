@@ -25,6 +25,11 @@ export default function Home() {
             <p>No lib, TS NPM agent, subdomain setup, extended result</p>
           </Link>
 
+          <Link className={styles.card} href="/fingerprint-pro-cloudflare">
+            <h2>Fingerprint Pro Cloudflare &rarr;</h2>
+            <p>No lib, TS NPM agent, cloudflare integration, extended result</p>
+          </Link>
+
           <Link className={styles.card} href="/fingerprint-pro-react-package">
             <h2>Fingerprint Pro Custom subdomain React lib &rarr;</h2>
             <p>React NPM lib, subdomain setup, extended and basic result</p>
