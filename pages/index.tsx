@@ -35,6 +35,11 @@ export default function Home() {
             <p>React NPM lib, subdomain setup, extended and basic result</p>
           </Link>
 
+          <Link className={styles.card} href="/botd-zero-trust">
+            <h2>Fingerprint Pro BotD Zero Trust &rarr;</h2>
+            <p>Browser SDK (agent), Zero Trust</p>
+          </Link>
+
           <Link className={styles.card} href="/antipatern-getStaticProps">
             <h2>Fingerprint Pro not working in the server-side context</h2>
             <p>getStaticProps</p>
