@@ -40,6 +40,14 @@ export default function Home() {
             <p>Browser SDK (agent), Zero Trust</p>
           </Link>
 
+          <Link
+            className={styles.card}
+            href="/fingerprint-pro-fpnpmcdn-no-subdomain"
+          >
+            <h2>Fingerprint Pro npmcdn &rarr;</h2>
+            <p>No subdomain, eu region</p>
+          </Link>
+
           <Link className={styles.card} href="/antipatern-getStaticProps">
             <h2>Fingerprint Pro not working in the server-side context</h2>
             <p>getStaticProps</p>
