@@ -38,6 +38,19 @@ export default function Home() {
             <p>React lib, Cloudflare integration, extended result</p>
           </Link>
 
+          <Link
+            className={styles.card}
+            href="/fingerprint-pro-react-cloudflare-strip-url-params"
+          >
+            <h2>
+              Fingerprint Pro React Cloudflare stripping url params &rarr;
+            </h2>
+            <p>
+              React lib, Cloudflare integration, extended result, stripping url
+              params
+            </p>
+          </Link>
+
           <Link className={styles.card} href="/fingerprint-pro-react-package">
             <h2>Fingerprint Pro Custom subdomain React lib &rarr;</h2>
             <p>React NPM lib, subdomain setup, extended and basic result</p>
