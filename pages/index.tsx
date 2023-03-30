@@ -51,6 +51,22 @@ export default function Home() {
             </p>
           </Link>
 
+          <Link
+            className={styles.card}
+            href="/fingerprint-pro-react-cloudfront"
+          >
+            <h2>Fingerprint Pro React CloudFront &rarr;</h2>
+            <p>React lib, CloudFront integration, extended result</p>
+          </Link>
+
+          <Link
+            className={styles.card}
+            href="/fingerprint-pro-react-cloudfront"
+          >
+            <h2>Fingerprint Pro React Cloudflare &rarr;</h2>
+            <p>React lib, CloudFront integration, extended result</p>
+          </Link>
+
           <Link className={styles.card} href="/fingerprint-pro-react-package">
             <h2>Fingerprint Pro Custom subdomain React lib &rarr;</h2>
             <p>React NPM lib, subdomain setup, extended and basic result</p>
