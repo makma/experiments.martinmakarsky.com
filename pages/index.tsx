@@ -67,6 +67,16 @@ export default function Home() {
             <p>React lib, CloudFront integration, extended result</p>
           </Link>
 
+          <Link className={styles.card} href="/fingerprint-pro-react-azure">
+            <h2>Fingerprint Pro React Azure &rarr;</h2>
+            <p>React lib, Azure integration, extended result</p>
+          </Link>
+
+          <Link className={styles.card} href="/fingerprint-pro-react-azure">
+            <h2>Fingerprint Pro React Cloudflare &rarr;</h2>
+            <p>React lib, Azure integration, extended result</p>
+          </Link>
+
           <Link className={styles.card} href="/fingerprint-pro-react-package">
             <h2>Fingerprint Pro Custom subdomain React lib &rarr;</h2>
             <p>React NPM lib, subdomain setup, extended and basic result</p>
