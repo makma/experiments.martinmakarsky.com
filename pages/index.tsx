@@ -68,11 +68,6 @@ export default function Home() {
           </Link>
 
           <Link className={styles.card} href="/fingerprint-pro-react-azure">
-            <h2>Fingerprint Pro React Azure &rarr;</h2>
-            <p>React lib, Azure integration, extended result</p>
-          </Link>
-
-          <Link className={styles.card} href="/fingerprint-pro-react-azure">
             <h2>Fingerprint Pro React Cloudflare &rarr;</h2>
             <p>React lib, Azure integration, extended result</p>
           </Link>
