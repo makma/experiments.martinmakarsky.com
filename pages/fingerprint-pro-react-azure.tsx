@@ -18,9 +18,9 @@ export default function FingerprintProReactAzure() {
       loadOptions={{
         apiKey: FINGERPRINT_PUBLIC_API_KEY, // REPLACE <API_KEY>,
         scriptUrlPattern:
-          "https://azure-integration.martinmakarsky.com/fpjs/agent?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
+          "https://fingerprint-pro-azure-integration-app2k63xenhe7ccy.azurewebsites.net/fpjs/agent?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
         endpoint:
-          "https://azure-integration.martinmakarsky.com/fpjs/resultId?region=eu",
+          "https://fingerprint-pro-azure-integration-app2k63xenhe7ccy.azurewebsites.net/fpjs/resultId?region=eu",
       }}
       cacheLocation={CacheLocation.SessionStorage}
       cacheTimeInSeconds={60}
