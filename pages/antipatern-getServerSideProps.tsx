@@ -11,6 +11,11 @@ function AntipaternGetServeSideProps({ data }) {
   return <pre>{JSON.stringify(data)}</pre>;
 }
 
+// Just a hack to be able to build on CloudFlare
+export const config = {
+  runtime: "experimental-edge",
+};
+
 // This gets called on every request
 export async function getServerSideProps() {
   let data;
