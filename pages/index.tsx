@@ -16,7 +16,7 @@ export default function Home() {
           <h1 className={styles.title}>
             Welcome to random{" "}
             <Link href="https://github.com/makma/experiments.martinmakarsky.com">
-              Makma's experiments
+              Makma&apos;s experiments
             </Link>
           </h1>
 
