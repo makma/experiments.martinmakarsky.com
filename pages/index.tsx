@@ -101,6 +101,15 @@ export default function Home() {
             </Link>
           </div>
 
+          <h2>Server API</h2>
+
+          <div className={styles.grid}>
+            <Link className={styles.card} href="/events">
+              <h2>Event info from the Server API</h2>
+              <p>getServerSideProps, HTTP server-side request, no SDK</p>
+            </Link>
+          </div>
+
           <h2>Anti-patterns - do not follow!</h2>
 
           <div className={styles.grid}>
