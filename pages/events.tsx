@@ -1,4 +1,4 @@
-function Events({ content }) {
+function Events({ content }: { content: string }) {
   return <pre>{content}</pre>;
 }
 
