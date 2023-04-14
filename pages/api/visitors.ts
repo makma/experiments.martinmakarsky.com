@@ -14,7 +14,7 @@ export default async function handler(req: NextRequest) {
 
     const visitorHistory = await client.getVisitorHistory(visitorId);
     return new Response(JSON.stringify(visitorHistory, null, 2))
-  } catch (error) {
-    return new Response(error as BodyInit)
+  } catch (error: any) {
+    return new Response(`${error.stack} \n ${error}`)
   }
 }
