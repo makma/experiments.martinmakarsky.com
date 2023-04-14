@@ -1,3 +1,7 @@
+export const config = {
+  runtime: "edge",
+};
+
 function Events({ content }: { content: string }) {
   return <pre>{content}</pre>;
 }
