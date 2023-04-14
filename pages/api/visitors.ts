@@ -6,11 +6,15 @@ export const config = {
 }
 
 export default async function handler(req: NextRequest) {
-  const apiKey = process.env.FINGERPRINT_SECRET_API_KEY ?? ''
-  const visitorId = 'T6X2T5TSnZTeSUNZ1oBQ'
+  try {
+    const apiKey = process.env.FINGERPRINT_SECRET_API_KEY ?? ''
+    const visitorId = 'T6X2T5TSnZTeSUNZ1oBQ'
 
-  const client = new FingerprintJsServerApiClient({ region: Region.EU, apiKey: apiKey });
+    const client = new FingerprintJsServerApiClient({ region: Region.EU, apiKey: apiKey });
 
-  const visitorHistory = await client.getVisitorHistory(visitorId);
-  return new Response(JSON.stringify(visitorHistory, null, 2))
+    const visitorHistory = await client.getVisitorHistory(visitorId);
+    return new Response(JSON.stringify(visitorHistory, null, 2))
+  } catch (error) {
+    return new Response(error as BodyInit)
+  }
 }
