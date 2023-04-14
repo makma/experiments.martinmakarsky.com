@@ -7,18 +7,24 @@ function Events({ content }: { content: string }) {
 }
 
 async function getEvent(requestId: string) {
-  const apiKey = process.env.FINGERPRINT_SECRET_API_KEY ?? "";
+  try {
+    const apiKey = process.env.FINGERPRINT_SECRET_API_KEY ?? "";
 
-  const fingerprintJSProServerApiUrl = new URL(
-    `https://eu.api.fpjs.io/events/${requestId}`
-  );
+    const fingerprintJSProServerApiUrl = new URL(
+      `https://eu.api.fpjs.io/events/${requestId}`
+    );
 
-  fingerprintJSProServerApiUrl.searchParams.append("api_key", apiKey);
+    fingerprintJSProServerApiUrl.searchParams.append("api_key", apiKey);
 
-  const eventServerApiResponse = await fetch(fingerprintJSProServerApiUrl.href);
+    const eventServerApiResponse = await fetch(
+      fingerprintJSProServerApiUrl.href
+    );
 
-  const event = await eventServerApiResponse.json();
-  return event;
+    const event = await eventServerApiResponse.json();
+    return event;
+  } catch (error: any) {
+    return `${error.stack} \n ${error}`;
+  }
 }
 
 export async function getServerSideProps(context: any) {
