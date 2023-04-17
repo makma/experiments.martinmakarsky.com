@@ -1,4 +1,8 @@
 import type { NextRequest } from 'next/server'
+import {
+  FingerprintJsServerApiClient,
+  Region,
+} from "@fingerprintjs/fingerprintjs-pro-server-api";
 
 export const config = {
   runtime: 'edge',
@@ -6,18 +10,18 @@ export const config = {
 
 export default async function handler(req: NextRequest) {
   const apiKey = process.env.FINGERPRINT_SECRET_API_KEY ?? ''
-  const requestId = '1681130720291.YHbcpl'
+  const requestId = req.nextUrl.searchParams.get("requestId") ?? ''
 
-  const fingerprintJSProServerApiUrl = new URL(
-    `https://eu.api.fpjs.io/events/${requestId}`
-  );
+  if (!requestId) {
+    return new Response("requestId query param must be provided")
+  }
 
-  fingerprintJSProServerApiUrl.searchParams.append('api_key', apiKey)
+  const client = new FingerprintJsServerApiClient({
+    region: Region.EU,
+    apiKey: apiKey,
+    fetch: fetch.bind(globalThis),
+  });
 
-  const eventServerApiResponse = await fetch(
-    fingerprintJSProServerApiUrl.href
-  );
-
-  const response = await eventServerApiResponse.json()
-  return new Response(JSON.stringify(response, null, 2))
+  const event = await client.getEvent(requestId);
+  return new Response(JSON.stringify(event, null, 2))
 }
