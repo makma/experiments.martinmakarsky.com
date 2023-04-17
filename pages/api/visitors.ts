@@ -10,7 +10,7 @@ export default async function handler(req: NextRequest) {
     const apiKey = process.env.FINGERPRINT_SECRET_API_KEY ?? ''
     const visitorId = 'T6X2T5TSnZTeSUNZ1oBQ'
 
-    const client = new FingerprintJsServerApiClient({ region: Region.EU, apiKey: apiKey });
+    const client = new FingerprintJsServerApiClient({ region: Region.EU, apiKey: apiKey, fetch: fetch });
 
     const visitorHistory = await client.getVisitorHistory(visitorId);
     return new Response(JSON.stringify(visitorHistory, null, 2))
