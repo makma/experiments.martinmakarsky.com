@@ -104,9 +104,19 @@ export default function Home() {
           <h2>Server API</h2>
 
           <div className={styles.grid}>
+            <Link className={styles.card} href="/api/events">
+              <h2>Event info from the Server API</h2>
+              <p>API route handler at the edge, NodeJS Server API SDK</p>
+            </Link>
+
+            <Link className={styles.card} href="/api/visitors">
+              <h2>Visitor info from the Server API</h2>
+              <p>API route handler at the edge, NodeJS Server API SDK</p>
+            </Link>
+
             <Link className={styles.card} href="/events">
               <h2>Event info from the Server API</h2>
-              <p>getServerSideProps, HTTP server-side request, no SDK</p>
+              <p>getServerSideProps at the edge, NodeJS Server API SDK</p>
             </Link>
           </div>
 
