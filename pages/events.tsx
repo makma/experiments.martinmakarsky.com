@@ -1,3 +1,8 @@
+import {
+  FingerprintJsServerApiClient,
+  Region,
+} from "@fingerprintjs/fingerprintjs-pro-server-api";
+
 export const config = {
   runtime: "experimental-edge",
 };
@@ -7,24 +12,16 @@ function Events({ content }: { content: string }) {
 }
 
 async function getEvent(requestId: string) {
-  try {
-    const apiKey = process.env.FINGERPRINT_SECRET_API_KEY ?? "";
+  const apiKey = process.env.FINGERPRINT_SECRET_API_KEY ?? "";
 
-    const fingerprintJSProServerApiUrl = new URL(
-      `https://eu.api.fpjs.io/events/${requestId}`
-    );
+  const client = new FingerprintJsServerApiClient({
+    region: Region.EU,
+    apiKey: apiKey,
+    fetch: fetch.bind(globalThis),
+  });
 
-    fingerprintJSProServerApiUrl.searchParams.append("api_key", apiKey);
-
-    const eventServerApiResponse = await fetch(
-      fingerprintJSProServerApiUrl.href
-    );
-
-    const event = await eventServerApiResponse.json();
-    return event;
-  } catch (error: any) {
-    return `${error.stack} \n ${error}`;
-  }
+  const event = await client.getEvent(requestId);
+  return event;
 }
 
 export async function getServerSideProps(context: any) {
