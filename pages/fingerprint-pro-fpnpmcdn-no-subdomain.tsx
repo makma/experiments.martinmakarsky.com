@@ -1,10 +1,7 @@
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import FingerprintJS, { GetResult } from "@fingerprintjs/fingerprintjs-pro";
-import {
-  CUSTOM_SUBDOMAIN,
-  FINGERPRINT_PUBLIC_API_KEY,
-} from "../shared/constants";
+import { FINGERPRINT_PUBLIC_API_KEY } from "../shared/constants";
 
 export default function FpnpmcdnNoSubdomain() {
   const [fingerprintData, setFingerprintData] = useState<GetResult | string>(

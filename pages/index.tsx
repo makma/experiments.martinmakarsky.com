@@ -99,6 +99,14 @@ export default function Home() {
               <h2>Fingerprint Pro npmcdn &rarr;</h2>
               <p>No subdomain, eu region</p>
             </Link>
+
+            <Link
+              className={styles.card}
+              href="/fingerprint-pro-segment-integration"
+            >
+              <h2>Fingerprint Pro Segment integration &rarr;</h2>
+              <p>No subdomain, eu region</p>
+            </Link>
           </div>
 
           <h2>Server API</h2>
