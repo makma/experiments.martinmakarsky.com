@@ -19,6 +19,7 @@ export default async function handler(req: NextRequest) {
   const client = new FingerprintJsServerApiClient({
     region: Region.EU,
     apiKey: apiKey,
+    // @ts-ignore missing isRedirect property
     fetch: fetch.bind(globalThis),
   });
 

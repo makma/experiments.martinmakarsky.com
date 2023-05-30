@@ -17,6 +17,7 @@ async function getEvent(requestId: string) {
   const client = new FingerprintJsServerApiClient({
     region: Region.EU,
     apiKey: apiKey,
+    // @ts-ignore missing isRedirect property
     fetch: fetch.bind(globalThis),
   });
 

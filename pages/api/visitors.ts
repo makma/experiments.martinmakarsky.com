@@ -13,6 +13,7 @@ export default async function handler(req: NextRequest) {
     return new Response("visitorId query param must be provided")
   }
 
+  // @ts-ignore missing isRedirect property
   const client = new FingerprintJsServerApiClient({ region: Region.EU, apiKey: apiKey, fetch: fetch.bind(globalThis) });
 
   const visitorHistory = await client.getVisitorHistory(visitorId);
