@@ -20,7 +20,7 @@ export default function FingerprintProReactAzure() {
         scriptUrlPattern:
           "https://azure-integration.martinmakarsky.com/fpjs/agent?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
         endpoint:
-          "https://azure-integration.martinmakarsky.com/fpjs/resultId?region=eu",
+          "https://azure-integration.martinmakarsky.com/fpjs/result?region=eu",
       }}
       cacheLocation={CacheLocation.SessionStorage}
       cacheTimeInSeconds={60}
