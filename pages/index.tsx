@@ -20,7 +20,7 @@ export default function Home() {
             </Link>
           </h1>
 
-          <h2>Experiments with implemented best practives</h2>
+          <h2>Experiments with implemented best practices</h2>
 
           <div className={styles.grid}>
             <Link className={styles.card} href="/fingerprint-pro-and-botd">
