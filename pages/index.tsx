@@ -20,8 +20,6 @@ export default function Home() {
             </Link>
           </h1>
 
-          <h2>Experiments with implemented best practices</h2>
-
           <div className={styles.grid}>
             <Link className={styles.card} href="/fingerprint-pro-and-botd">
               <h2>Fingerprint Pro Custom subdomain &rarr;</h2>
@@ -125,20 +123,6 @@ export default function Home() {
             <Link className={styles.card} href="/events">
               <h2>Event info from the Server API</h2>
               <p>getServerSideProps at the edge, NodeJS Server API SDK</p>
-            </Link>
-          </div>
-
-          <h2>Anti-patterns - do not follow!</h2>
-
-          <div className={styles.grid}>
-            <Link className={styles.card} href="/antipatern-getStaticProps">
-              <h2>Fingerprint Pro not working in the server-side context</h2>
-              <p>getStaticProps</p>
-            </Link>
-
-            <Link className={styles.card} href="/antipatern-getServerSideProps">
-              <h2>Fingerprint Pro not working in the server-side context</h2>
-              <p>getServerSideProps</p>
             </Link>
           </div>
         </main>
