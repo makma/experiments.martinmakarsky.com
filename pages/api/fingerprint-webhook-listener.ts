@@ -4,12 +4,12 @@ export const config = {
     runtime: 'edge',
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: any) {
     if (req.method === 'POST') {
-        const webhookPayload = req.body;
+        const webhookPayload: any = await req.json();
 
         const { BOT_EVENTS } = (process.env as unknown as { BOT_EVENTS: KVNamespace });
-        BOT_EVENTS.put(JSON.parse(webhookPayload).requestId, webhookPayload);
+        BOT_EVENTS.put(webhookPayload.requestId, JSON.stringify(webhookPayload));
 
         return new Response(null, { status: 200 });
     } else {
