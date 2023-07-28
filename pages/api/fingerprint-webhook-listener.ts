@@ -11,10 +11,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const { BOT_EVENTS } = (process.env as unknown as { BOT_EVENTS: KVNamespace });
         BOT_EVENTS.put(webhookPayload.requestId, webhookPayload);
 
-        // Send a response back to the sender (optional)
-        res.status(200).json({ message: 'Webhook data received successfully.' });
-        res.end();
+        return new Response(null, { status: 200 });
     } else {
-        res.status(405).end();
+        return new Response(null, { status: 405 });
     }
 }
