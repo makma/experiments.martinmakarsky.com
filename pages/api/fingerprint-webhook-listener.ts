@@ -6,8 +6,7 @@ export const config = {
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
-        const body: any = req.body;
-        const webhookPayload = await body.json();
+        const webhookPayload = await req.body;
 
         const { BOT_EVENTS } = (process.env as unknown as { BOT_EVENTS: KVNamespace });
         BOT_EVENTS.put(webhookPayload.requestId, webhookPayload);
