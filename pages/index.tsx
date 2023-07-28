@@ -71,7 +71,7 @@ export default function Home() {
               className={styles.card}
               href="/fingerprint-pro-react-cloudfront"
             >
-              <h2>Fingerprint Pro React Cloudflare &rarr;</h2>
+              <h2>Fingerprint Pro React CloudFront &rarr;</h2>
               <p>React lib, CloudFront integration, extended result</p>
             </Link>
 
