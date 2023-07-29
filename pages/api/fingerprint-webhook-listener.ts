@@ -7,6 +7,8 @@ export const config = {
 export default async function handler(req: any) {
     if (req.method === 'POST') {
         const webhookPayload: any = await req.json();
+        console.log('in post method');
+        console.log(JSON.stringify(webhookPayload));
 
         const { BOT_EVENTS } = (process.env as unknown as { BOT_EVENTS: KVNamespace });
         BOT_EVENTS.put(webhookPayload.requestId, JSON.stringify(webhookPayload));
