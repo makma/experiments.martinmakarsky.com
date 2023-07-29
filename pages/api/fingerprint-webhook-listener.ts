@@ -4,13 +4,15 @@ export const config = {
     runtime: 'edge',
 }
 
-export default async function onRequestPost(context: any) {
-    const body: any = await context.request.json();
-    console.log('on psot request');
-    console.log(JSON.stringify(body))
+export default async function handler(req: any) {
+    if (req.method === 'POST') {
+        const webhookPayload: any = await req.json();
 
-    const { BOT_EVENTS } = (process.env as unknown as { BOT_EVENTS: KVNamespace });
-    BOT_EVENTS.put(body.requestId, JSON.stringify(body));
+        const { BOT_EVENTS } = (process.env as unknown as { BOT_EVENTS: KVNamespace });
+        BOT_EVENTS.put(webhookPayload.requestId, JSON.stringify(webhookPayload));
 
-    return new Response(null, { status: 200 });
+        return new Response(null, { status: 200 });
+    } else {
+        return new Response(null, { status: 405 });
+    }
 }
