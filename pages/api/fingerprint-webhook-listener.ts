@@ -6,12 +6,10 @@ export const config = {
 
 export default async function handler(req: any) {
     if (req.method === 'POST') {
-        const webhookPayload: any = await req.json();
-        console.log('in post method');
-        console.log(JSON.stringify(webhookPayload));
+        const body: any = await req.json();
 
         const { BOT_EVENTS } = (process.env as unknown as { BOT_EVENTS: KVNamespace });
-        BOT_EVENTS.put("hello", JSON.stringify(webhookPayload));
+        await BOT_EVENTS.put(body.requesId, JSON.stringify(body));
 
         return new Response(null, { status: 200 });
     } else {
