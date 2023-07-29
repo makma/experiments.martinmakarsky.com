@@ -1,36 +1,32 @@
-import { useState, useEffect } from "react";
+import type { InferGetServerSidePropsType } from "next";
 
-const BotBlocker = () => {
-  const [botEvents, setBotEvents] = useState(new Array<any>());
+export async function getServerSideProps() {
+  const { BOT_EVENTS } = process.env as unknown as {
+    BOT_EVENTS: KVNamespace;
+  };
+  const botEventKeys = (await BOT_EVENTS.list({ limit: 10 })).keys;
 
-  useEffect(() => {
-    async function getBotEvents() {
-      const { BOT_EVENTS } = process.env as unknown as {
-        BOT_EVENTS: KVNamespace;
-      };
-      const botEventKeys = (await BOT_EVENTS.list({ limit: 10 })).keys;
+  const botEvents = Array<any>();
+  for (const botEventKey of botEventKeys) {
+    const botEvent = await BOT_EVENTS.get(botEventKey.name);
+    botEvents.push(botEvent);
+  }
+  return botEvents;
+}
 
-      const botEvents = Array<any>();
-      for (const botEventKey of botEventKeys) {
-        const botEvent = await BOT_EVENTS.get(botEventKey.name);
-        botEvents.push(botEvent);
-      }
-      setBotEvents(botEvents);
-    }
-
-    getBotEvents();
-  }, []);
-
+function BotBlocker({
+  botEvents,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <div>
       <h1>Items List</h1>
       <ul>
-        {botEvents.map((item, index) => (
+        {(botEvents as Array<any>).map((item, index) => (
           <li key={index}>{item.name}</li>
         ))}
       </ul>
     </div>
   );
-};
+}
 
 export default BotBlocker;
