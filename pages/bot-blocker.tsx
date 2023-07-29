@@ -13,12 +13,16 @@ export async function getServerSideProps() {
     const botEvent = await BOT_EVENTS.get(botEventKey.name);
     botEvents.push(botEvent);
   }
+  console.log(JSON.stringify(botEvents));
+
   return botEvents;
 }
 
 function BotBlocker({
   botEvents,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  console.log(JSON.stringify(botEvents));
+
   return (
     <div>
       <h1>Items List</h1>
