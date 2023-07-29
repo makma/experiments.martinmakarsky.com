@@ -9,7 +9,7 @@ export default async function handler(req: any) {
         const body: any = await req.json();
 
         const { BOT_EVENTS } = (process.env as unknown as { BOT_EVENTS: KVNamespace });
-        await BOT_EVENTS.put(body.requesId, JSON.stringify(body));
+        await BOT_EVENTS.put(body.requestId, JSON.stringify(body));
 
         return new Response(null, { status: 200 });
     } else {
