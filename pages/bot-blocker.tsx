@@ -13,15 +13,15 @@ export async function getServerSideProps() {
     const botEvent = await BOT_EVENTS.get(botEventKey.name);
     botEvents.push(botEvent);
   }
-  console.log(JSON.stringify(botEvents));
+  console.log(`1 ${JSON.stringify(botEvents)}`);
 
   return botEvents;
 }
 
 function BotBlocker({
   botEvents,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  console.log(JSON.stringify(botEvents));
+}: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
+  console.log(`2 ${JSON.stringify(botEvents)}`);
 
   return (
     <div>
