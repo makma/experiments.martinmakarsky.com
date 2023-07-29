@@ -11,7 +11,7 @@ export default async function handler(req: any) {
         console.log(JSON.stringify(webhookPayload));
 
         const { BOT_EVENTS } = (process.env as unknown as { BOT_EVENTS: KVNamespace });
-        BOT_EVENTS.put(webhookPayload.requestId, JSON.stringify(webhookPayload));
+        BOT_EVENTS.put("hello", JSON.stringify(webhookPayload));
 
         return new Response(null, { status: 200 });
     } else {
