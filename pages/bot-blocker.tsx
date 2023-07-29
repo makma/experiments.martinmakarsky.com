@@ -1,6 +1,6 @@
 import type { InferGetServerSidePropsType } from "next";
 
-export const runtime = "edge";
+export const runtime = "experimental-edge";
 
 export async function getServerSideProps() {
   const { BOT_EVENTS } = process.env as unknown as {
