@@ -25,12 +25,13 @@ function BotBlocker({
 
   return (
     <div>
-      <h1>Items List</h1>
+      {/* <h1>Items List</h1>
       <ul>
         {(botEvents as Array<any>).map((item, index) => (
           <li key={index}>{item.name}</li>
         ))}
-      </ul>
+      </ul> */}
+      <pre>{JSON.stringify(botEvents)}</pre>
     </div>
   );
 }
