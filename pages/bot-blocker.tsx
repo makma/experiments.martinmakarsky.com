@@ -15,7 +15,7 @@ export async function getServerSideProps() {
   }
   console.log(`1 ${JSON.stringify(botEvents)}`);
 
-  return botEvents;
+  return { props: botEvents };
 }
 
 function BotBlocker({
