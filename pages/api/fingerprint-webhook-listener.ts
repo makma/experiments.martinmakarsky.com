@@ -1,13 +1,17 @@
-export const config = {
-    runtime: 'edge',
-}
+import { initBotEvents, persistBotEvent } from '../../dbModels/Event';
 
-export default async function handler(req: any) {
+export default async function handler(req: Request, res: Response) {
+    initBotEvents();
+
     if (req.method === 'POST') {
-        const body: any = await req.json();
 
-        const { BOT_EVENTS } = (process.env as unknown as { BOT_EVENTS: KVNamespace });
-        await BOT_EVENTS.put(`-${Date.now()}`, JSON.stringify(body));
+        const event: any = await req.json();
+
+        if (!event) {
+            return new Response(null, { status: 400 });
+        }
+
+        await persistBotEvent(event);
 
         return new Response(null, { status: 200 });
     } else {
