@@ -1,10 +1,6 @@
 import type { NextRequest } from 'next/server'
 import { FingerprintJsServerApiClient, Region } from '@fingerprintjs/fingerprintjs-pro-server-api';
 
-export const config = {
-  runtime: 'edge',
-}
-
 export default async function handler(req: NextRequest) {
   const apiKey = process.env.FINGERPRINT_SECRET_API_KEY ?? ''
   const visitorId = req.nextUrl.searchParams.get("visitorId") ?? ''

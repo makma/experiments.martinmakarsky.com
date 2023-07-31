@@ -13,13 +13,12 @@
     "@fingerprintjs/fingerprintjs-pro-react": "2.4.0",
     "@fingerprintjs/fingerprintjs-pro-server-api": "2.2.0",
     "next": "13.4.7",
-    "react": "18.2.0",
+    "react": "18.3.0-canary-9377e1010-20230712",
     "react-dom": "18.2.0",
     "sequelize": "^6.32.1",
     "sqlite3": "^5.1.6"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "cloudflare/workers-types",
     "@types/node": "18.11.7",
     "@types/react": "18.0.23",
     "@types/react-dom": "18.0.7",

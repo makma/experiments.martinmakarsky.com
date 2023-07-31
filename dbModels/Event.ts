@@ -5,11 +5,14 @@ export const Event = sequelize.define('Event', {
   requestId: {
     type: DataTypes.STRING,
   },
-  event: {
-    type: DataTypes.STRING,
+  ip: {
+    type: DataTypes.STRING
   },
   isBot: {
     type: DataTypes.BOOLEAN,
+  },
+  botType: {
+    type: DataTypes.STRING
   },
 });
 
@@ -26,16 +29,20 @@ export async function initBotEvents() {
 export async function persistBotEvent(event: any) {
   return Event.create({
     requestId: event.requestId,
-    eventData: JSON.stringify(event),
-    isBot: event.products.botd.data.bot.result !== "notDetected"
+    ip: event.ip,
+    isBot: event.bot.result === "bad" || event.bot.result === "good",
+    botType: event.bot.result
   });
 }
 
-export async function getBotEvents() {
+export async function getBotEvents(limit: number = 100) {
   const botEvents = await Event.findAll({
+    order: [['createdAt', 'DESC']],
     where: {
       isBot: true,
     },
+    limit,
+    raw: true
   });
 
   return botEvents;

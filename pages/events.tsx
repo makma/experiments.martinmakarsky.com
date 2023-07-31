@@ -3,10 +3,6 @@ import {
   Region,
 } from "@fingerprintjs/fingerprintjs-pro-server-api";
 
-export const config = {
-  runtime: "experimental-edge",
-};
-
 function Events({ content }: { content: string }) {
   return <pre>{content}</pre>;
 }
