@@ -1,7 +1,7 @@
 import { initBotEvents, persistBotEvent } from '../../dbModels/Event';
 
 export default async function handler(req: Request, res: Response) {
-    initBotEvents();
+    await initBotEvents();
 
     if (req.method === 'POST') {
 
@@ -11,7 +11,9 @@ export default async function handler(req: Request, res: Response) {
             return new Response(null, { status: 400 });
         }
 
+        console.log(`persisting ${JSON.stringify(event)}`)
         await persistBotEvent(event);
+        console.log(`persisted`)
 
         return new Response(null, { status: 200 });
     } else {

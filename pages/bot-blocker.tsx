@@ -4,7 +4,9 @@ import { getBotEvents } from "../dbModels/Event";
 export const getServerSideProps: GetServerSideProps<{
   botEvents: any;
 }> = async () => {
+  console.log("getting bot events");
   const botEvents = await getBotEvents();
+  console.log(`obtained ${botEvents}`);
 
   return { props: { botEvents } };
 };
