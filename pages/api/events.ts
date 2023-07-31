@@ -4,9 +4,10 @@ import {
   Region,
 } from "@fingerprintjs/fingerprintjs-pro-server-api";
 
-export default async function handler(req: NextRequest) {
+export default async function handler(req: any) {
   const apiKey = process.env.FINGERPRINT_SECRET_API_KEY ?? ''
-  const requestId = req.nextUrl.searchParams.get("requestId") ?? ''
+  const requestId = req.query.requestId
+  // const requestId = req.nextUrl.searchParams.get("requestId") ?? ''
 
   if (!requestId) {
     return new Response("requestId query param must be provided")
