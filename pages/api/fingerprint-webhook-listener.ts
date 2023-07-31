@@ -1,18 +1,18 @@
 import { initBotEvents, persistBotEvent } from '../../dbModels/Event';
 
-export default async function handler(req: Request, res: Response) {
+export default async function handler(req: any, res: Response) {
     await initBotEvents();
 
     if (req.method === 'POST') {
 
-        const event: any = await req.json();
+        const eventString = req.body;
 
-        if (!event) {
+        if (!eventString) {
             return new Response(null, { status: 400 });
         }
 
-        console.log(`persisting ${JSON.stringify(event)}`)
-        await persistBotEvent(event);
+        console.log(`persisting ${eventString}`)
+        await persistBotEvent(JSON.parse(eventString));
         console.log(`persisted`)
 
         return new Response(null, { status: 200 });
