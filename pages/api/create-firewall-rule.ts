@@ -35,6 +35,7 @@ async function getZoneRulesets() {
 
     try {
         const rulesets = await (await fetch(url, options)).json();
+        console.log(JSON.stringify(rulesets))
         return rulesets.result;
     } catch (error) {
         console.error('error:' + error)
