@@ -17,6 +17,7 @@ export default function FingerprintProReactCloudflare() {
     <FpjsProvider
       loadOptions={{
         apiKey: FINGERPRINT_PUBLIC_API_KEY, // REPLACE <API_KEY>,
+        tlsEndpoint: 'https://eu.api.fpjs.io',
         // @ts-ignore
         stripUrlParams: true,
         scriptUrlPattern:

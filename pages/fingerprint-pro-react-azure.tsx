@@ -17,6 +17,7 @@ export default function FingerprintProReactAzure() {
     <FpjsProvider
       loadOptions={{
         apiKey: FINGERPRINT_PUBLIC_API_KEY, // REPLACE <API_KEY>,
+        tlsEndpoint: 'https://eu.api.fpjs.io',
         scriptUrlPattern:
           "https://azure-integration.martinmakarsky.com/fpjs/agent?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
         endpoint:
