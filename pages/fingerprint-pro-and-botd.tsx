@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import FingerprintJS, { GetResult } from "@fingerprintjs/fingerprintjs-pro";
 import {
   CUSTOM_SUBDOMAIN,
-  FINGERPRINT_PUBLIC_API_KEY,
+  FINGERPRINT_PUBLIC_API_KEY_SECONDARY,
 } from "../shared/constants";
 
 export default function FingerprintProBotdVanillaAgent() {
@@ -14,7 +14,7 @@ export default function FingerprintProBotdVanillaAgent() {
   useEffect(() => {
     (async () => {
       const fpPromise = FingerprintJS.load({
-        apiKey: FINGERPRINT_PUBLIC_API_KEY,
+        apiKey: FINGERPRINT_PUBLIC_API_KEY_SECONDARY,
         endpoint: CUSTOM_SUBDOMAIN,
       });
       const fp = await fpPromise;
