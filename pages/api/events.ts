@@ -1,16 +1,16 @@
-import type { NextRequest } from 'next/server'
 import {
   FingerprintJsServerApiClient,
   Region,
 } from "@fingerprintjs/fingerprintjs-pro-server-api";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req: any) {
-  const apiKey = process.env.FINGERPRINT_SECRET_API_KEY ?? ''
-  const requestId = req.query.requestId
-  // const requestId = req.nextUrl.searchParams.get("requestId") ?? ''
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const apiKey = process.env.FINGERPRINT_SECRET_API_KEY ?? '';
+  const requestId = req.query.requestId ?? '';
+  console.log(`hello: ${requestId}`);
 
   if (!requestId) {
-    return new Response("requestId query param must be provided")
+    return res.status(400).send("requestId query param must be provided");
   }
 
   const client = new FingerprintJsServerApiClient({
@@ -20,6 +20,11 @@ export default async function handler(req: any) {
     fetch: fetch.bind(globalThis),
   });
 
-  const event = await client.getEvent(requestId);
-  return new Response(JSON.stringify(event, null, 2))
+  try {
+    const event = await client.getEvent(requestId.toString());
+    return res.status(200).send(event);
+  } catch (error) {
+    return res.status(400).send(error)
+  }
+
 }
