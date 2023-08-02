@@ -17,7 +17,7 @@ export default function FingerprintProReactCloudFront() {
     <FpjsProvider
       loadOptions={{
         apiKey: FINGERPRINT_PUBLIC_API_KEY, // REPLACE <API_KEY>,
-        tlsEndpoint: 'https://eu.api.fpjs.io',
+        tlsEndpoint: 'https://euc1-warden-rc.fpjs.io',
         scriptUrlPattern:
           "https://cloudfront-distribution-proxy.martinmakarsky.com/behavior-path/download-path?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
         endpoint:
