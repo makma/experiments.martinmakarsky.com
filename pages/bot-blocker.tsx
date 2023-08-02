@@ -44,7 +44,7 @@ export function BotBlocker({
         <div style={{ flex: 1 }}>Bot Type</div>
         <div style={{ flex: 1 }}>Actions</div>
       </div>
-      {botEvents.map((event, index) => (
+      {botEvents.map((event: any, index: number) => (
         <div
           key={index}
           style={{

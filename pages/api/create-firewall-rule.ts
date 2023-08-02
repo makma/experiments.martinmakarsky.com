@@ -1,6 +1,6 @@
-import { NextApiResponse } from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handler(req: any, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
     if (req.method === 'POST') {
         const body = req.body
@@ -18,6 +18,8 @@ export default async function handler(req: any, res: NextApiResponse) {
 
 async function getCustomRulesetId() {
     const rulesets: Array<any> = await getZoneRulesets();
+
+    // one must deploy custom rules to the http_request_firewall_custom phase entry point ruleset https://developers.cloudflare.com/waf/custom-rules/create-api/
     const customRuleset = rulesets.find(item => { return item.phase === "http_request_firewall_custom" })
     return customRuleset.id;
 }

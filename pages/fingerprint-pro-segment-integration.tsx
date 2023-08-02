@@ -8,75 +8,75 @@ export default function FingerprintProSegmentIntegrations() {
     "Waiting for data..."
   );
 
-  const tag = {
-    integrations: {
-      segment: {
-        skipIntegration: false,
-        identify: {
-          userId: "someUserId",
-          traits: {
-            name: "Jon Doe",
-            email: "jondoe@example.com",
-            plan: "free",
-            logins: 12,
-            address: {
-              street: "street1",
-              city: "city1",
-              state: "state1",
+  useEffect(() => {
+    const tag = {
+      integrations: {
+        segment: {
+          skipIntegration: false,
+          identify: {
+            userId: "someUserId",
+            traits: {
+              name: "Jon Doe",
+              email: "jondoe@example.com",
+              plan: "free",
+              logins: 12,
+              address: {
+                street: "street1",
+                city: "city1",
+                state: "state1",
+              },
             },
           },
-        },
-        page: {
-          category: "Account",
-          name: "Update Password",
-          context: {
-            ip: "8.8.8.8",
-            userAgent: "Mozilla",
-          },
-          properties: {
-            path: "/account/password",
-            referrer: "/account/home",
-            search: "debug=true&testParam=123",
-            title: "Appify - Update Account Password",
-            url: "https://appify.dev/account/password",
-            keywords: ["password", "update", "account", "change"],
-          },
-        },
-        track: {
-          event: "Plan Updated",
-          properties: {
-            revenue: "19.99",
-            currency: "USD",
-            value: "19.99",
-          },
-        },
-        group: {
-          groupId: "0e8c78ea9d97a7b8185e8632",
-          traits: {
-            name: "Fingerprint",
-            industry: "Tech",
-            employees: 110,
-            plan: "enterprise",
-            "total billed": 12000,
-            website: "fingerprint.com",
-            address: {
-              city: "New York",
-              country: "USA",
-              postalCode: "32320",
-              state: "New York",
-              street: "5th Ave",
+          page: {
+            category: "Account",
+            name: "Update Password",
+            context: {
+              ip: "8.8.8.8",
+              userAgent: "Mozilla",
             },
-            avatar: "https://fingerprint.com/favicon.ico",
-            description: "A Fingerprinting company",
-            email: "support@fingerprint.com",
-            id: "0e8c78ea9d97a7b8185e8632",
+            properties: {
+              path: "/account/password",
+              referrer: "/account/home",
+              search: "debug=true&testParam=123",
+              title: "Appify - Update Account Password",
+              url: "https://appify.dev/account/password",
+              keywords: ["password", "update", "account", "change"],
+            },
+          },
+          track: {
+            event: "Plan Updated",
+            properties: {
+              revenue: "19.99",
+              currency: "USD",
+              value: "19.99",
+            },
+          },
+          group: {
+            groupId: "0e8c78ea9d97a7b8185e8632",
+            traits: {
+              name: "Fingerprint",
+              industry: "Tech",
+              employees: 110,
+              plan: "enterprise",
+              "total billed": 12000,
+              website: "fingerprint.com",
+              address: {
+                city: "New York",
+                country: "USA",
+                postalCode: "32320",
+                state: "New York",
+                street: "5th Ave",
+              },
+              avatar: "https://fingerprint.com/favicon.ico",
+              description: "A Fingerprinting company",
+              email: "support@fingerprint.com",
+              id: "0e8c78ea9d97a7b8185e8632",
+            },
           },
         },
       },
-    },
-  };
+    };
 
-  useEffect(() => {
     (async () => {
       const fpPromise = FingerprintJS.load({
         apiKey: FINGERPRINT_PUBLIC_API_KEY,

@@ -1,6 +1,5 @@
-import { NextApiResponse } from 'next'
-import type { NextRequest } from 'next/server'
+import { NextApiRequest, NextApiResponse } from 'next'
 
-export default async function handler(req: NextRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     return res.send({ status: 200 });
 }

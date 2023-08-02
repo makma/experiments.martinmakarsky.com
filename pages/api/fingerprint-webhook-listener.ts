@@ -1,7 +1,7 @@
-import { NextApiResponse } from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
 import { initBotEvents, persistBotEvent } from '../../dbModels/Event';
 
-export default async function handler(req: any, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   await initBotEvents();
 

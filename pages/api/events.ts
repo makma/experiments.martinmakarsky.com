@@ -7,7 +7,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const apiKey = process.env.FINGERPRINT_SECRET_API_KEY ?? '';
   const requestId = req.query.requestId ?? '';
-  console.log(`hello: ${requestId}`);
 
   if (!requestId) {
     return res.status(400).send("requestId query param must be provided");
@@ -16,8 +15,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const client = new FingerprintJsServerApiClient({
     region: Region.EU,
     apiKey: apiKey,
-    // @ts-ignore missing isRedirect property
-    fetch: fetch.bind(globalThis),
   });
 
   try {

@@ -9,8 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).send("visitorId query param must be provided");
   }
 
-  // @ts-ignore missing isRedirect property
-  const client = new FingerprintJsServerApiClient({ region: Region.EU, apiKey: apiKey, fetch: fetch.bind(globalThis) });
+  const client = new FingerprintJsServerApiClient({ region: Region.EU, apiKey: apiKey });
 
   try {
     const visitorHistory = await client.getVisitorHistory(visitorId.toString());
