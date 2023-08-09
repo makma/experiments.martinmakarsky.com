@@ -61,6 +61,19 @@ export default function Home() {
 
             <Link
               className={styles.card}
+              href="/fingerprint-pro-react-cloudflare-subdomain-unmanaged"
+            >
+              <h2>
+                Fingerprint Pro React Cloudflare on subdomain unmanaged &rarr;
+              </h2>
+              <p>
+                Unamanaged and created manually, won&apos;t be upgraded
+                automatically
+              </p>
+            </Link>
+
+            <Link
+              className={styles.card}
               href="/fingerprint-pro-react-cloudfront"
             >
               <h2>Fingerprint Pro React CloudFront &rarr;</h2>
