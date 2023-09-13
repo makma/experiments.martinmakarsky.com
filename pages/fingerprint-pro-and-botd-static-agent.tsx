@@ -1,12 +1,14 @@
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import * as FingerprintJS from "@fingerprintjs/fingerprintjs-pro-static";
+import { GetResult } from "@fingerprintjs/fingerprintjs-pro";
+
 import {
   CUSTOM_SUBDOMAIN,
   FINGERPRINT_PUBLIC_API_KEY,
 } from "../shared/constants";
 
-export default function FingerprintProBotdVanillaAgent() {
+export default function FingerprintProBotdStaticAgent() {
   const [fingerprintData, setFingerprintData] = useState<GetResult | string>(
     "Waiting for data..."
   );

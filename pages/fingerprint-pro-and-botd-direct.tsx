@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import FingerprintJS, { GetResult } from "@fingerprintjs/fingerprintjs-pro";
 import { FINGERPRINT_PUBLIC_API_KEY } from "../shared/constants";
 
-export default function FingerprintProBotdVanillaAgent() {
+export default function FingerprintProBotdVanillaAgentDirect() {
   const [fingerprintData, setFingerprintData] = useState<GetResult | string>(
     "Waiting for data..."
   );
