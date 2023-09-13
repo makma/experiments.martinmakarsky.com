@@ -21,9 +21,20 @@ export default function Home() {
           </h1>
 
           <div className={styles.grid}>
-            <Link className={styles.card} href="/fingerprint-pro-and-botd">
+            <Link
+              className={styles.card}
+              href="/fingerprint-pro-and-botd-subdomain"
+            >
               <h2>Fingerprint Pro Custom subdomain &rarr;</h2>
               <p>No lib, TS NPM agent, subdomain setup, extended result</p>
+            </Link>
+
+            <Link
+              className={styles.card}
+              href="/fingerprint-pro-and-botd-direct"
+            >
+              <h2>Fingerprint Pro Direct &rarr;</h2>
+              <p>No lib, TS NPM agent, NO subdomain setup, extended result</p>
             </Link>
 
             <Link
