@@ -26,6 +26,14 @@ export default function Home() {
               <p>No lib, TS NPM agent, subdomain setup, extended result</p>
             </Link>
 
+            <Link
+              className={styles.card}
+              href="/fingerprint-pro-and-botd-static-agent"
+            >
+              <h2>Fingerprint Pro Static Agent &rarr;</h2>
+              <p>No lib, Static agent, subdomain setup, extended result</p>
+            </Link>
+
             <Link className={styles.card} href="/botd-only">
               <h2>BotD only &rarr;</h2>
               <p>No lib, TS NPM agent, subdomain setup, extended result</p>

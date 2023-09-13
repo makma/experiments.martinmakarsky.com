@@ -46,6 +46,13 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.46.0.tgz#3f7802972e8b6fe3f88ed1aabc74ec596c456db6"
   integrity sha512-a8TLtmPi8xzPkCbp/OGFUo5yhRkHM2Ko9kOWP4znJr0WAhWyThaw3PnwX4vOTWOAMsV2uRt32PPDcEz63esSaA==
 
+"@fingerprintjs/botd@1.6.2":
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@fingerprintjs/botd/-/botd-1.6.2.tgz#f1f2bbfde639c3871c787780033f59f27a1c77a9"
+  integrity sha512-Qbcceo9kw54x/sGKp+o2w/OatM7UytM65UAVj5UTgtOTZ7RbxuByukWO8GEW5t0yqRL4B3tA/TblaJ0fR1zQzA==
+  dependencies:
+    tslib "^2.4.0"
+
 "@fingerprintjs/fingerprintjs-pro-react@2.5.0":
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/@fingerprintjs/fingerprintjs-pro-react/-/fingerprintjs-pro-react-2.5.0.tgz#5a86425cc97b63304a44ed84996d2b84f068e5db"
@@ -69,10 +76,26 @@
     "@fingerprintjs/fingerprintjs-pro" "^3.8.4"
     tslib "^2.5.0"
 
+"@fingerprintjs/fingerprintjs-pro-static@^3.8.24":
+  version "3.8.24"
+  resolved "https://npm.fpregistry.io/@fingerprintjs/fingerprintjs-pro-static/-/fingerprintjs-pro-static-3.8.24.tgz#13659e3715511653dab280ff4b8dabd80e069e57"
+  integrity sha512-otNcd1YxKa0dO4JPdk4sBCBcHyI/Daf+F/bfOmwXRnJdPPK7o4ks/oh0kPUrvNxpoDsDb90v8NKakFk2v3sZSw==
+  dependencies:
+    "@fingerprintjs/botd" "1.6.2"
+    "@fingerprintjs/fingerprintjs" "4.0.1"
+    tslib "^2.4.1"
+
 "@fingerprintjs/fingerprintjs-pro@^3.8.4", "@fingerprintjs/fingerprintjs-pro@^3.8.5":
   version "3.8.5"
   resolved "https://registry.yarnpkg.com/@fingerprintjs/fingerprintjs-pro/-/fingerprintjs-pro-3.8.5.tgz#9e14b5fadd14a90490be66ddd0d2678f56ac39e1"
   integrity sha512-07bkz/BrQYIHh0FIQ8rMKx62IKu+gkZrUzNsoT1fLwYfnM0uk+s+XQXLeaDXGMGpHgkZSP4nPMAn+nkRfWy6ww==
+  dependencies:
+    tslib "^2.4.1"
+
+"@fingerprintjs/fingerprintjs@4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@fingerprintjs/fingerprintjs/-/fingerprintjs-4.0.1.tgz#bb5a4cb085e208ad5fda0429581a9eb0a7946fb6"
+  integrity sha512-utXfX0ntmU08MxQ1cfKRbri57xb+aqYNIt2UNYcPsT/fQgKhZsnIBGRIhEifMZ7NZDyGLAhctWaytDkC27fibA==
   dependencies:
     tslib "^2.4.1"
 

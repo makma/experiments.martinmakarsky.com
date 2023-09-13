@@ -12,6 +12,7 @@
     "@fingerprintjs/fingerprintjs-pro": "^3.8.5",
     "@fingerprintjs/fingerprintjs-pro-react": "2.5.0",
     "@fingerprintjs/fingerprintjs-pro-server-api": "2.3.0",
+    "@fingerprintjs/fingerprintjs-pro-static": "^3.8.24",
     "next": "13.4.13-canary.9",
     "react": "18.2.0",
     "react-dom": "18.2.0",
