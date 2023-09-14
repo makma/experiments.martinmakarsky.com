@@ -31,6 +31,17 @@ export default function Home() {
 
             <Link
               className={styles.card}
+              href="/fingerprint-pro-and-botd-full-subdomain"
+            >
+              <h2>Fingerprint Pro Full Custom Subdomain &rarr;</h2>
+              <p>
+                No lib, TS NPM agent, full subdomain setup (ingress + agent),
+                extended result
+              </p>
+            </Link>
+
+            <Link
+              className={styles.card}
               href="/fingerprint-pro-and-botd-direct"
             >
               <h2>Fingerprint Pro Direct &rarr;</h2>
