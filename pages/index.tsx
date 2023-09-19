@@ -138,6 +138,19 @@ export default function Home() {
               <p>React NPM lib, subdomain setup, extended and basic result</p>
             </Link>
 
+            <Link
+              className={styles.card}
+              href="/fingerprint-pro-spa-package-static-agent"
+            >
+              <h2>
+                Fingerprint Pro Custom subdomain SPA lib static agent&rarr;
+              </h2>
+              <p>
+                React NPM lib, subdomain setup, extended and basic result,
+                static agent
+              </p>
+            </Link>
+
             <Link className={styles.card} href="/botd-zero-trust">
               <h2>Fingerprint Pro BotD Zero Trust &rarr;</h2>
               <p>Browser SDK (agent), Zero Trust</p>

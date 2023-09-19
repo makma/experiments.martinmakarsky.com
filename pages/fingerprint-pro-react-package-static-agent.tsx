@@ -4,7 +4,6 @@ import {
   CacheLocation,
   useVisitorData,
   FpjsProvider,
-  defaultScriptUrlPattern,
 } from "@fingerprintjs/fingerprintjs-pro-react";
 import * as FingerprintJS from "@fingerprintjs/fingerprintjs-pro-static";
 import { Product } from "@fingerprintjs/fingerprintjs-pro-static";
