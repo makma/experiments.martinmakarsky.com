@@ -14,7 +14,10 @@ export default function FingerprintProBotdVanillaAgentDirect() {
         apiKey: FINGERPRINT_PUBLIC_API_KEY,
       });
       const fp = await fpPromise;
-      const data = await fp.get({ extendedResult: true });
+      const data = await fp.get({
+        // @ts-ignore
+        exposedComponents: true,
+      });
       setFingerprintData(data);
     })();
   }, []);

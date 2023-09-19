@@ -32,6 +32,7 @@ const FingerprintData: NextPage = () => {
   const [addBotdProduct, setAddBotdProduct] = useState(true);
   const [addIdentificationProduct, setIdentificationProduct] = useState(true);
   const [ignoreCache, setIgnoreCache] = useState(true);
+  const [exposedComponents, setExposedComponents] = useState(false);
 
   let products: Array<Product> = [];
   if (addBotdProduct) {
@@ -42,8 +43,15 @@ const FingerprintData: NextPage = () => {
     products.push("identification");
   }
 
+  debugger;
   const { isLoading, error, data, getData } = useVisitorData(
-    { extendedResult, products, linkedId: "someRandomLinkedId" },
+    {
+      extendedResult,
+      // @ts-ignore
+      exposedComponents,
+      products,
+      linkedId: "someRandomLinkedId",
+    },
     { immediate: true }
   );
 
@@ -53,6 +61,10 @@ const FingerprintData: NextPage = () => {
 
   const onChangeExtendedResult = (e: any) => {
     setExtendedResult(e.target.checked);
+  };
+
+  const onChangeExposedComponents = (e: any) => {
+    setExposedComponents(e.target.checked);
   };
 
   const onChangeBotdOnly = (e: any) => {
@@ -83,6 +95,16 @@ const FingerprintData: NextPage = () => {
                 checked={extendedResult}
               />
               Extended result
+            </label>
+          </div>
+          <div>
+            <label>
+              <input
+                type="checkbox"
+                onChange={onChangeExposedComponents}
+                checked={exposedComponents}
+              />
+              Exposed components
             </label>
           </div>
           <div>
