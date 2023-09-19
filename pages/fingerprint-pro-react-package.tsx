@@ -32,7 +32,7 @@ const FingerprintData: NextPage = () => {
   const [addBotdProduct, setAddBotdProduct] = useState(true);
   const [addIdentificationProduct, setIdentificationProduct] = useState(true);
   const [ignoreCache, setIgnoreCache] = useState(true);
-  const [exposedComponents, setExposedComponents] = useState(false);
+  const [exposeComponents, setExposeComponents] = useState(false);
 
   let products: Array<Product> = [];
   if (addBotdProduct) {
@@ -48,7 +48,7 @@ const FingerprintData: NextPage = () => {
     {
       extendedResult,
       // @ts-ignore
-      exposedComponents,
+      exposeComponents,
       products,
       linkedId: "someRandomLinkedId",
     },
@@ -63,8 +63,8 @@ const FingerprintData: NextPage = () => {
     setExtendedResult(e.target.checked);
   };
 
-  const onChangeExposedComponents = (e: any) => {
-    setExposedComponents(e.target.checked);
+  const onChangeExposeComponents = (e: any) => {
+    setExposeComponents(e.target.checked);
   };
 
   const onChangeBotdOnly = (e: any) => {
@@ -101,10 +101,10 @@ const FingerprintData: NextPage = () => {
             <label>
               <input
                 type="checkbox"
-                onChange={onChangeExposedComponents}
-                checked={exposedComponents}
+                onChange={onChangeExposeComponents}
+                checked={exposeComponents}
               />
-              Exposed components
+              Expose components
             </label>
           </div>
           <div>

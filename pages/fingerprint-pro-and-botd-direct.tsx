@@ -16,7 +16,7 @@ export default function FingerprintProBotdVanillaAgentDirect() {
       const fp = await fpPromise;
       const data = await fp.get({
         // @ts-ignore
-        exposedComponents: true,
+        exposeComponents: true,
       });
       setFingerprintData(data);
     })();
