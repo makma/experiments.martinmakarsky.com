@@ -86,6 +86,11 @@ export default function Home() {
               <p>React lib, Cloudflare integration, extended result</p>
             </Link>
 
+            <Link className={styles.card} href="/fingerprint-pro-react-akamai">
+              <h2>Fingerprint Pro React Akamai &rarr;</h2>
+              <p>React lib, Akamai integration</p>
+            </Link>
+
             <Link
               className={styles.card}
               href="/fingerprint-pro-react-cloudflare-strip-url-params"
