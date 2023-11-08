@@ -18,10 +18,10 @@ export default function FingerprintProReactCloudflare() {
       loadOptions={{
         apiKey: FINGERPRINT_PUBLIC_API_KEY,
         scriptUrlPattern: [
-          "http://akamai.martinmakarsky.com/integration-path/agent-path?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
+          "https://akamai.martinmakarsky.com/integration-path/agent-path?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
         ],
         endpoint: [
-          "http://akamai.martinmakarsky.com/integration-path/result-path?region=eu",
+          "https://akamai.martinmakarsky.com/integration-path/result-path?region=eu",
         ],
       }}
       cacheLocation={CacheLocation.SessionStorage}
