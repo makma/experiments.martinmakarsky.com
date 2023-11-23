@@ -6,10 +6,7 @@ import {
 } from "@fingerprintjs/fingerprintjs-pro-react";
 import { FpjsProvider } from "@fingerprintjs/fingerprintjs-pro-react";
 import { NextPage } from "next";
-import {
-  CUSTOM_SUBDOMAIN,
-  FINGERPRINT_PUBLIC_API_KEY,
-} from "../shared/constants";
+import { FINGERPRINT_PUBLIC_API_KEY } from "../shared/constants";
 import { Product } from "@fingerprintjs/fingerprintjs-pro";
 
 export default function FingerprintProReactCloudflare() {

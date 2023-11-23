@@ -1,10 +1,6 @@
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
-import FingerprintJS, {
-  GetResult,
-  defaultEndpoint,
-  defaultScriptUrlPattern,
-} from "@fingerprintjs/fingerprintjs-pro";
+import FingerprintJS, { GetResult } from "@fingerprintjs/fingerprintjs-pro";
 import {
   CUSTOM_SUBDOMAIN,
   FINGERPRINT_PUBLIC_API_KEY,
@@ -19,11 +15,9 @@ export default function FingerprintProBotdVanillaAgentFullSubdomain() {
     (async () => {
       const fpPromise = FingerprintJS.load({
         apiKey: FINGERPRINT_PUBLIC_API_KEY,
-        endpoint: [CUSTOM_SUBDOMAIN, defaultEndpoint],
-        scriptUrlPattern: [
+        endpoint: CUSTOM_SUBDOMAIN,
+        scriptUrlPattern:
           "https://fp.martinmakarsky.com/web/v<version>/<apiKey>/loader_v<loaderVersion>.js",
-          defaultScriptUrlPattern,
-        ],
       });
       const fp = await fpPromise;
       const data = await fp.get({ extendedResult: true });

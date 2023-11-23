@@ -6,17 +6,14 @@ import {
 } from "@fingerprintjs/fingerprintjs-pro-react";
 import { FpjsProvider } from "@fingerprintjs/fingerprintjs-pro-react";
 import { NextPage } from "next";
-import {
-  CUSTOM_SUBDOMAIN,
-  FINGERPRINT_PUBLIC_API_KEY,
-} from "../shared/constants";
+import { FINGERPRINT_PUBLIC_API_KEY } from "../shared/constants";
 import { Product } from "@fingerprintjs/fingerprintjs-pro";
 
 export default function FingerprintProReactCloudFront() {
   return (
     <FpjsProvider
       loadOptions={{
-        apiKey: FINGERPRINT_PUBLIC_API_KEY, // REPLACE <API_KEY>,
+        apiKey: FINGERPRINT_PUBLIC_API_KEY,
         scriptUrlPattern:
           "https://cloudfront-distribution-proxy.martinmakarsky.com/behavior-path/download-path?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
         endpoint:

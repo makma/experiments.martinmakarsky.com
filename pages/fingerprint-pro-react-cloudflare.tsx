@@ -6,22 +6,18 @@ import {
 } from "@fingerprintjs/fingerprintjs-pro-react";
 import { FpjsProvider } from "@fingerprintjs/fingerprintjs-pro-react";
 import { NextPage } from "next";
-import {
-  CUSTOM_SUBDOMAIN,
-  FINGERPRINT_PUBLIC_API_KEY,
-} from "../shared/constants";
+import { FINGERPRINT_PUBLIC_API_KEY } from "../shared/constants";
 import { Product } from "@fingerprintjs/fingerprintjs-pro";
 
 export default function FingerprintProReactCloudflare() {
   return (
     <FpjsProvider
       loadOptions={{
-        apiKey: FINGERPRINT_PUBLIC_API_KEY, // REPLACE <API_KEY>,
-        tlsEndpoint: "https://euc1-warden-rc.fpjs.io",
+        apiKey: FINGERPRINT_PUBLIC_API_KEY,
         scriptUrlPattern:
-          "https://martinmakarsky.com/VCwk5AbVKHxWeFtV/TSTNqkwF5uIl9Jpw?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>", // ADDED (as is)
+          "https://martinmakarsky.com/VCwk5AbVKHxWeFtV/TSTNqkwF5uIl9Jpw?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
         endpoint:
-          "https://martinmakarsky.com/VCwk5AbVKHxWeFtV/EottbWHVCphdNjA2?region=eu", // CHANGED
+          "https://martinmakarsky.com/VCwk5AbVKHxWeFtV/EottbWHVCphdNjA2?region=eu",
       }}
       cacheLocation={CacheLocation.SessionStorage}
       cacheTimeInSeconds={60}
