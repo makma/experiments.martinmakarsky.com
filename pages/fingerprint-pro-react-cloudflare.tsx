@@ -17,7 +17,7 @@ export default function FingerprintProReactCloudflare() {
     <FpjsProvider
       loadOptions={{
         apiKey: FINGERPRINT_PUBLIC_API_KEY, // REPLACE <API_KEY>,
-        tlsEndpoint: 'https://euc1-warden-rc.fpjs.io',
+        tlsEndpoint: "https://euc1-warden-rc.fpjs.io",
         scriptUrlPattern:
           "https://martinmakarsky.com/VCwk5AbVKHxWeFtV/TSTNqkwF5uIl9Jpw?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>", // ADDED (as is)
         endpoint:
@@ -129,9 +129,11 @@ const FingerprintData: NextPage = () => {
             </span>
           </h4>
           <h4>Full visitor data:</h4>
-          <pre className={styles.data}>
-            {error ? error.message : JSON.stringify(data, null, 2)}
-          </pre>
+          {data ? (
+            <pre className={styles.data}>{JSON.stringify(data, null, 2)}</pre>
+          ) : (
+            <h3>Waiting or data...</h3>
+          )}
         </div>
       </div>
     </div>

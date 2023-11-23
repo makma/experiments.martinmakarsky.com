@@ -36,9 +36,13 @@ export default function BotDOnly() {
         />
       </Head>
       <h1>Fingerprint Pro data in from the DataLayer</h1>
-      <pre className={styles.data}>
-        {JSON.stringify(fingerprintData, null, 2)}
-      </pre>
+      {fingerprintData ? (
+        <pre className={styles.data}>
+          {JSON.stringify(fingerprintData, null, 2)}
+        </pre>
+      ) : (
+        <h3>Waiting or data...</h3>
+      )}
     </div>
   );
 }

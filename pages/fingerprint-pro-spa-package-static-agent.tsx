@@ -52,8 +52,14 @@ export default function FingerprintProSpaPackageStaticAgent() {
   }, []);
 
   return (
-    <pre className={styles.data}>
-      {JSON.stringify(fingerprintData, null, 2)}
-    </pre>
+    <>
+      {fingerprintData ? (
+        <pre className={styles.data}>
+          {JSON.stringify(fingerprintData, null, 2)}
+        </pre>
+      ) : (
+        <h3>Waiting or data...</h3>
+      )}
+    </>
   );
 }

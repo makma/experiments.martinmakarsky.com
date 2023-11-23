@@ -4,9 +4,9 @@ import FingerprintJS, { GetResult } from "@fingerprintjs/fingerprintjs-pro";
 import { FINGERPRINT_PUBLIC_API_KEY } from "../shared/constants";
 
 export default function FingerprintProBotdVanillaAgentDirect() {
-  const [fingerprintData, setFingerprintData] = useState<GetResult | string>(
-    "Waiting for data..."
-  );
+  const [fingerprintData, setFingerprintData] = useState<
+    GetResult | string | null
+  >(null);
 
   useEffect(() => {
     (async () => {
@@ -24,9 +24,13 @@ export default function FingerprintProBotdVanillaAgentDirect() {
 
   return (
     <div className={styles.container}>
-      <pre className={styles.data}>
-        {JSON.stringify(fingerprintData, null, 2)}
-      </pre>
+      {fingerprintData ? (
+        <pre className={styles.data}>
+          {JSON.stringify(fingerprintData, null, 2)}
+        </pre>
+      ) : (
+        <h3>Waiting or data...</h3>
+      )}
     </div>
   );
 }

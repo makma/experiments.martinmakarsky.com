@@ -130,9 +130,11 @@ const FingerprintData: NextPage = () => {
             </span>
           </h4>
           <h4>Full visitor data:</h4>
-          <pre className={styles.data}>
-            {error ? error.message : JSON.stringify(data, null, 2)}
-          </pre>
+          {data ? (
+            <pre className={styles.data}>{JSON.stringify(data, null, 2)}</pre>
+          ) : (
+            <h3>Waiting or data...</h3>
+          )}
         </div>
       </div>
     </div>
