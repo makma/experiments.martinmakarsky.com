@@ -15,9 +15,9 @@ export default function FingerprintProReactCloudflare() {
       loadOptions={{
         apiKey: FINGERPRINT_PUBLIC_API_KEY,
         scriptUrlPattern:
-          "https://martinmakarsky.com/VCwk5AbVKHxWeFtV/TSTNqkwF5uIl9Jpw?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
+          "https://martinmakarsky.com/bbcuwo8w03s36c1s/rmcqnpn7451zig6d?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
         endpoint:
-          "https://martinmakarsky.com/VCwk5AbVKHxWeFtV/EottbWHVCphdNjA2?region=eu",
+          "https://martinmakarsky.com/bbcuwo8w03s36c1s/ottv9o457h973r88?region=eu",
       }}
       cacheLocation={CacheLocation.SessionStorage}
       cacheTimeInSeconds={60}
