@@ -42,3 +42,7 @@ next-env.d.ts
 
 # idea
 /.idea/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

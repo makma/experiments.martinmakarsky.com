@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "playwright test"
   },
   "dependencies": {
     "@fingerprintjs/fingerprintjs-pro": "^3.8.5",
@@ -14,14 +15,15 @@
     "@fingerprintjs/fingerprintjs-pro-server-api": "2.3.0",
     "@fingerprintjs/fingerprintjs-pro-spa": "^1.1.2",
     "@fingerprintjs/fingerprintjs-pro-static": "^3.8.24",
-    "next": "13.5.1",
+    "next": "14.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sequelize": "^6.32.1",
     "sqlite3": "^5.1.6"
   },
   "devDependencies": {
-    "@types/node": "18.11.7",
+    "@playwright/test": "^1.40.0",
+    "@types/node": "20.9.4",
     "@types/react": "18.2.18",
     "@types/react-dom": "18.2.7",
     "@typescript-eslint/parser": "^5.0.1",
