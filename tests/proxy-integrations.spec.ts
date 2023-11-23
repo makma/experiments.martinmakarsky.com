@@ -7,7 +7,7 @@ test('Cloudflare Proxy Integration returns the visitorId', async ({ page }) => {
 
   const preSelector = 'pre';
 
-  await page.waitForSelector(preSelector);
+  await page.waitForSelector(preSelector, { timeout: 10 * 1000 });
   const preElement = await page.$(preSelector);
   const preText = await preElement.textContent();
 
@@ -19,7 +19,7 @@ test('Azure Proxy Integration returns the visitorId', async ({ page }) => {
 
   const preSelector = 'pre';
 
-  await page.waitForSelector(preSelector);
+  await page.waitForSelector(preSelector, { timeout: 10 * 1000 });
   const preElement = await page.$(preSelector);
   const preText = await preElement.textContent();
 
@@ -31,7 +31,7 @@ test('CloudFront Proxy Integration returns the visitorId', async ({ page }) => {
 
   const preSelector = 'pre';
 
-  await page.waitForSelector(preSelector);
+  await page.waitForSelector(preSelector, { timeout: 10 * 1000 });
   const preElement = await page.$(preSelector);
   const preText = await preElement.textContent();
 
@@ -43,7 +43,7 @@ test('Akamai Proxy Integration returns the visitorId', async ({ page }) => {
 
   const preSelector = 'pre';
 
-  await page.waitForSelector(preSelector);
+  await page.waitForSelector(preSelector, { timeout: 10 * 1000 });
   const preElement = await page.$(preSelector);
   const preText = await preElement.textContent();
 
