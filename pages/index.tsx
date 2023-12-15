@@ -91,6 +91,11 @@ export default function Home() {
               <p>React lib, Akamai integration</p>
             </Link>
 
+            <Link className={styles.card} href="/custom-proxy-integration">
+              <h2>Fingerprint Pro React Custom Proxy Integration &rarr;</h2>
+              <p>React library, Custom Proxy Integration</p>
+            </Link>
+
             <Link
               className={styles.card}
               href="/fingerprint-pro-react-cloudflare-strip-url-params"

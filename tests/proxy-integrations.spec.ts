@@ -49,3 +49,15 @@ test('Akamai Proxy Integration returns the visitorId', async ({ page }) => {
 
   expect(preText).toContain('\"visitorId\":');
 });
+
+test('Akamai Proxy Integration returns the visitorId', async ({ page }) => {
+  await page.goto(`${baseDomain}/custom-proxy-integration`);
+
+  const preSelector = 'pre';
+
+  await page.waitForSelector(preSelector, { timeout: 10 * 1000 });
+  const preElement = await page.$(preSelector);
+  const preText = await preElement.textContent();
+
+  expect(preText).toContain('\"visitorId\":');
+});
