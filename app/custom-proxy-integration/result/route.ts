@@ -38,7 +38,7 @@ const proxyIdentificationRequest = async (request: NextRequest): Promise<Respons
 
     // Forward all present query parameters and append the monitoring parameter
     identificationUrl.search = request.url.split('?')[1] ?? '';
-    identificationUrl.searchParams.append('ii', `custom-integration/1.0/ingress`);
+    identificationUrl.searchParams.append('ii', `custom-proxy-integration/1.0/ingress`);
 
     // Copy all headers
     const headers = new Headers();
