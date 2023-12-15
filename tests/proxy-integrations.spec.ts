@@ -50,7 +50,7 @@ test('Akamai Proxy Integration returns the visitorId', async ({ page }) => {
   expect(preText).toContain('\"visitorId\":');
 });
 
-test('Akamai Proxy Integration returns the visitorId', async ({ page }) => {
+test('Custom Proxy Integration returns the visitorId', async ({ page }) => {
   await page.goto(`${baseDomain}/custom-proxy-integration`);
 
   const preSelector = 'pre';
