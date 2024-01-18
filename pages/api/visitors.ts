@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     const visitorHistory = await client.getVisitorHistory(visitorId.toString());
-    return res.status(200).send(visitorHistory);
+    return res.status(200).send(JSON.stringify(visitorHistory, null, 2));
   } catch (error) {
     return res.status(400).send(error)
   }

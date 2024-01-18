@@ -19,9 +19,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     const event = await client.getEvent(requestId.toString());
-    return res.status(200).send(event);
+    return res.status(200).send(JSON.stringify(event, null, 2));
   } catch (error) {
-    return res.status(400).send(error)
+    return res.status(400).send(error);
   }
 
 }
