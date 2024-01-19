@@ -1,12 +1,11 @@
-import styles from "../styles/Home.module.css";
+"use client";
+
+import styles from "../../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import FingerprintJS, { GetResult } from "@fingerprintjs/fingerprintjs-pro";
-import {
-  CUSTOM_SUBDOMAIN,
-  FINGERPRINT_PUBLIC_API_KEY,
-} from "../shared/constants";
+import { FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS } from "../../shared/constants";
 
-export default function FingerprintProBotdVanillaAgentFullSubdomain() {
+export default function FingerprintSealedResults() {
   const [fingerprintData, setFingerprintData] = useState<
     GetResult | string | null
   >(null);
@@ -14,12 +13,12 @@ export default function FingerprintProBotdVanillaAgentFullSubdomain() {
   useEffect(() => {
     (async () => {
       const fpPromise = FingerprintJS.load({
-        apiKey: FINGERPRINT_PUBLIC_API_KEY,
-        endpoint: CUSTOM_SUBDOMAIN,
-        scriptUrlPattern: `${CUSTOM_SUBDOMAIN}/web/v<version>/<apiKey>/loader_v<loaderVersion>.js`,
+        apiKey: FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS,
       });
       const fp = await fpPromise;
-      const data = await fp.get({ extendedResult: true });
+      const data = await fp.get({
+        extendedResult: true,
+      });
       setFingerprintData(data);
     })();
   }, []);

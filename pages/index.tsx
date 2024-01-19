@@ -158,6 +158,11 @@ export default function Home() {
               <p>Browser SDK (agent), Zero Trust</p>
             </Link>
 
+            <Link className={styles.card} href="/sealed-results">
+              <h2>Sealed Results &rarr;</h2>
+              <p>Basic NPM package, Direct requests</p>
+            </Link>
+
             <Link
               className={styles.card}
               href="/fingerprint-pro-fpnpmcdn-no-subdomain"

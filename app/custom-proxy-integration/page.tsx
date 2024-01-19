@@ -11,7 +11,7 @@ import { NextPage } from "next";
 import { Product } from "@fingerprintjs/fingerprintjs-pro";
 import { FINGERPRINT_PUBLIC_API_KEY } from "../../shared/constants";
 
-export default function FingerprintProReactCloudflare() {
+export default function CustomProxyIntegration() {
   return (
     <FpjsProvider
       loadOptions={{
