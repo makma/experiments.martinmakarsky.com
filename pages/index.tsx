@@ -158,9 +158,17 @@ export default function Home() {
               <p>Browser SDK (agent), Zero Trust</p>
             </Link>
 
-            <Link className={styles.card} href="/sealed-results">
+            <Link className={styles.card} href="/sealed-results-direct">
               <h2>Sealed Results &rarr;</h2>
               <p>Basic NPM package, Direct requests</p>
+            </Link>
+
+            <Link
+              className={styles.card}
+              href="/sealed-results-cloudflare-integration-react"
+            >
+              <h2>Sealed Results &rarr;</h2>
+              <p>React lib, Cloudflare integration</p>
             </Link>
 
             <Link
