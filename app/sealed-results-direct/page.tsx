@@ -9,6 +9,9 @@ export default function FingerprintSealedResultsDirect() {
   const [fingerprintData, setFingerprintData] = useState<
     GetResult | string | null
   >(null);
+  const [unsealedData, setUnsealedData] = useState<
+    GetResult | string | null | any
+  >(null);
 
   useEffect(() => {
     (async () => {
@@ -17,20 +20,45 @@ export default function FingerprintSealedResultsDirect() {
       });
       const fp = await fpPromise;
       const data = await fp.get();
-      console.log(JSON.stringify(data));
       setFingerprintData(data);
     })();
   }, []);
 
+  async function getSentUnsealedResultsRequest() {
+    const headers = {
+      "Content-Type": "application/json",
+    };
+
+    const response = await fetch("/sealed-results-direct/unseal", {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(fingerprintData),
+    });
+    setUnsealedData(await response.json());
+  }
+
   return (
     <div className={styles.container}>
-      <h1>Sealed data returned from the Fingerprint server</h1>
+      <h2>Sealed data returned from the Fingerprint server</h2>
       {fingerprintData ? (
         <pre className={styles.data}>
           {JSON.stringify(fingerprintData, null, 2)}
         </pre>
       ) : (
         <h3>Waiting or data...</h3>
+      )}
+      <h2>
+        Unsealed data returned from the custom backend deciphered using the
+        Encryption Key
+      </h2>
+      {unsealedData ? (
+        <pre className={styles.data}>
+          {JSON.stringify(JSON.parse(unsealedData), null, 2)}
+        </pre>
+      ) : (
+        <button onClick={getSentUnsealedResultsRequest}>
+          Get the unsealed result from the Server
+        </button>
       )}
     </div>
   );

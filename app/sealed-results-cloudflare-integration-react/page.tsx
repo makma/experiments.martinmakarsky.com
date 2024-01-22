@@ -8,7 +8,7 @@ import {
 } from "@fingerprintjs/fingerprintjs-pro-react";
 import { FpjsProvider } from "@fingerprintjs/fingerprintjs-pro-react";
 import { NextPage } from "next";
-import { Product } from "@fingerprintjs/fingerprintjs-pro";
+import { GetResult, Product } from "@fingerprintjs/fingerprintjs-pro";
 import { FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS } from "../../shared/constants";
 
 export default function FingerprintSealedResultsCloudflareReact() {
@@ -34,6 +34,9 @@ const FingerprintData: NextPage = () => {
   const [addBotdProduct, setAddBotdProduct] = useState(true);
   const [addIdentificationProduct, setIdentificationProduct] = useState(true);
   const [ignoreCache, setIgnoreCache] = useState(true);
+  const [unsealedData, setUnsealedData] = useState<
+    GetResult | string | null | any
+  >(null);
 
   let products: Array<Product> = [];
   if (addBotdProduct) {
@@ -69,9 +72,22 @@ const FingerprintData: NextPage = () => {
     setIgnoreCache(e.target.checked);
   };
 
+  async function getSentUnsealedResultsRequest() {
+    const headers = {
+      "Content-Type": "application/json",
+    };
+
+    const response = await fetch("/sealed-results-direct/unseal", {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(data),
+    });
+    setUnsealedData(await response.json());
+  }
+
   return (
     <div className={styles.container}>
-      <h1>Sealed data returned from the Fingerprint server</h1>
+      <h2>Sealed data returned from the Fingerprint server</h2>
       <div className={styles.testArea}>
         <div className={styles.controls}>
           <button onClick={reloadData} type="button">
@@ -134,6 +150,19 @@ const FingerprintData: NextPage = () => {
           )}
         </div>
       </div>
+      <h2>
+        Unsealed data returned from the custom backend deciphered using the
+        Encryption Key
+      </h2>
+      {unsealedData ? (
+        <pre className={styles.data}>
+          {JSON.stringify(JSON.parse(unsealedData), null, 2)}
+        </pre>
+      ) : (
+        <button onClick={getSentUnsealedResultsRequest}>
+          Get the unsealed result from the Server
+        </button>
+      )}
     </div>
   );
 };
