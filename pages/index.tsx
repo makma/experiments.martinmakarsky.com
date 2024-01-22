@@ -78,6 +78,13 @@ export default function Home() {
               </p>
             </Link>
 
+            <Link className={styles.card} href="/fingerprint-pro-fastly-vcl">
+              <h2>Fingerprint Pro Fastly &rarr;</h2>
+              <p>
+                No lib, TS NPM agent, Fastly VCL Integration, extended result
+              </p>
+            </Link>
+
             <Link
               className={styles.card}
               href="/fingerprint-pro-react-cloudflare"
