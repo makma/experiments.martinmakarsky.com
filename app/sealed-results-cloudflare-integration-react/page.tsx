@@ -144,7 +144,9 @@ const FingerprintData: NextPage = () => {
           </h4>
           <h4>Full visitor data:</h4>
           {data ? (
-            <pre className={styles.data}>{JSON.stringify(data, null, 2)}</pre>
+            <pre id="sealed" className={styles.data}>
+              {JSON.stringify(data, null, 2)}
+            </pre>
           ) : (
             <h3>Waiting or data...</h3>
           )}
@@ -155,7 +157,7 @@ const FingerprintData: NextPage = () => {
         Encryption Key
       </h2>
       {unsealedData ? (
-        <pre className={styles.data}>
+        <pre id="unsealed" className={styles.data}>
           {JSON.stringify(JSON.parse(unsealedData), null, 2)}
         </pre>
       ) : (

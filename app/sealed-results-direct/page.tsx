@@ -41,7 +41,7 @@ export default function FingerprintSealedResultsDirect() {
     <div className={styles.container}>
       <h2>Sealed data returned from the Fingerprint server</h2>
       {fingerprintData ? (
-        <pre className={styles.data}>
+        <pre id="sealed" className={styles.data}>
           {JSON.stringify(fingerprintData, null, 2)}
         </pre>
       ) : (
@@ -52,7 +52,7 @@ export default function FingerprintSealedResultsDirect() {
         Encryption Key
       </h2>
       {unsealedData ? (
-        <pre className={styles.data}>
+        <pre id="unsealed" className={styles.data}>
           {JSON.stringify(JSON.parse(unsealedData), null, 2)}
         </pre>
       ) : (
