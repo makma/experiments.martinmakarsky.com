@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -64,6 +65,13 @@ export default function Home() {
               <p>
                 React library, Static agent, subdomain setup, extended result
               </p>
+              <Image
+                className={styles.card_logo}
+                src="images/react-logo.svg"
+                width={80}
+                height={50}
+                alt="React logo"
+              />
             </Link>
 
             <Link className={styles.card} href="/botd-only">
@@ -76,6 +84,13 @@ export default function Home() {
               <p>
                 No lib, TS NPM agent, cloudflare integration, extended result
               </p>
+              <Image
+                className={styles.card_logo}
+                src="images/cloudflare-logo.svg"
+                width={80}
+                height={50}
+                alt="Fastly logo"
+              />
             </Link>
 
             <Link className={styles.card} href="/fingerprint-pro-fastly-vcl">
@@ -83,6 +98,13 @@ export default function Home() {
               <p>
                 No lib, TS NPM agent, Fastly VCL Integration, extended result
               </p>
+              <Image
+                className={styles.card_logo}
+                src="images/fastly-logo.svg"
+                width={80}
+                height={50}
+                alt="Fastly logo"
+              />
             </Link>
 
             <Link
@@ -91,16 +113,51 @@ export default function Home() {
             >
               <h2>Fingerprint Pro React Cloudflare &rarr;</h2>
               <p>React lib, Cloudflare integration, extended result</p>
+              <Image
+                className={styles.card_logo}
+                src="images/cloudflare-logo.svg"
+                width={80}
+                height={50}
+                alt="Cloudflare logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/react-logo.svg"
+                width={80}
+                height={50}
+                alt="React logo"
+              />
             </Link>
 
             <Link className={styles.card} href="/fingerprint-pro-react-akamai">
               <h2>Fingerprint Pro React Akamai &rarr;</h2>
               <p>React lib, Akamai integration</p>
+              <Image
+                className={styles.card_logo}
+                src="images/akamai-logo.svg"
+                width={80}
+                height={50}
+                alt="Akamai logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/react-logo.svg"
+                width={80}
+                height={50}
+                alt="React logo"
+              />
             </Link>
 
             <Link className={styles.card} href="/custom-proxy-integration">
               <h2>Fingerprint Pro React Custom Proxy Integration &rarr;</h2>
               <p>React library, Custom Proxy Integration</p>
+              <Image
+                className={styles.card_logo}
+                src="images/react-logo.svg"
+                width={80}
+                height={50}
+                alt="React logo"
+              />
             </Link>
 
             <Link
@@ -114,6 +171,20 @@ export default function Home() {
                 React lib, Cloudflare integration, extended result, stripping
                 url params
               </p>
+              <Image
+                className={styles.card_logo}
+                src="images/cloudflare-logo.svg"
+                width={80}
+                height={50}
+                alt="Cloudflare logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/react-logo.svg"
+                width={80}
+                height={50}
+                alt="React logo"
+              />
             </Link>
 
             <Link
@@ -127,6 +198,20 @@ export default function Home() {
                 Unamanaged and created manually, won&apos;t be upgraded
                 automatically
               </p>
+              <Image
+                className={styles.card_logo}
+                src="images/cloudflare-logo.svg"
+                width={80}
+                height={50}
+                alt="Cloudflare logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/react-logo.svg"
+                width={80}
+                height={50}
+                alt="React logo"
+              />
             </Link>
 
             <Link
@@ -135,16 +220,51 @@ export default function Home() {
             >
               <h2>Fingerprint Pro React CloudFront &rarr;</h2>
               <p>React lib, CloudFront integration, extended result</p>
+              <Image
+                className={styles.card_logo}
+                src="images/cloudfront-logo.svg"
+                width={80}
+                height={50}
+                alt="Cloudfront logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/react-logo.svg"
+                width={80}
+                height={50}
+                alt="React logo"
+              />
             </Link>
 
             <Link className={styles.card} href="/fingerprint-pro-react-azure">
               <h2>Fingerprint Pro React Azure &rarr;</h2>
               <p>React lib, Azure integration, extended result</p>
+              <Image
+                className={styles.card_logo}
+                src="images/azure-logo.svg"
+                width={80}
+                height={50}
+                alt="Azure logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/react-logo.svg"
+                width={80}
+                height={50}
+                alt="React logo"
+              />
             </Link>
 
             <Link className={styles.card} href="/fingerprint-pro-react-package">
               <h2>Fingerprint Pro Custom subdomain React lib &rarr;</h2>
               <p>React NPM lib, subdomain setup, extended and basic result</p>
+              <Image
+                className={styles.card_logo}
+                src="images/react-logo.svg"
+                width={80}
+                height={50}
+                alt="React logo"
+              />
             </Link>
 
             <Link
@@ -158,6 +278,13 @@ export default function Home() {
                 React NPM lib, subdomain setup, extended and basic result,
                 static agent
               </p>
+              <Image
+                className={styles.card_logo}
+                src="images/react-logo.svg"
+                width={80}
+                height={50}
+                alt="React logo"
+              />
             </Link>
 
             <Link className={styles.card} href="/botd-zero-trust">
@@ -176,6 +303,20 @@ export default function Home() {
             >
               <h2>Sealed Results &rarr;</h2>
               <p>React lib, Cloudflare integration</p>
+              <Image
+                className={styles.card_logo}
+                src="images/cloudflare-logo.svg"
+                width={80}
+                height={50}
+                alt="Fastly logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/react-logo.svg"
+                width={80}
+                height={50}
+                alt="React logo"
+              />
             </Link>
 
             <Link
