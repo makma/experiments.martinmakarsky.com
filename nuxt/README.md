@@ -1,4 +1,4 @@
-# nuxt-experiments
+# nuxt-app
 
 ## Build Setup
 
