@@ -359,16 +359,37 @@ export default function Home() {
             <Link className={styles.card} href="/api/events?requestId=">
               <h2>Event info from the Server API</h2>
               <p>API route handler at the edge, NodeJS Server API SDK</p>
+              <Image
+                className={styles.card_logo}
+                src="images/node-logo.svg"
+                width={80}
+                height={50}
+                alt="Node logo"
+              />
             </Link>
 
             <Link className={styles.card} href="/api/visitors?visitorId=">
               <h2>Visitor info from the Server API</h2>
               <p>API route handler at the edge, NodeJS Server API SDK</p>
+              <Image
+                className={styles.card_logo}
+                src="images/node-logo.svg"
+                width={80}
+                height={50}
+                alt="Node logo"
+              />
             </Link>
 
             <Link className={styles.card} href="/events?requestId=">
               <h2>Event info from the Server API</h2>
               <p>getServerSideProps at the edge, NodeJS Server API SDK</p>
+              <Image
+                className={styles.card_logo}
+                src="images/node-logo.svg"
+                width={80}
+                height={50}
+                alt="Node logo"
+              />
             </Link>
           </div>
         </main>
