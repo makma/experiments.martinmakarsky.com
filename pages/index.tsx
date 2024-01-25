@@ -129,6 +129,18 @@ export default function Home() {
               />
             </Link>
 
+            <Link className={styles.card} href="/nuxt/fingerprint-pro-vue">
+              <h2>Fingerprint Pro Vue &rarr;</h2>
+              <p>Vue3 lib, No Proxy, NuxtJS3 environment</p>
+              <Image
+                className={styles.card_logo}
+                src="images/vue-logo.svg"
+                width={80}
+                height={50}
+                alt="Vue logo"
+              />
+            </Link>
+
             <Link className={styles.card} href="/fingerprint-pro-react-akamai">
               <h2>Fingerprint Pro React Akamai &rarr;</h2>
               <p>React lib, Akamai integration</p>
