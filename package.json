@@ -1,0 +1,21 @@
+{
+  "name": "experiments",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/makma/experiments.martinmakarsky.com.git",
+  "author": "Martin Makarsky <martin.makarsky@fingerprintjs.com>",
+  "license": "MIT",
+  "engines": {
+    "node": "18.x"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.41.1"
+  }
+}
