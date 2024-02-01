@@ -72,12 +72,12 @@ const FingerprintData: NextPage = () => {
     setIgnoreCache(e.target.checked);
   };
 
-  async function getSentUnsealedResultsRequest() {
+  async function getSentUnsealedResultsRequest(method: "custom" | "node") {
     const headers = {
       "Content-Type": "application/json",
     };
 
-    const response = await fetch("/sealed-results-direct/unseal", {
+    const response = await fetch(`/sealed-results-direct/unseal?method=${method}`, {
       method: "POST",
       headers: headers,
       body: JSON.stringify(data),
@@ -87,7 +87,6 @@ const FingerprintData: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <h2>Sealed data returned from the Fingerprint server</h2>
       <div className={styles.testArea}>
         <div className={styles.controls}>
           <button onClick={reloadData} type="button">
@@ -135,14 +134,7 @@ const FingerprintData: NextPage = () => {
               Ignore cache - CacheLocation.SessionStorage cacheTimeInSeconds=60
             </label>
           </div>
-
-          <h4>
-            VisitorId:{" "}
-            <span className={styles.visitorId}>
-              {isLoading ? "Loading..." : data?.visitorId}
-            </span>
-          </h4>
-          <h4>Full visitor data:</h4>
+          <h2>Sealed data returned from the Fingerprint server</h2>
           {data ? (
             <pre id="sealed" className={styles.data}>
               {JSON.stringify(data, null, 2)}
@@ -158,12 +150,17 @@ const FingerprintData: NextPage = () => {
       </h2>
       {unsealedData ? (
         <pre id="unsealed" className={styles.data}>
-          {JSON.stringify(JSON.parse(unsealedData), null, 2)}
+          {JSON.stringify(unsealedData, null, 2)}
         </pre>
       ) : (
-        <button onClick={getSentUnsealedResultsRequest}>
-          Get the unsealed result from the Server
+        <>
+        <button className={styles.button} onClick={() => { getSentUnsealedResultsRequest('custom') }}>
+          Get the unsealed result from the Server via custom unsealment
         </button>
+        <button className={styles.button} onClick={() => { getSentUnsealedResultsRequest('node') }}>
+          Get the unsealed result from the Server via Node SDK unsealement
+        </button>
+        </>
       )}
     </div>
   );

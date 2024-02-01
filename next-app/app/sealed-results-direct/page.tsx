@@ -24,12 +24,12 @@ export default function FingerprintSealedResultsDirect() {
     })();
   }, []);
 
-  async function getSentUnsealedResultsRequest() {
+  async function getSentUnsealedResultsRequest(method: "custom" | "node") {
     const headers = {
       "Content-Type": "application/json",
     };
 
-    const response = await fetch("/sealed-results-direct/unseal", {
+    const response = await fetch(`/sealed-results-direct/unseal?method=${method}`, {
       method: "POST",
       headers: headers,
       body: JSON.stringify(fingerprintData),
@@ -53,12 +53,17 @@ export default function FingerprintSealedResultsDirect() {
       </h2>
       {unsealedData ? (
         <pre id="unsealed" className={styles.data}>
-          {JSON.stringify(JSON.parse(unsealedData), null, 2)}
+          {JSON.stringify(unsealedData, null, 2)}
         </pre>
       ) : (
-        <button onClick={getSentUnsealedResultsRequest}>
-          Get the unsealed result from the Server
+        <>
+        <button className={styles.button} onClick={() => { getSentUnsealedResultsRequest('custom') }}>
+          Get the unsealed result from the Server via custom unsealment
         </button>
+        <button className={styles.button} onClick={() => { getSentUnsealedResultsRequest('node') }}>
+          Get the unsealed result from the Server via Node SDK unsealement
+        </button>
+        </>
       )}
     </div>
   );
