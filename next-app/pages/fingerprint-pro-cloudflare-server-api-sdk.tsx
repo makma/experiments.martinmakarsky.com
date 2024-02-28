@@ -47,7 +47,7 @@ export default function FingerprintProCloudflare() {
 
      <h2>Server API data</h2>
      {fingerprintServerAPIData ? (
-        <pre className={styles.data}>
+        <pre id="server-api-response" className={styles.data}>
           {JSON.stringify(fingerprintServerAPIData, null, 2)}
         </pre>
       ) : (
