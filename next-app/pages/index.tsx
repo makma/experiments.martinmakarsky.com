@@ -356,6 +356,18 @@ export default function Home() {
           <h2>Server API</h2>
 
           <div className={styles.grid}>
+          <Link className={styles.card} href="/fingerprint-pro-cloudflare-server-api-sdk">
+              <h2>Event info from the Server API based on the current requestId</h2>
+              <p>NodeJS Server API SDK, requestId returned through the Cloudflare Integration</p>
+              <Image
+                className={styles.card_logo}
+                src="images/node-logo.svg"
+                width={80}
+                height={50}
+                alt="Node logo"
+              />
+            </Link>
+
             <Link className={styles.card} href="/api/events?requestId=">
               <h2>Event info from the Server API</h2>
               <p>API route handler at the edge, NodeJS Server API SDK</p>
