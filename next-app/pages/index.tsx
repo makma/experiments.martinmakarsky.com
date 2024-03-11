@@ -248,6 +248,28 @@ export default function Home() {
               />
             </Link>
 
+            <Link
+              className={styles.card}
+              href="/fingerprint-pro-react-cloudfront-v2"
+            >
+              <h2>Fingerprint Pro React CloudFront v2 &rarr;</h2>
+              <p>React lib, CloudFront v2 integration, extended result</p>
+              <Image
+                className={styles.card_logo}
+                src="images/cloudfront-logo.svg"
+                width={80}
+                height={50}
+                alt="Cloudfront logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/react-logo.svg"
+                width={80}
+                height={50}
+                alt="React logo"
+              />
+            </Link>
+
             <Link className={styles.card} href="/fingerprint-pro-react-azure">
               <h2>Fingerprint Pro React Azure &rarr;</h2>
               <p>React lib, Azure integration, extended result</p>
