@@ -248,6 +248,73 @@ export default function Home() {
               />
             </Link>
 
+
+            <Link
+              className={styles.card}
+              href="/fingerprint-pro-react-cloudfront-v1-terraform"
+            >
+              <h2>Fingerprint Pro React CloudFront v1 to upgrade, terraform &rarr;</h2>
+              <p>React lib, CloudFront v1 integration, extended result</p>
+              <Image
+                className={styles.card_logo}
+                src="images/cloudfront-logo.svg"
+                width={80}
+                height={50}
+                alt="Cloudfront logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/react-logo.svg"
+                width={80}
+                height={50}
+                alt="React logo"
+              />
+            </Link>
+
+            <Link
+              className={styles.card}
+              href="/fingerprint-pro-react-cloudfront-v2-terraform"
+            >
+              <h2>Fingerprint Pro React CloudFront v1 to upgrade, terraform &rarr;</h2>
+              <p>React lib, CloudFront v1 integration, extended result</p>
+              <Image
+                className={styles.card_logo}
+                src="images/cloudfront-logo.svg"
+                width={80}
+                height={50}
+                alt="Cloudfront logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/react-logo.svg"
+                width={80}
+                height={50}
+                alt="React logo"
+              />
+            </Link>
+
+            <Link
+              className={styles.card}
+              href="/fingerprint-pro-react-cloudfront-v1-to-upgrade"
+            >
+              <h2>Fingerprint Pro React CloudFront v1 to upgrade &rarr;</h2>
+              <p>React lib, CloudFront v1 integration, extended result</p>
+              <Image
+                className={styles.card_logo}
+                src="images/cloudfront-logo.svg"
+                width={80}
+                height={50}
+                alt="Cloudfront logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/react-logo.svg"
+                width={80}
+                height={50}
+                alt="React logo"
+              />
+            </Link>
+
             <Link
               className={styles.card}
               href="/fingerprint-pro-react-cloudfront-v2"
