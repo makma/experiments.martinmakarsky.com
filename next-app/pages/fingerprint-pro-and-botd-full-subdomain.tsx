@@ -14,10 +14,9 @@ export default function FingerprintProBotdVanillaAgentFullSubdomain() {
   useEffect(() => {
     (async () => {
       const fpPromise = FingerprintJS.load({
-        apiKey: "Ikd0jNCMZeQF72xWPhj5",
-        region: 'ap',
-        endpoint: "https://fpmetrics.pyjamahr.com",
-        scriptUrlPattern: `https://fpmetrics.pyjamahr.com/web/v<version>/<apiKey>/loader_v<loaderVersion>.js`,
+        apiKey: FINGERPRINT_PUBLIC_API_KEY,
+        endpoint: CUSTOM_SUBDOMAIN,
+        scriptUrlPattern: `${CUSTOM_SUBDOMAIN}/web/v<version>/<apiKey>/loader_v<loaderVersion>.js`,
       });
       const fp = await fpPromise;
       const data = await fp.get({ extendedResult: true });
