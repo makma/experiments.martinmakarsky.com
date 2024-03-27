@@ -16,6 +16,7 @@ yarn-error.log*
 /next-app/node_modules
 /next-app/.pnp
 /next-app/.pnp.js
+/next-app/.npmrc
 
 # testing
 /next-app/coverage
