@@ -6,7 +6,7 @@ import {
 } from "@fingerprintjs/fingerprintjs-pro-react";
 import { FpjsProvider } from "@fingerprintjs/fingerprintjs-pro-react";
 import { NextPage } from "next";
-import { FINGERPRINT_PUBLIC_API_KEY } from "../shared/constants";
+import { CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT, CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN, FINGERPRINT_PUBLIC_API_KEY } from "../shared/constants";
 import { Product } from "@fingerprintjs/fingerprintjs-pro";
 
 export default function FingerprintProReactCloudflare() {
@@ -16,10 +16,8 @@ export default function FingerprintProReactCloudflare() {
         apiKey: FINGERPRINT_PUBLIC_API_KEY,
         // @ts-ignore
         stripUrlParams: true,
-        scriptUrlPattern:
-          "https://martinmakarsky.com/bbcuwo8w03s36c1s/rmcqnpn7451zig6d?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
-        endpoint:
-          "https://martinmakarsky.com/bbcuwo8w03s36c1s/ottv9o457h973r88?region=eu",
+        scriptUrlPattern: CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN,
+        endpoint:CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT,
       }}
       cacheLocation={CacheLocation.SessionStorage}
       cacheTimeInSeconds={60}
