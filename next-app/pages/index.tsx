@@ -248,12 +248,13 @@ export default function Home() {
               />
             </Link>
 
-
             <Link
               className={styles.card}
               href="/fingerprint-pro-react-cloudfront-v1-terraform"
             >
-              <h2>Fingerprint Pro React CloudFront v1 to upgrade, terraform &rarr;</h2>
+              <h2>
+                Fingerprint Pro React CloudFront v1 to upgrade, terraform &rarr;
+              </h2>
               <p>React lib, CloudFront v1 integration, extended result</p>
               <Image
                 className={styles.card_logo}
@@ -268,6 +269,13 @@ export default function Home() {
                 width={80}
                 height={50}
                 alt="React logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/terraform-logo.svg"
+                width={80}
+                height={50}
+                alt="Terraform logo"
               />
             </Link>
 
@@ -290,6 +298,42 @@ export default function Home() {
                 width={80}
                 height={50}
                 alt="React logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/terraform-logo.svg"
+                width={80}
+                height={50}
+                alt="Terraform logo"
+              />
+            </Link>
+
+            <Link
+              className={styles.card}
+              href="/fingerprint-pro-react-cloudfront-v2-terraform-staging"
+            >
+              <h2>Fingerprint Pro React CloudFront v2, terraform, staging &rarr;</h2>
+              <p>React lib, CloudFront v2 integration, staging</p>
+              <Image
+                className={styles.card_logo}
+                src="images/cloudfront-logo.svg"
+                width={80}
+                height={50}
+                alt="Cloudfront logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/react-logo.svg"
+                width={80}
+                height={50}
+                alt="React logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/terraform-logo.svg"
+                width={80}
+                height={50}
+                alt="Terraform logo"
               />
             </Link>
 
@@ -401,9 +445,17 @@ export default function Home() {
           <h2>Server API</h2>
 
           <div className={styles.grid}>
-          <Link className={styles.card} href="/fingerprint-pro-cloudflare-server-api-sdk">
-              <h2>Event info from the Server API based on the current requestId</h2>
-              <p>NodeJS Server API SDK, requestId returned through the Cloudflare Integration</p>
+            <Link
+              className={styles.card}
+              href="/fingerprint-pro-cloudflare-server-api-sdk"
+            >
+              <h2>
+                Event info from the Server API based on the current requestId
+              </h2>
+              <p>
+                NodeJS Server API SDK, requestId returned through the Cloudflare
+                Integration
+              </p>
               <Image
                 className={styles.card_logo}
                 src="images/node-logo.svg"
