@@ -6,18 +6,18 @@ import {
 } from "@fingerprintjs/fingerprintjs-pro-react";
 import { FpjsProvider } from "@fingerprintjs/fingerprintjs-pro-react";
 import { NextPage } from "next";
-import { FINGERPRINT_PUBLIC_API_KEY, FINGERPRINT_PUBLIC_API_KEY_STAGING } from "../shared/constants";
+import { FINGERPRINT_PUBLIC_API_KEY_STAGING } from "../shared/constants";
 import { Product } from "@fingerprintjs/fingerprintjs-pro";
 
 export default function FingerprintProReactCloudFront() {
   return (
     <FpjsProvider
       loadOptions={{
-        apiKey: FINGERPRINT_PUBLIC_API_KEY,
+        apiKey: FINGERPRINT_PUBLIC_API_KEY_STAGING,
         scriptUrlPattern:
           "https://cloudfront-v2-terraform-staging.martinmakarsky.com/behavior-path/download-path?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
         endpoint:
-          "https://cloudfront-v2-terraform-staging.martinmakarsky.com/behavior-path/result-path?region=eu",
+          "https://cloudfront-v2-terraform-staging.martinmakarsky.com/behavior-path/result-path?region=us",
       }}
       cacheLocation={CacheLocation.SessionStorage}
       cacheTimeInSeconds={60}

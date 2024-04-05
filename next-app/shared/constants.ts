@@ -11,6 +11,7 @@ export const FINGERPRINT_PUBLIC_API_KEY_ZERO_TRUST: string = "xI1tKWIHK6UGTshR8v
 // sub_Ezq3jYsYhAKyXJ sealed results
 export const FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS: string = "BEczWb6HhcD4ORMrP0aA";
 
-export const FINGERPRINT_PUBLIC_API_KEY_STAGING: string = "";
+// sub_ZVxerDsLBsvp9l on STAGING
+export const FINGERPRINT_PUBLIC_API_KEY_STAGING: string = "bAW4LdHhP3gVx4kRBzym";
 
 export const CUSTOM_SUBDOMAIN: string = "https://fp.martinmakarsky.com";
