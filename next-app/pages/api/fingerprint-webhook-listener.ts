@@ -1,19 +1,23 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { initBotEvents, persistBotEvent } from '../../dbModels/Event';
+import { initFingerprintWebhookEvents, persistFingerprintWebhookEvent } from '../../dbModels/FingerprintWebhookEvent';
+import { WebhookEvent } from '../../shared/models';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
-  await initBotEvents();
+  await initFingerprintWebhookEvents();
 
   if (req.method === 'POST') {
-    const event = req.body;
-    if (!event) {
+    if (!req.body) {
       return new Response(null, { status: 400 });
     }
 
-    if (event.bot) {
-      await persistBotEvent(event);
+    const event: WebhookEvent = {
+      requestId: req.body.requestId,
+      body: JSON.stringify(req.body),
+      headers: JSON.stringify(req.headers)
     }
+
+    await persistFingerprintWebhookEvent(event);
 
     return res.send({ status: 200 });
   } else {

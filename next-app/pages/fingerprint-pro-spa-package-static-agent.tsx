@@ -38,7 +38,6 @@ export default function FingerprintProSpaPackageStaticAgent() {
       });
 
       try {
-        console.log("calling");
         await fpjsClient.init();
         const visitorData = await fpjsClient.getVisitorData({
           extendedResult: true,

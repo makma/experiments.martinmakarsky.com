@@ -501,6 +501,19 @@ export default function Home() {
               />
             </Link>
           </div>
+
+          <h2>Webhooks</h2>
+          <Link className={styles.card} href="/fingerprint-pro-webhook-event?requestId=">
+              <h2>Webhooks</h2>
+              <p>Get the webhook response for the specific requestId</p>
+              <Image
+                className={styles.card_logo}
+                src="images/node-logo.svg"
+                width={80}
+                height={50}
+                alt="Node logo"
+              />
+            </Link>
         </main>
 
         <footer className={styles.footer}></footer>
