@@ -4,8 +4,8 @@ import { Buffer } from 'buffer';
 
 function FingerprintProWebhookEvent(props: any) {
 
-    if (props.event.error) {
-        return <p>{props.event.error}</p>
+    if (props.error) {
+        return <p>{props.error}</p>
     }
 
   return (
