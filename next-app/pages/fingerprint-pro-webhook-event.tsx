@@ -1,17 +1,21 @@
 import { getFingerprintWebhookEvent } from "../dbModels/FingerprintWebhookEvent";
+import * as crypto from "crypto";
+import { Buffer } from 'buffer';
 
-function FingerprintProWebhookEvent(event: any) {
+function FingerprintProWebhookEvent(props: any) {
 
-    if (event.error) {
-        return <p>{event.error}</p>
+    if (props.event.error) {
+        return <p>{props.event.error}</p>
     }
 
   return (
     <div>
+      <h2>Signature status </h2>
+      <pre>{props.signatureVerificationResult ? "Valid" : "Invalid"}</pre>
       <h2>Headers</h2>
-      <pre>{JSON.stringify(JSON.parse(event.headers), null, 2)}</pre>
+      <pre>{JSON.stringify(JSON.parse(props.event.headers), null, 2)}</pre>
       <h2>Body</h2>
-      <pre>{JSON.stringify(JSON.parse(event.body), null, 2)}</pre>
+      <pre>{JSON.stringify(JSON.parse(props.event.body), null, 2)}</pre>
     </div>
   );
 }
@@ -29,9 +33,30 @@ export async function getServerSideProps(context: any) {
 
   const event = await getWebhookEvent(requestId);
 
+  const signature = (JSON.parse(event.headers) as any)["fpjs-event-signature"]
+  const webhookSecret = process.env.WEBHOOK_SECRET ?? '';
+  const signatureVerificationResult = checkHeader(signature, Buffer.from(event.body), webhookSecret)
+
   return {
-    props: JSON.parse(JSON.stringify(event)), // ¯\_(ツ)_/¯ https://github.com/vercel/next.js/issues/11993
+    props: { event: JSON.parse(JSON.stringify(event)), signatureVerificationResult: signatureVerificationResult } // ¯\_(ツ)_/¯ https://github.com/vercel/next.js/issues/11993
   };
 }
 
 export default FingerprintProWebhookEvent;
+
+const checkSignature = (signature: string, data: Buffer, secret: string) => {
+    return signature === crypto.createHmac('sha256', secret).update(data).digest('hex');
+}
+
+const checkHeader = (header: string, data: Buffer, secret: string) => {
+    const signatures = header.split(',');
+    for (const signature of signatures) {
+        const [version, hash] = signature.split('=');
+        if (version === 'v1') {
+            if (checkSignature(hash, data, secret)) {
+                return true;
+            }
+        }
+    }
+    return false
+}
