@@ -1,12 +1,14 @@
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
-import FingerprintJS, { GetResult } from "@fingerprintjs/fingerprintjs-pro";
+import * as FingerprintJS from "@fingerprintjs/fingerprintjs-pro-static";
+import { GetResult } from "@fingerprintjs/fingerprintjs-pro";
+
 import {
   CUSTOM_SUBDOMAIN,
   FINGERPRINT_PUBLIC_API_KEY,
 } from "../shared/constants";
 
-export default function FingerprintProBotdVanillaAgentFullSubdomain() {
+export default function FingerprintProStaticAgent() {
   const [fingerprintData, setFingerprintData] = useState<
     GetResult | string | null
   >(null);
@@ -15,8 +17,13 @@ export default function FingerprintProBotdVanillaAgentFullSubdomain() {
     (async () => {
       const fpPromise = FingerprintJS.load({
         apiKey: FINGERPRINT_PUBLIC_API_KEY,
+        region: "eu",
         endpoint: CUSTOM_SUBDOMAIN,
-        scriptUrlPattern: `${CUSTOM_SUBDOMAIN}/web/v<version>/<apiKey>/loader_v<loaderVersion>.js`,
+        modules: [
+          FingerprintJS.makeIdentificationModule(), // If you use identification
+          FingerprintJS.makeBotdModule(), // If you use bot detection
+          FingerprintJS.makeLatencyReportModule(), // For performance monitoring
+        ],
       });
       const fp = await fpPromise;
       const data = await fp.get({ extendedResult: true });

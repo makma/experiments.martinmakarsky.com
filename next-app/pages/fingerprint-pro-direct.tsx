@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import FingerprintJS, { GetResult } from "@fingerprintjs/fingerprintjs-pro";
 import { FINGERPRINT_PUBLIC_API_KEY } from "../shared/constants";
 
-export default function FingerprintProBotdVanillaAgentDirect() {
+export default function FingerprintProVanillaAgentDirect() {
   const [fingerprintData, setFingerprintData] = useState<
     GetResult | string | null
   >(null);

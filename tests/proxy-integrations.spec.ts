@@ -75,7 +75,7 @@ test('Fastly VCL Proxy Integration returns the visitorId', async ({ page }) => {
 });
 
 test('Custom subdomain returns the visitorId', async ({ page }) => {
-  await page.goto(`${baseDomain}/fingerprint-pro-and-botd-full-subdomain`);
+  await page.goto(`${baseDomain}/fingerprint-pro-full-subdomain`);
 
   const preSelector = 'pre';
 
