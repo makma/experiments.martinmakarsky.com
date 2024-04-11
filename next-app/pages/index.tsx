@@ -28,6 +28,10 @@ export default function Home() {
             >
               <h2>Fingerprint Pro Custom subdomain &rarr;</h2>
               <p>No lib, TS NPM agent, subdomain setup, extended result</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
             </Link>
 
             <Link
@@ -39,6 +43,10 @@ export default function Home() {
                 No lib, TS NPM agent, full subdomain setup (ingress + agent),
                 extended result
               </p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
             </Link>
 
             <Link
@@ -47,6 +55,10 @@ export default function Home() {
             >
               <h2>Fingerprint Pro Direct &rarr;</h2>
               <p>No lib, TS NPM agent, NO subdomain setup, extended result</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
             </Link>
 
             <Link
@@ -55,6 +67,10 @@ export default function Home() {
             >
               <h2>Fingerprint Pro Static Agent &rarr;</h2>
               <p>No lib, Static agent, subdomain setup, extended result</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
             </Link>
 
             <Link
@@ -65,6 +81,10 @@ export default function Home() {
               <p>
                 React library, Static agent, subdomain setup, extended result
               </p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/react-logo.svg"
@@ -74,16 +94,15 @@ export default function Home() {
               />
             </Link>
 
-            <Link className={styles.card} href="/botd-only">
-              <h2>BotD only &rarr;</h2>
-              <p>No lib, TS NPM agent, subdomain setup, extended result</p>
-            </Link>
-
             <Link className={styles.card} href="/fingerprint-pro-cloudflare">
               <h2>Fingerprint Pro Cloudflare &rarr;</h2>
               <p>
                 No lib, TS NPM agent, cloudflare integration, extended result
               </p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/cloudflare-logo.svg"
@@ -98,6 +117,10 @@ export default function Home() {
               <p>
                 No lib, TS NPM agent, Fastly VCL Integration, extended result
               </p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/fastly-logo.svg"
@@ -113,6 +136,10 @@ export default function Home() {
             >
               <h2>Fingerprint Pro React Cloudflare &rarr;</h2>
               <p>React lib, Cloudflare integration, extended result</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/cloudflare-logo.svg"
@@ -132,6 +159,10 @@ export default function Home() {
             <Link className={styles.card} href="/nuxt/fingerprint-pro-vue">
               <h2>Fingerprint Pro Vue &rarr;</h2>
               <p>Vue3 lib, No Proxy, NuxtJS3 environment</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/vue-logo.svg"
@@ -144,6 +175,10 @@ export default function Home() {
             <Link className={styles.card} href="/fingerprint-pro-react-akamai">
               <h2>Fingerprint Pro React Akamai &rarr;</h2>
               <p>React lib, Akamai integration</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/akamai-logo.svg"
@@ -163,6 +198,10 @@ export default function Home() {
             <Link className={styles.card} href="/custom-proxy-integration">
               <h2>Fingerprint Pro React Custom Proxy Integration &rarr;</h2>
               <p>React library, Custom Proxy Integration</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/react-logo.svg"
@@ -183,6 +222,10 @@ export default function Home() {
                 React lib, Cloudflare integration, extended result, stripping
                 url params
               </p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/cloudflare-logo.svg"
@@ -210,6 +253,10 @@ export default function Home() {
                 Unamanaged and created manually, won&apos;t be upgraded
                 automatically
               </p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/cloudflare-logo.svg"
@@ -232,6 +279,10 @@ export default function Home() {
             >
               <h2>Fingerprint Pro React CloudFront &rarr;</h2>
               <p>React lib, CloudFront integration, extended result</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/cloudfront-logo.svg"
@@ -256,6 +307,10 @@ export default function Home() {
                 Fingerprint Pro React CloudFront v1 to upgrade, terraform &rarr;
               </h2>
               <p>React lib, CloudFront v1 integration, extended result</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/cloudfront-logo.svg"
@@ -285,6 +340,10 @@ export default function Home() {
             >
               <h2>Fingerprint Pro React CloudFront v2, terraform &rarr;</h2>
               <p>React lib, CloudFront v2 integration, extended result</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/cloudfront-logo.svg"
@@ -312,8 +371,14 @@ export default function Home() {
               className={styles.card}
               href="/fingerprint-pro-react-cloudfront-v2-terraform-staging"
             >
-              <h2>Fingerprint Pro React CloudFront v2, terraform, staging &rarr;</h2>
+              <h2>
+                Fingerprint Pro React CloudFront v2, terraform, staging &rarr;
+              </h2>
               <p>React lib, CloudFront v2 integration, staging</p>
+              <div>
+                <pre>subId: sub_ZVxerDsLBsvp9l</pre>
+                <pre>env: staging</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/cloudfront-logo.svg"
@@ -340,6 +405,10 @@ export default function Home() {
             <Link className={styles.card} href="/fingerprint-pro-react-azure">
               <h2>Fingerprint Pro React Azure &rarr;</h2>
               <p>React lib, Azure integration, extended result</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/azure-logo.svg"
@@ -359,6 +428,10 @@ export default function Home() {
             <Link className={styles.card} href="/fingerprint-pro-react-package">
               <h2>Fingerprint Pro Custom subdomain React lib &rarr;</h2>
               <p>React NPM lib, subdomain setup, extended and basic result</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/react-logo.svg"
@@ -379,6 +452,10 @@ export default function Home() {
                 React NPM lib, subdomain setup, extended and basic result,
                 static agent
               </p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/react-logo.svg"
@@ -388,14 +465,22 @@ export default function Home() {
               />
             </Link>
 
-            <Link className={styles.card} href="/botd-zero-trust">
-              <h2>Fingerprint Pro BotD Zero Trust &rarr;</h2>
+            <Link className={styles.card} href="/fingerprint-pro-zero-trust">
+              <h2>Fingerprint Pro, Zero Trust &rarr;</h2>
               <p>Browser SDK (agent), Zero Trust</p>
+              <div>
+                <pre>subId: sub_8VLhgjoASvOwjH</pre>
+                <pre>env: prod</pre>
+              </div>
             </Link>
 
             <Link className={styles.card} href="/sealed-results-direct">
               <h2>Sealed Results &rarr;</h2>
               <p>Basic NPM package, Direct requests</p>
+              <div>
+                <pre>subId: sub_Ezq3jYsYhAKyXJ</pre>
+                <pre>env: prod</pre>
+              </div>
             </Link>
 
             <Link
@@ -404,6 +489,10 @@ export default function Home() {
             >
               <h2>Sealed Results &rarr;</h2>
               <p>React lib, Cloudflare integration</p>
+              <div>
+                <pre>subId: sub_Ezq3jYsYhAKyXJ</pre>
+                <pre>env: prod</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/cloudflare-logo.svg"
@@ -426,11 +515,19 @@ export default function Home() {
             >
               <h2>Fingerprint Pro npmcdn &rarr;</h2>
               <p>No subdomain, eu region</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
             </Link>
 
             <Link className={styles.card} href="/gtm">
               <h2>Fingerprint Pro GTM integration &rarr;</h2>
               <p>No subdomain, eu region</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
             </Link>
 
             <Link
@@ -439,6 +536,10 @@ export default function Home() {
             >
               <h2>Fingerprint Pro Segment integration &rarr;</h2>
               <p>No subdomain, eu region</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
             </Link>
           </div>
 
@@ -456,6 +557,10 @@ export default function Home() {
                 NodeJS Server API SDK, requestId returned through the Cloudflare
                 Integration
               </p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/node-logo.svg"
@@ -468,6 +573,10 @@ export default function Home() {
             <Link className={styles.card} href="/api/events?requestId=">
               <h2>Event info from the Server API</h2>
               <p>API route handler at the edge, NodeJS Server API SDK</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/node-logo.svg"
@@ -480,6 +589,10 @@ export default function Home() {
             <Link className={styles.card} href="/api/visitors?visitorId=">
               <h2>Visitor info from the Server API</h2>
               <p>API route handler at the edge, NodeJS Server API SDK</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/node-logo.svg"
@@ -492,6 +605,10 @@ export default function Home() {
             <Link className={styles.card} href="/events?requestId=">
               <h2>Event info from the Server API</h2>
               <p>getServerSideProps at the edge, NodeJS Server API SDK</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
               <Image
                 className={styles.card_logo}
                 src="images/node-logo.svg"
@@ -503,17 +620,24 @@ export default function Home() {
           </div>
 
           <h2>Webhooks</h2>
-          <Link className={styles.card} href="/fingerprint-pro-webhook-event?requestId=">
-              <h2>Webhooks</h2>
-              <p>Get the webhook response for the specific requestId</p>
-              <Image
-                className={styles.card_logo}
-                src="images/node-logo.svg"
-                width={80}
-                height={50}
-                alt="Node logo"
-              />
-            </Link>
+          <Link
+            className={styles.card}
+            href="/fingerprint-pro-webhook-event?requestId="
+          >
+            <h2>Webhooks</h2>
+            <p>Get the webhook response for the specific requestId</p>
+            <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
+            <Image
+              className={styles.card_logo}
+              src="images/node-logo.svg"
+              width={80}
+              height={50}
+              alt="Node logo"
+            />
+          </Link>
         </main>
 
         <footer className={styles.footer}></footer>

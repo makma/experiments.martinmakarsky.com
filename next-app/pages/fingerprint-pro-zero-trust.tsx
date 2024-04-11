@@ -1,12 +1,9 @@
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import FingerprintJS, { GetResult } from "@fingerprintjs/fingerprintjs-pro";
-import {
-  CUSTOM_SUBDOMAIN,
-  FINGERPRINT_PUBLIC_API_KEY,
-} from "../shared/constants";
+import { FINGERPRINT_PUBLIC_API_KEY_ZERO_TRUST } from "../shared/constants";
 
-export default function BotDOnly() {
+export default function ZeroTrust() {
   const [fingerprintData, setFingerprintData] = useState<
     GetResult | string | null
   >(null);
@@ -14,11 +11,11 @@ export default function BotDOnly() {
   useEffect(() => {
     (async () => {
       const fpPromise = FingerprintJS.load({
-        apiKey: FINGERPRINT_PUBLIC_API_KEY,
-        endpoint: CUSTOM_SUBDOMAIN,
+        apiKey: FINGERPRINT_PUBLIC_API_KEY_ZERO_TRUST,
+        region: "us",
       });
       const fp = await fpPromise;
-      const data = await fp.get({ extendedResult: true, products: ["botd"] });
+      const data = await fp.get();
       setFingerprintData(data);
     })();
   }, []);
