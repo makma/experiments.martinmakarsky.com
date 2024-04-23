@@ -2,6 +2,7 @@
 // sub_AHhMVKY0HFYj3W martinmakarsky.com
 export const FINGERPRINT_PUBLIC_API_KEY = "tQUwQQOuG9TNwqc6F4I2";
 export const FINGERPRINT_PUBLIC_API_KEY_SECONDARY = "deo4QJZKMnmvTT1C9Hmt"
+export const FINGERPRINT_PUBLIC_API_KEY_SAMPLEP_ENVIRONMENT = "dzbq3RL5nuUFAmRlsP4R";
 export const CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN = "https://martinmakarsky.com/48DZXrExNGw50uoz/5FPAYQbHXMjBqNHI?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>"
 export const CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT = "https://martinmakarsky.com/48DZXrExNGw50uoz/X3e9LGfC86YhJTkq?region=eu"
 
