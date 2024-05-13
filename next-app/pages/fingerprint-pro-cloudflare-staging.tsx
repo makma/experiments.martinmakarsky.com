@@ -13,7 +13,7 @@ export default function FingerprintProCloudflare() {
       const fpPromise = FingerprintJS.load({
         apiKey: FINGERPRINT_PUBLIC_API_KEY_STAGING,
         scriptUrlPattern: "https://martinmakarsky.com/yunpOOULDfCx6KtY/CE5tR2CtpBMJVc0p?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
-        endpoint: "https://martinmakarsky.com/yunpOOULDfCx6KtY/IJzT2PyK0HsWInkT?region=eu",
+        endpoint: "https://martinmakarsky.com/yunpOOULDfCx6KtY/IJzT2PyK0HsWInkT",
       });
       const fp = await fpPromise;
       const data = await fp.get({ extendedResult: true });
