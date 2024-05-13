@@ -127,6 +127,24 @@ export default function Home() {
               />
             </Link>
 
+            <Link className={styles.card} href="/fingerprint-pro-cloudflare-staging">
+              <h2>Fingerprint Pro Cloudflare &rarr;</h2>
+              <p>
+                No lib, TS NPM agent, cloudflare integration, extended result
+              </p>
+              <div>
+                <pre>subId: sub_urYq4aadcfypu0</pre>
+                <pre>env: staging</pre>
+              </div>
+              <Image
+                className={styles.card_logo}
+                src="images/cloudflare-logo.svg"
+                width={80}
+                height={50}
+                alt="Cloudflare logo"
+              />
+            </Link>
+
             <Link className={styles.card} href="/fingerprint-pro-fastly-vcl">
               <h2>Fingerprint Pro Fastly &rarr;</h2>
               <p>
