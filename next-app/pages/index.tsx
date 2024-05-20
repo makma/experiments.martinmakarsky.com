@@ -650,6 +650,22 @@ export default function Home() {
                 alt="Node logo"
               />
             </Link>
+
+            <Link className={styles.card} href="/delete-by-visitorId">
+              <h2>Delete data by the visitorId</h2>
+              <p>Protected by the sealed results</p>
+              <div>
+                <pre>subId: sub_Ezq3jYsYhAKyXJ</pre>
+                <pre>env: prod</pre>
+              </div>
+              <Image
+                className={styles.card_logo}
+                src="images/node-logo.svg"
+                width={80}
+                height={50}
+                alt="Node logo"
+              />
+            </Link>
           </div>
 
           <h2>Webhooks</h2>
