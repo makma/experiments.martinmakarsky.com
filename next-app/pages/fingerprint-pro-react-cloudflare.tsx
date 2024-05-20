@@ -4,7 +4,7 @@ import {
   CacheLocation,
   useVisitorData,
 } from "@fingerprintjs/fingerprintjs-pro-react";
-import { FpjsProvider, FingerprintJSPro } from "@fingerprintjs/fingerprintjs-pro-react";
+import { FpjsProvider } from "@fingerprintjs/fingerprintjs-pro-react";
 import { NextPage } from "next";
 import { CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT, CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN, FINGERPRINT_PUBLIC_API_KEY } from "../shared/constants";
 
