@@ -13,11 +13,11 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "nuxt": "^3.9.3",
-    "vue": "^3.4.14",
-    "vue-router": "^4.2.5"
+    "nuxt": "^3.11.2",
+    "vue": "^3.4.27",
+    "vue-router": "^4.3.2"
   },
   "dependencies": {
-    "@fingerprintjs/fingerprintjs-pro-vue-v3": "^1.4.0"
+    "@fingerprintjs/fingerprintjs-pro-vue-v3": "^1.5.0"
   }
 }
