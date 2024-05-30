@@ -1,7 +1,7 @@
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import FingerprintJS, { GetResult } from "@fingerprintjs/fingerprintjs-pro";
-import { FINGERPRINT_PUBLIC_API_KEY_STAGING } from "../shared/constants";
+import { CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_STAGING, CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_STAGING, FINGERPRINT_PUBLIC_API_KEY_STAGING } from "../shared/constants";
 
 export default function FingerprintProCloudflare() {
   const [fingerprintData, setFingerprintData] = useState<
@@ -12,8 +12,8 @@ export default function FingerprintProCloudflare() {
     (async () => {
       const fpPromise = FingerprintJS.load({
         apiKey: FINGERPRINT_PUBLIC_API_KEY_STAGING,
-        scriptUrlPattern: "https://martinmakarsky.com/yunpOOULDfCx6KtY/CE5tR2CtpBMJVc0p?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
-        endpoint: "https://martinmakarsky.com/yunpOOULDfCx6KtY/IJzT2PyK0HsWInkT",
+        scriptUrlPattern: CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_STAGING,
+        endpoint: CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_STAGING,
       });
       const fp = await fpPromise;
       const data = await fp.get({ extendedResult: true });

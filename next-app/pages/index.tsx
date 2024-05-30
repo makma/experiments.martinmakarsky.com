@@ -409,7 +409,7 @@ export default function Home() {
               </h2>
               <p>React lib, CloudFront v2 integration, staging</p>
               <div>
-                <pre>subId: sub_ZVxerDsLBsvp9l</pre>
+                <pre>subId: sub_urYq4aadcfypu0</pre>
                 <pre>env: staging</pre>
               </div>
               <Image
