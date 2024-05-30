@@ -14,7 +14,7 @@ export const FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS: string = "BEczWb6HhcD4OR
 
 // sub_urYq4aadcfypu0 on STAGING
 export const FINGERPRINT_PUBLIC_API_KEY_STAGING: string = "bAW4LdHhP3gVx4kRBzym";
-export const CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_STAGING = "https://martinmakarsky.com/staging-worker-path/agent?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>"
+export const CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_STAGING = "https://martinmakarsky.com/staging-worker-path/agent-script-download-path?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>"
 export const CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_STAGING = "https://martinmakarsky.com/staging-worker-path/get-result-path"
 
 export const CUSTOM_SUBDOMAIN: string = "https://fp.martinmakarsky.com";
