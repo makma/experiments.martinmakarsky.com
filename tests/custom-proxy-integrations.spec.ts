@@ -38,7 +38,7 @@ test('Azure Proxy Integration returns the visitorId', async ({ page }) => {
   expect(preText).toContain('\"visitorId\":');
 });
 
-test('CloudFront Proxy Integration returns the visitorId', async ({ page }) => {
+test('CloudFront v1 Proxy Integration returns the visitorId', async ({ page }) => {
   await page.goto(`${baseDomain}/fingerprint-pro-react-cloudfront`);
 
   const preSelector = 'pre';
