@@ -123,7 +123,26 @@ export default function Home() {
                 src="images/cloudflare-logo.svg"
                 width={80}
                 height={50}
-                alt="Fastly logo"
+                alt="Cloudflare logo"
+              />
+            </Link>
+
+            <Link className={styles.card} href="/fingerprint-pro-cloudflare-2nd-managed-integration">
+              <h2>Fingerprint Pro Cloudflare 2nd manged integration &rarr;</h2>
+              <p>
+                No lib, TS NPM agent, managed, cloudflare integration, extended result
+              </p>
+              <div>
+                <pre>requests goes to: sub_AHhMVKY0HFYj3W</pre>
+                <pre>created and managed at: sub_8VLhgjoASvOwjH</pre>
+                <pre>env: prod</pre>
+              </div>
+              <Image
+                className={styles.card_logo}
+                src="images/cloudflare-logo.svg"
+                width={80}
+                height={50}
+                alt="Cloudflare logo"
               />
             </Link>
 
