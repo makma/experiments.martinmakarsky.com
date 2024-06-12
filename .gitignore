@@ -92,9 +92,8 @@ nuxt-app/!.env.example
 # <---------Nuxt Section--------->
 
 # <---------.NET Section--------->
-Certainly! Here is your updated `.gitignore` file with each record prefixed with the `dotnet-app/` folder:
+dotnet-app/**/appsettings.Development.json
 
-```
 # globs
 dotnet-app/Makefile.in
 dotnet-app/*.userprefs
