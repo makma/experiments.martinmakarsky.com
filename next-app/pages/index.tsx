@@ -622,6 +622,30 @@ export default function Home() {
               />
             </Link>
 
+            <Link
+              className={styles.card}
+              href="/fingerprint-pro-cloudflare-dotnet-server-api-sdk"
+            >
+              <h2>
+                Event info from the .NET Server API based on the current requestId
+              </h2>
+              <p>
+                <div className="Net"></div> Server API SDK, requestId returned through the Cloudflare
+                Integration
+              </p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
+              <Image
+                className={styles.card_logo}
+                src="images/dotnet-logo.svg"
+                width={80}
+                height={50}
+                alt="Dotnet logo"
+              />
+            </Link>
+
             <Link className={styles.card} href="/api/events?requestId=">
               <h2>Event info from the Server API</h2>
               <p>API route handler at the edge, NodeJS Server API SDK</p>
