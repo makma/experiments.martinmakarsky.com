@@ -381,7 +381,7 @@ dotnet-app/!*.[Cc]ache/
 dotnet-app/ClientBin/
 dotnet-app/~$*
 dotnet-app/*~
-dotnet-app/*.dbmdl
+dotnet-app/*.dbmdl  
 dotnet-app/*.dbproj.schemaview
 dotnet-app/*.jfm
 dotnet-app/*.pfx
