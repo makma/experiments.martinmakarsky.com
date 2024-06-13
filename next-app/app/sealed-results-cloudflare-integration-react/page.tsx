@@ -9,17 +9,15 @@ import {
 import { FpjsProvider } from "@fingerprintjs/fingerprintjs-pro-react";
 import { NextPage } from "next";
 import { GetResult } from "@fingerprintjs/fingerprintjs-pro";
-import { FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS } from "../../shared/constants";
+import { CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT, CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN, FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS } from "../../shared/constants";
 
 export default function FingerprintSealedResultsCloudflareReact() {
   return (
     <FpjsProvider
       loadOptions={{
         apiKey: FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS,
-        scriptUrlPattern:
-          "https://martinmakarsky.com/YNSLCFNUWAU4p7X8/aRWhfTmpOtukFzWC?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
-        endpoint:
-          "https://martinmakarsky.com/YNSLCFNUWAU4p7X8/pcdSSztwo0Fpgbxt?region=eu",
+        scriptUrlPattern: CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN,
+        endpoint: CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT,
       }}
       cacheLocation={CacheLocation.SessionStorage}
       cacheTimeInSeconds={60}
