@@ -395,3 +395,32 @@ dotnet-app/orleans.codegen.cs
 # Since there are multiple workflows,
 # <---------.NET Section--------->
 
+# <--------- GO Section--------->
+# If you prefer the allow list template instead of the deny list, see community template:
+# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
+#
+# Binaries for programs and plugins
+go-app/*.exe
+go-app/*.exe~
+go-app/*.dll
+go-app/*.so
+go-app/*.dylib
+
+# Test binary, built with `go test -c`
+go-app/*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+go-app/*.out
+
+# Dependency directories (remove the comment below to include it)
+# go-app/vendor/
+
+# Go workspace file
+go-app/go.work
+go-app/go.work.sum
+
+# env file
+go-app/.env
+
+# <--------- GO Section--------->
+
