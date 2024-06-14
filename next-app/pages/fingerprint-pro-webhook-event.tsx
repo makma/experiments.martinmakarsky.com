@@ -13,7 +13,7 @@ function FingerprintProWebhookEvent(props: any) {
       <h2>Signature verification status - Custom code </h2>
       <pre>{props.signatureVerificationResultCustom ? "Valid" : "Invalid"}</pre>
       <h2>Signature status - Node SDK verification </h2>
-      <pre id="signature-verification-result-node-SDK">
+      <pre id="signature-verification-result-node-sdk">
         {props.signatureVerificationResultSDK ? "Valid" : "Invalid"}
       </pre>
       <h2>Headers</h2>
@@ -46,7 +46,7 @@ export async function getServerSideProps(context: any) {
       webhookSecret
     );
   const signatureVerificationResultSDK = isValidWebhookSignature({
-    header: signature,
+    header: signature + "1",
     data: Buffer.from(event.body),
     secret: webhookSecret,
   });

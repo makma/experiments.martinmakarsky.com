@@ -741,7 +741,7 @@ export default function Home() {
             href="/fingerprint-pro-webhook-event?requestId="
           >
             <h2>Webhooks</h2>
-            <p>Get the webhook response for the specific requestId</p>
+            <p>Get the webhook response for the specific requestId, webhook signatures</p>
             <div>
                 <pre>subId: sub_AHhMVKY0HFYj3W</pre>
                 <pre>env: prod</pre>
