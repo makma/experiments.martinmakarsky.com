@@ -46,7 +46,7 @@ export async function getServerSideProps(context: any) {
       webhookSecret
     );
   const signatureVerificationResultSDK = isValidWebhookSignature({
-    header: signature + "1",
+    header: signature,
     data: Buffer.from(event.body),
     secret: webhookSecret,
   });

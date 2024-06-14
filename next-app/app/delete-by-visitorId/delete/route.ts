@@ -1,10 +1,17 @@
-import { DecryptionAlgorithm, unsealEventsResponse } from '@fingerprintjs/fingerprintjs-pro-server-api';
+import { DecryptionAlgorithm, FingerprintJsServerApiClient, Region, unsealEventsResponse } from '@fingerprintjs/fingerprintjs-pro-server-api';
 import { NextResponse } from 'next/server';
 
 
 export async function DELETE(request: Request) {
   if (request.method !== "DELETE") {
     return NextResponse.json({ message: `${request.method} is not a supported method.` }, { status: 400 });
+  }
+
+  // Only I and the CI tests can delete the data, very naive, do not copy this code, harmless on the testing sub, harmful on prod use
+  const { searchParams } = new URL(request.url)
+  const deletionSecret = searchParams.get('deletionSecret')
+  if (deletionSecret !== process.env.DELETION_SECRET) {
+    return NextResponse.json({ message: `You are not allowed to delete data` }, { status: 403 });
   }
 
   const SEALED_RESULTS_DECRYPTION_KEY = process.env.SEALED_RESULTS_DECRYPTION_KEY;
@@ -18,12 +25,6 @@ export async function DELETE(request: Request) {
 
   if (!unsealedResult || !unsealedResult.products.identification || !unsealedResult.products.identification.data) {
     return NextResponse.json({ message: `Invalid unsealed data.` }, { status: 400 });
-  }
-
-  // Only I can delete the data
-  const requestVisitorId = unsealedResult.products.identification.data.visitorId;
-  if (requestVisitorId !== "phKwbdoV8NEAGTATwAiT") {
-    return NextResponse.json({ message: `${requestVisitorId} is not allowed to delete data` }, { status: 403 });
   }
 
   const visitorIdToDelete = body.visitorIdToDelete;
@@ -42,20 +43,19 @@ export async function DELETE(request: Request) {
 
   }
 
-  const headers = {
-    "Content-Type": "application/json",
-    "Auth-API-Key": secretAPIKey
-  };
+  const apiKey = process.env.FINGERPRINT_SECRET_API_KEY ?? "";
 
-  const response = await fetch(`https://eu.api.fpjs.io/visitors/${visitorIdToDelete}`, {
-    method: "DELETE",
-    headers: headers,
+  const client = new FingerprintJsServerApiClient({
+    region: Region.EU,
+    apiKey: apiKey,
   });
-  console.log(response.status)
-  console.log(response.body)
-  if (response.status !== 200) {
-    return NextResponse.json({ message: { status: response.status, body: response.body } }, { status: 500 });
+
+  try {
+    await client.deleteVisitorData(visitorIdToDelete);
+  } catch (error) {
+    return NextResponse.json({ message: error }, { status: 500 });
   }
+
   return NextResponse.json({ message: `The visitorId: ${visitorIdToDelete} is scheduled to be deleted` }, { status: 200 });
 }
 
