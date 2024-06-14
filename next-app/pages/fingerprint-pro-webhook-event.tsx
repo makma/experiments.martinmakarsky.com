@@ -1,17 +1,21 @@
 import { getFingerprintWebhookEvent } from "../dbModels/FingerprintWebhookEvent";
 import * as crypto from "crypto";
-import { Buffer } from 'buffer';
+import { Buffer } from "buffer";
+import { isValidWebhookSignature } from "@fingerprintjs/fingerprintjs-pro-server-api";
 
 function FingerprintProWebhookEvent(props: any) {
-
-    if (props.error) {
-        return <p>{props.error}</p>
-    }
+  if (props.error) {
+    return <p>{props.error}</p>;
+  }
 
   return (
     <div>
-      <h2>Signature status </h2>
-      <pre>{props.signatureVerificationResult ? "Valid" : "Invalid"}</pre>
+      <h2>Signature verification status - Custom code </h2>
+      <pre>{props.signatureVerificationResultCustom ? "Valid" : "Invalid"}</pre>
+      <h2>Signature status - Node SDK verification </h2>
+      <pre id="signature-verification-result-node-SDK">
+        {props.signatureVerificationResultSDK ? "Valid" : "Invalid"}
+      </pre>
       <h2>Headers</h2>
       <pre>{JSON.stringify(JSON.parse(props.event.headers), null, 2)}</pre>
       <h2>Body</h2>
@@ -33,30 +37,50 @@ export async function getServerSideProps(context: any) {
 
   const event = await getWebhookEvent(requestId);
 
-  const signature = (JSON.parse(event.headers) as any)["fpjs-event-signature"]
-  const webhookSecret = process.env.WEBHOOK_SECRET ?? '';
-  const signatureVerificationResult = checkHeader(signature, Buffer.from(event.body), webhookSecret)
+  const signature = (JSON.parse(event.headers) as any)["fpjs-event-signature"];
+  const webhookSecret = process.env.WEBHOOK_SECRET ?? "";
+  const signatureVerificationResultCustom =
+    verifySignatureHeaderCustomImplementation(
+      signature,
+      Buffer.from(event.body),
+      webhookSecret
+    );
+  const signatureVerificationResultSDK = isValidWebhookSignature({
+    header: signature,
+    data: Buffer.from(event.body),
+    secret: webhookSecret,
+  });
 
   return {
-    props: { event: JSON.parse(JSON.stringify(event)), signatureVerificationResult: signatureVerificationResult } // ¯\_(ツ)_/¯ https://github.com/vercel/next.js/issues/11993
+    props: {
+      event: JSON.parse(JSON.stringify(event)),
+      signatureVerificationResultCustom: signatureVerificationResultCustom,
+      signatureVerificationResultSDK: signatureVerificationResultSDK,
+    }, // ¯\_(ツ)_/¯ https://github.com/vercel/next.js/issues/11993
   };
 }
 
 export default FingerprintProWebhookEvent;
 
 const checkSignature = (signature: string, data: Buffer, secret: string) => {
-    return signature === crypto.createHmac('sha256', secret).update(data).digest('hex');
-}
+  return (
+    signature === crypto.createHmac("sha256", secret).update(data).digest("hex")
+  );
+};
 
-const checkHeader = (header: string, data: Buffer, secret: string) => {
-    const signatures = header.split(',');
-    for (const signature of signatures) {
-        const [version, hash] = signature.split('=');
-        if (version === 'v1') {
-            if (checkSignature(hash, data, secret)) {
-                return true;
-            }
-        }
+const verifySignatureHeaderCustomImplementation = (
+  header: string,
+  data: Buffer,
+  secret: string
+) => {
+  const signatures = header.split(",");
+  for (const signature of signatures) {
+    const [version, hash] = signature.split("=");
+    if (version === "v1") {
+      if (checkSignature(hash, data, secret)) {
+        return true;
+      }
     }
-    return false
-}
+  }
+  return false;
+};
