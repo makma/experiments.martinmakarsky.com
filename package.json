@@ -6,7 +6,7 @@
   "author": "Martin Makarsky <martin.makarsky@fingerprintjs.com>",
   "license": "MIT",
   "engines": {
-    "node": "18.x"
+    "node": "20.x"
   },
   "scripts": {
     "test": "playwright test"
