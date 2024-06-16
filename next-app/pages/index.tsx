@@ -182,6 +182,24 @@ export default function Home() {
               />
             </Link>
 
+            <Link className={styles.card} href="/fingerprint-pro-fastly-vcl-staging">
+              <h2>Fingerprint Pro Fastly Staging &rarr;</h2>
+              <p>
+                No lib, TS NPM agent, Fastly VCL Integration, Staging extended result
+              </p>
+              <div>
+                <pre>subId: sub_urYq4aadcfypu0</pre>
+                <pre>env: staging</pre>
+              </div>
+              <Image
+                className={styles.card_logo}
+                src="images/fastly-logo.svg"
+                width={80}
+                height={50}
+                alt="Fastly logo"
+              />
+            </Link>
+
             <Link
               className={styles.card}
               href="/fingerprint-pro-react-cloudflare"
