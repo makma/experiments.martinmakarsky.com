@@ -476,7 +476,6 @@ export default function Home() {
                 alt="React logo"
               />
             </Link>
-
             <Link className={styles.card} href="/fingerprint-pro-react-package">
               <h2>Fingerprint Pro Custom subdomain React lib &rarr;</h2>
               <p>React NPM lib, subdomain setup, extended and basic result</p>
@@ -629,9 +628,8 @@ export default function Home() {
               <h2>
                 Event info from the .NET Server API based on the current requestId
               </h2>
-              <p>
-                <div className="Net"></div> Server API SDK, requestId returned through the Cloudflare
-                Integration
+              <p> 
+                Server API SDK, requestId returned through the Cloudflare Integration
               </p>
               <div>
                 <pre>subId: sub_AHhMVKY0HFYj3W</pre>
@@ -654,7 +652,7 @@ export default function Home() {
                 Event info from the Go Server API SDK based on the current requestId
               </h2>
               <p>
-                <div className="Net"></div> Go Server API SDK, requestId returned through the Cloudflare
+               Go Server API SDK, requestId returned through the Cloudflare
                 Integration
               </p>
               <div>
