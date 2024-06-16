@@ -22,10 +22,7 @@ export default function Home() {
           </h1>
 
           <div className={styles.grid}>
-            <Link
-              className={styles.card}
-              href="/fingerprint-pro-subdomain"
-            >
+            <Link className={styles.card} href="/fingerprint-pro-subdomain">
               <h2>Fingerprint Pro Custom subdomain &rarr;</h2>
               <p>No lib, TS NPM agent, subdomain setup, extended result</p>
               <div>
@@ -53,7 +50,9 @@ export default function Home() {
               className={styles.card}
               href="/fingerprint-pro-full-subdomain-sample-environment"
             >
-              <h2>Fingerprint Pro Full Custom Subdomain, Sample environment &rarr;</h2>
+              <h2>
+                Fingerprint Pro Full Custom Subdomain, Sample environment &rarr;
+              </h2>
               <p>
                 No lib, TS NPM agent, full subdomain setup (ingress + agent),
                 extended result, sample environment
@@ -64,10 +63,7 @@ export default function Home() {
               </div>
             </Link>
 
-            <Link
-              className={styles.card}
-              href="/fingerprint-pro-direct"
-            >
+            <Link className={styles.card} href="/fingerprint-pro-direct">
               <h2>Fingerprint Pro Direct &rarr;</h2>
               <p>No lib, TS NPM agent, NO subdomain setup, extended result</p>
               <div>
@@ -76,10 +72,7 @@ export default function Home() {
               </div>
             </Link>
 
-            <Link
-              className={styles.card}
-              href="/fingerprint-pro-static-agent"
-            >
+            <Link className={styles.card} href="/fingerprint-pro-static-agent">
               <h2>Fingerprint Pro Static Agent &rarr;</h2>
               <p>No lib, Static agent, subdomain setup, extended result</p>
               <div>
@@ -127,10 +120,14 @@ export default function Home() {
               />
             </Link>
 
-            <Link className={styles.card} href="/fingerprint-pro-cloudflare-2nd-managed-integration">
+            <Link
+              className={styles.card}
+              href="/fingerprint-pro-cloudflare-2nd-managed-integration"
+            >
               <h2>Fingerprint Pro Cloudflare 2nd manged integration &rarr;</h2>
               <p>
-                No lib, TS NPM agent, managed, cloudflare integration, extended result
+                No lib, TS NPM agent, managed, cloudflare integration, extended
+                result
               </p>
               <div>
                 <pre>requests goes to: sub_AHhMVKY0HFYj3W</pre>
@@ -146,7 +143,10 @@ export default function Home() {
               />
             </Link>
 
-            <Link className={styles.card} href="/fingerprint-pro-cloudflare-staging">
+            <Link
+              className={styles.card}
+              href="/fingerprint-pro-cloudflare-staging"
+            >
               <h2>Fingerprint Pro Cloudflare &rarr;</h2>
               <p>
                 No lib, TS NPM agent, cloudflare integration, extended result
@@ -626,10 +626,12 @@ export default function Home() {
               href="/fingerprint-pro-cloudflare-dotnet-server-api-sdk"
             >
               <h2>
-                Event info from the .NET Server API based on the current requestId
+                Event info from the .NET Server API based on the current
+                requestId
               </h2>
-              <p> 
-                Server API SDK, requestId returned through the Cloudflare Integration
+              <p>
+                Server API SDK, requestId returned through the Cloudflare
+                Integration
               </p>
               <div>
                 <pre>subId: sub_AHhMVKY0HFYj3W</pre>
@@ -649,10 +651,11 @@ export default function Home() {
               href="/fingerprint-pro-cloudflare-go-server-api-sdk"
             >
               <h2>
-                Event info from the Go Server API SDK based on the current requestId
+                Event info from the Go Server API SDK based on the current
+                requestId
               </h2>
               <p>
-               Go Server API SDK, requestId returned through the Cloudflare
+                Go Server API SDK, requestId returned through the Cloudflare
                 Integration
               </p>
               <div>
@@ -739,11 +742,14 @@ export default function Home() {
             href="/fingerprint-pro-webhook-event?requestId="
           >
             <h2>Webhooks</h2>
-            <p>Get the webhook response for the specific requestId, webhook signatures</p>
+            <p>
+              Get the webhook response for the specific requestId, webhook
+              signatures
+            </p>
             <div>
-                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
-                <pre>env: prod</pre>
-              </div>
+              <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+              <pre>env: prod</pre>
+            </div>
             <Image
               className={styles.card_logo}
               src="images/node-logo.svg"

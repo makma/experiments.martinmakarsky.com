@@ -32,3 +32,26 @@ test('Check status of the webhook sgnature', async ({ page }) => {
 
   expect(serverApiText).toEqual("Valid");
 });
+
+test('Delete the visitorId', async ({ page }) => {
+  await page.goto(`${baseDomain}/fingerprint-pro-cloudflare`);
+
+  const preSelector = 'pre';
+  await page.waitForSelector(preSelector, { timeout: 10 * 1000 });
+  const preElement = await page.$(preSelector);
+  const preText = JSON.parse(await preElement.textContent());
+
+  const visitorId = preText.visitorId;
+
+    const headers = {
+      "Content-Type": "application/json",
+    };
+
+    const response = await fetch(`${baseDomain}/delete-by-visitorId/delete/`, {
+      method: "DELETE",
+      headers: headers,
+      body: JSON.stringify({ visitorIdToDelete: visitorId, deletionSecret: process.env.DELETION_SECRET }),
+    });
+
+  expect(response.status).toEqual(200);
+});
