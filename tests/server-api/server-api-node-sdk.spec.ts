@@ -47,10 +47,16 @@ test('Delete the visitorId', async ({ page }) => {
       "Content-Type": "application/json",
     };
 
+    const deletionSecret = process.env.DELETION_SECRET;
+
+    if (!deletionSecret) {
+      throw Error("Deletion secret not found")
+    }
+
     const response = await fetch(`${baseDomain}/delete-by-visitorId/delete/`, {
       method: "DELETE",
       headers: headers,
-      body: JSON.stringify({ visitorIdToDelete: visitorId, deletionSecret: process.env.DELETION_SECRET }),
+      body: JSON.stringify({ visitorIdToDelete: visitorId, deletionSecret: deletionSecret }),
     });
 
   expect(response.status).toEqual(200);
