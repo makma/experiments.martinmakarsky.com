@@ -56,10 +56,10 @@
     "@fingerprintjs/fingerprintjs-pro-spa" "^1.3.1"
     fast-deep-equal "3.1.3"
 
-"@fingerprintjs/fingerprintjs-pro-server-api@4.1.0-test.1":
-  version "4.1.0-test.1"
-  resolved "https://registry.yarnpkg.com/@fingerprintjs/fingerprintjs-pro-server-api/-/fingerprintjs-pro-server-api-4.1.0-test.1.tgz#de4448ed0869142493ab29c613f69263bfeb008b"
-  integrity sha512-eUk1b3JSEzJKDJ3ldHqFA8+P/te3UZI6ocjYdCPVd2xykpx0AmxdIcPP5KYZLezXE/MpmlJtmQi26KMg3AEh3Q==
+"@fingerprintjs/fingerprintjs-pro-server-api@4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@fingerprintjs/fingerprintjs-pro-server-api/-/fingerprintjs-pro-server-api-4.1.0.tgz#7b4c5be4d56b9200640d576344c2a52c28bd2fb5"
+  integrity sha512-09yjOY+dC8dVZvuzaXpCACFvSbh0+9xNfa9llFEUuijtN/ZHvG5GlRdQDxilU/wllqOz5KtBDreOYq4YDNR7Gw==
 
 "@fingerprintjs/fingerprintjs-pro-spa@^1.3.1":
   version "1.3.1"
@@ -297,9 +297,9 @@
   integrity sha512-YIoDCTH3Af6XM5VuwGG/QL/CJqga1Zm3NkU3HZ4ZHK2fRMPYP1VczsTUqtsf43PH/iJNVlPHAo2oWX7BSdB2Hw==
 
 "@types/validator@^13.7.17":
-  version "13.11.10"
-  resolved "https://registry.yarnpkg.com/@types/validator/-/validator-13.11.10.tgz#feb364018cdd1f3d970a9e8c7f1c314c0a264fff"
-  integrity sha512-e2PNXoXLr6Z+dbfx5zSh9TRlXJrELycxiaXznp4S5+D2M3b9bqJEitNHA5923jhnB2zzFiZHa2f0SI1HoIahpg==
+  version "13.12.0"
+  resolved "https://registry.yarnpkg.com/@types/validator/-/validator-13.12.0.tgz#1fe4c3ae9de5cf5193ce64717c99ef2fa7d8756f"
+  integrity sha512-nH45Lk7oPIJ1RVOF6JgFI6Dy0QpHEzq4QecZhvguxYPDwT8c93prCMqAtiIttm39voZ+DDR+qkNnMpJmMBRqag==
 
 "@typescript-eslint/parser@^5.0.1", "@typescript-eslint/parser@^5.21.0":
   version "5.62.0"
@@ -659,9 +659,9 @@ callsites@^3.0.0:
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
 
 caniuse-lite@^1.0.30001579:
-  version "1.0.30001634"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001634.tgz#aa563c8e7aeaf552f7ead60371bc8d803425deaa"
-  integrity sha512-fbBYXQ9q3+yp1q1gBk86tOFs4pyn/yxFm5ZNP18OXJDfA3txImOY9PhfxVggZ4vRHDqoU8NrKU81eN0OtzOgRA==
+  version "1.0.30001636"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001636.tgz#b15f52d2bdb95fad32c2f53c0b68032b85188a78"
+  integrity sha512-bMg2vmr8XBsbL6Lr0UHXy/21m84FTxDLWn2FSqMd5PrlbMxwJlQnC2YWYxVgp66PZE+BBNF2jYQUBKCo1FDeZg==
 
 chalk@^4.0.0:
   version "4.1.2"
