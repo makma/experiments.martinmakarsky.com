@@ -13,7 +13,7 @@ namespace fingerprint_pro_server_api.Controllers
         [HttpGet]
         public NotFound<string> Get()
         {
-            return TypedResults.NotFound("visitorId and deleletionSecret must be provided in the following format: DELETE api/visitor-data?{visitorId}&{deletionSecret}");
+            return TypedResults.NotFound("visitorId and deleletionSecret must be provided in the following format: DELETE api/visitor-data?visitorId={visitorId}&deletionSecret={deletionSecret}");
         }
 
         // Only I and the CI tests can delete the data, very naive, do not copy this code, harmless on the testing sub, harmful on prod use
