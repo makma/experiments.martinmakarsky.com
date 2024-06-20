@@ -41,8 +41,12 @@ export async function getFingerprintWebhookEvent(requestId: string) {
     },
     })) as unknown as WebhookEvent
 
-  fingerprintWebhookEvent.headers = (JSON.parse(fingerprintWebhookEvent.headers) as any)
-  fingerprintWebhookEvent.body = (JSON.parse(fingerprintWebhookEvent.body) as any)
-  
-  return fingerprintWebhookEvent;
+
+  const webhookEventObject = {
+    requestId: fingerprintWebhookEvent.requestId,
+    headers: (JSON.parse(fingerprintWebhookEvent.headers) as any),
+    body: (JSON.parse(fingerprintWebhookEvent.body) as any)
+  }
+
+  return webhookEventObject;
 }

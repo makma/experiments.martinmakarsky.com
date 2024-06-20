@@ -42,12 +42,12 @@ export async function getServerSideProps(context: any) {
   const signatureVerificationResultCustom =
     verifySignatureHeaderCustomImplementation(
       signature,
-      Buffer.from(event.body),
+      Buffer.from(JSON.stringify(event.body)),
       webhookSecret
     );
   const signatureVerificationResultSDK = isValidWebhookSignature({
     header: signature,
-    data: Buffer.from(event.body),
+    data: Buffer.from(JSON.stringify(event.body)),
     secret: webhookSecret,
   });
 
