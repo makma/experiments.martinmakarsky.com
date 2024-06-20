@@ -17,9 +17,9 @@ function FingerprintProWebhookEvent(props: any) {
         {props.signatureVerificationResultSDK ? "Valid" : "Invalid"}
       </pre>
       <h2>Headers</h2>
-      <pre>{JSON.stringify(JSON.parse(props.event.headers), null, 2)}</pre>
+      <pre>{JSON.stringify(props.event.headers, null, 2)}</pre>
       <h2>Body</h2>
-      <pre>{JSON.stringify(JSON.parse(props.event.body), null, 2)}</pre>
+      <pre>{JSON.stringify(props.event.body, null, 2)}</pre>
     </div>
   );
 }
@@ -37,7 +37,7 @@ export async function getServerSideProps(context: any) {
 
   const event = await getWebhookEvent(requestId);
 
-  const signature = (JSON.parse(event.headers) as any)["fpjs-event-signature"];
+  const signature = (event.headers as any)["fpjs-event-signature"];
   const webhookSecret = process.env.WEBHOOK_SECRET ?? "";
   const signatureVerificationResultCustom =
     verifySignatureHeaderCustomImplementation(
@@ -53,7 +53,7 @@ export async function getServerSideProps(context: any) {
 
   return {
     props: {
-      event: JSON.parse(JSON.stringify(event)),
+      event: event,
       signatureVerificationResultCustom: signatureVerificationResultCustom,
       signatureVerificationResultSDK: signatureVerificationResultSDK,
     }, // ¯\_(ツ)_/¯ https://github.com/vercel/next.js/issues/11993
