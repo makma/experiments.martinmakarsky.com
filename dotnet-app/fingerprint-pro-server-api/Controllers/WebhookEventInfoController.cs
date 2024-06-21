@@ -17,10 +17,10 @@ namespace fingerprint_pro_server_api.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
-        [HttpGet]
+        [HttpGet("validate-webhook-signature")]
         public NotFound<string> Get()
         {
-            return TypedResults.NotFound("requestId must be provided in the following format: api/webhook-event-info/{requestId}");
+            return TypedResults.NotFound("requestId must be provided in the following format: api/webhook-event-info/validate-webhook-signature/{requestId}");
         }
 
         [HttpGet("validate-webhook-signature/{requestId}")]
