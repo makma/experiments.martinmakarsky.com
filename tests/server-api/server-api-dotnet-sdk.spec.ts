@@ -40,3 +40,25 @@ test('Delete the visitorId', async ({ page }) => {
 
   expect(response.status).toEqual(200);
 });
+
+test('Verify webhook signature', async ({ page }) => {
+  await page.goto(`${baseDomain}/fingerprint-pro-cloudflare`);
+
+  const preSelector = 'pre';
+  await page.waitForSelector(preSelector, { timeout: 10 * 1000 });
+  const preElement = await page.$(preSelector);
+  const preText = JSON.parse(await preElement.textContent());
+
+  const requestId = preText.requestId;
+
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    
+    const response = await fetch(`https://experiments-martinmakarsky.azurewebsites.net/api/webhook-event-info/validate-webhook-signature/${requestId}`, {
+      method: "Get",
+      headers: headers,
+    });
+
+  expect(response.status).toEqual(200);
+});

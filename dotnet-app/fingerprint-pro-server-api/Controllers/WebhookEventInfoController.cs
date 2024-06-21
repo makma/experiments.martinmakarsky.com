@@ -1,11 +1,8 @@
 ﻿using System.Text;
 using FingerprintPro.ServerSdk;
-using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace fingerprint_pro_server_api.Controllers
 {
@@ -26,7 +23,7 @@ namespace fingerprint_pro_server_api.Controllers
             return TypedResults.NotFound("requestId must be provided in the following format: api/webhook-event-info/{requestId}");
         }
 
-        [HttpGet("{requestId}")]
+        [HttpGet("validate-webhook-signature/{requestId}")]
         public async Task<IActionResult> Get(string requestId)
         {
             if (string.IsNullOrEmpty(requestId))
@@ -55,7 +52,7 @@ namespace fingerprint_pro_server_api.Controllers
                 }
                 else
                 {
-                    return NotFound("Invalid webhook signature.");
+                    return BadRequest("Invalid webhook signature.");
                 }
             }
             else

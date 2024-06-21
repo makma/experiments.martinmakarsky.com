@@ -12,6 +12,9 @@ yarn-error.log*
 # <---------Next Section--------->
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# sentry
+/next-app/.env.sentry-build-plugin
+
 # dependencies
 /next-app/node_modules
 /next-app/.pnp
