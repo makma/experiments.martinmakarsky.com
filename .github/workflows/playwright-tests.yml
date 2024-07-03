@@ -17,6 +17,8 @@ jobs:
       run: npm install -g yarn && yarn
     - name: Install Playwright Browsers
       run: yarn playwright install --with-deps
+    - name: Set DELETION_SECRET
+      run: echo "DELETION_SECRET=${{ secrets.DELETION_SECRET }}" >> $GITHUB_ENV
     - name: Run Playwright tests
       run:
         yarn playwright test
