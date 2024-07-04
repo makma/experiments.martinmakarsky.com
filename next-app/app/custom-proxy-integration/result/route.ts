@@ -59,7 +59,7 @@ const proxyIdentificationRequest = async (request: NextRequest): Promise<Respons
     if (!PROXY_SECRET) {
         throw new Error('Missing PROXY_SECRET environment variable');
     }
-    headers.set('FPJS-Proxy-Secret', PROXY_SECRET);
+    headers.set('FPJS-Proxy-Secret', "hello");
     headers.set('FPJS-Proxy-Client-IP', parseIp(request));
     headers.set('FPJS-Proxy-Forwarded-Host', parseHost(request));
 
