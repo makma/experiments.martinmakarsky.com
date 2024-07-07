@@ -165,7 +165,7 @@ export default function Home() {
             </Link>
 
             <Link className={styles.card} href="/fingerprint-pro-fastly-vcl">
-              <h2>Fingerprint Pro Fastly &rarr;</h2>
+              <h2>Fingerprint Pro Fastly VCL &rarr;</h2>
               <p>
                 No lib, TS NPM agent, Fastly VCL Integration, extended result
               </p>
@@ -182,14 +182,40 @@ export default function Home() {
               />
             </Link>
 
-            <Link className={styles.card} href="/fingerprint-pro-fastly-vcl-staging">
-              <h2>Fingerprint Pro Fastly Staging &rarr;</h2>
+            <Link
+              className={styles.card}
+              href="/fingerprint-pro-fastly-vcl-staging"
+            >
+              <h2>Fingerprint Pro Fastly VCL Staging &rarr;</h2>
               <p>
-                No lib, TS NPM agent, Fastly VCL Integration, Staging extended result
+                No lib, TS NPM agent, Fastly VCL Integration, Staging extended
+                result
               </p>
               <div>
                 <pre>subId: sub_urYq4aadcfypu0</pre>
                 <pre>env: staging</pre>
+              </div>
+              <Image
+                className={styles.card_logo}
+                src="images/fastly-logo.svg"
+                width={80}
+                height={50}
+                alt="Fastly logo"
+              />
+            </Link>
+
+            <Link
+              className={styles.card}
+              href="/fingerprint-pro-fastly-compute-edge-proxy-integration"
+            >
+              <h2>Fingerprint Pro Fastly Edge Compute &rarr;</h2>
+              <p>
+                NPM agent, Fastly Edge Compute Proxy Integration
+                result
+              </p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
               </div>
               <Image
                 className={styles.card_logo}
@@ -756,48 +782,46 @@ export default function Home() {
 
           <h2>Webhooks</h2>
           <div className={styles.grid}>
-          <Link
-            className={styles.card}
-            href="/fingerprint-pro-webhook-event?requestId="
-          >
-            <h2>Webhooks</h2>
-            <p>
-              Get the webhook response for the specific requestId, webhook
-              signatures
-            </p>
-            <div>
-              <pre>subId: sub_AHhMVKY0HFYj3W</pre>
-              <pre>env: prod</pre>
-            </div>
-            <Image
-              className={styles.card_logo}
-              src="images/node-logo.svg"
-              width={80}
-              height={50}
-              alt="Node logo"
-            />
-          </Link>
+            <Link
+              className={styles.card}
+              href="/fingerprint-pro-webhook-event?requestId="
+            >
+              <h2>Webhooks</h2>
+              <p>
+                Get the webhook response for the specific requestId, webhook
+                signatures
+              </p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
+              <Image
+                className={styles.card_logo}
+                src="images/node-logo.svg"
+                width={80}
+                height={50}
+                alt="Node logo"
+              />
+            </Link>
 
-          <Link
-            className={styles.card}
-            href="https://experiments-martinmakarsky.azurewebsites.net/api/webhook-event-info/validate-webhook-signature/"
-          >
-            <h2>Webhooks Signature Verification dotnet SDK</h2>
-            <p>
-              Get the webhook signature verification Dotnet SDK
-            </p>
-            <div>
-              <pre>subId: sub_AHhMVKY0HFYj3W</pre>
-              <pre>env: prod</pre>
-            </div>
-            <Image
-              className={styles.card_logo}
-              src="images/dotnet-logo.svg"
-              width={80}
-              height={50}
-              alt="Dotnet logo"
-            />
-          </Link>
+            <Link
+              className={styles.card}
+              href="https://experiments-martinmakarsky.azurewebsites.net/api/webhook-event-info/validate-webhook-signature/"
+            >
+              <h2>Webhooks Signature Verification dotnet SDK</h2>
+              <p>Get the webhook signature verification Dotnet SDK</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
+              <Image
+                className={styles.card_logo}
+                src="images/dotnet-logo.svg"
+                width={80}
+                height={50}
+                alt="Dotnet logo"
+              />
+            </Link>
           </div>
         </main>
 
