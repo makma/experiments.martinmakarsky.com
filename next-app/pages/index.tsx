@@ -465,6 +465,39 @@ export default function Home() {
 
             <Link
               className={styles.card}
+              href="/fingerprint-pro-react-cloudfront-v2-official-terraform"
+            >
+              <h2>Fingerprint Pro React CloudFront v2, official terraform module &rarr;</h2>
+              <p>React lib, CloudFront v2 integration, extended result</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
+              <Image
+                className={styles.card_logo}
+                src="images/cloudfront-logo.svg"
+                width={80}
+                height={50}
+                alt="Cloudfront logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/react-logo.svg"
+                width={80}
+                height={50}
+                alt="React logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/terraform-logo.svg"
+                width={80}
+                height={50}
+                alt="Terraform logo"
+              />
+            </Link>
+
+            <Link
+              className={styles.card}
               href="/fingerprint-pro-react-cloudfront-v2-terraform-staging"
             >
               <h2>
