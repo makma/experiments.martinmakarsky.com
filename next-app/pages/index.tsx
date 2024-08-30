@@ -278,6 +278,32 @@ export default function Home() {
               />
             </Link>
 
+            <Link
+              className={styles.card}
+              href="/fingerprint-pro-cloudflare-manual-terraform"
+            >
+              <h2>Fingerprint Pro React Cloudflare Manual Terraform setup &rarr;</h2>
+              <p>React lib, Cloudflare integration, extended result</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
+              <Image
+                className={styles.card_logo}
+                src="images/cloudflare-logo.svg"
+                width={80}
+                height={50}
+                alt="Cloudflare logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/react-logo.svg"
+                width={80}
+                height={50}
+                alt="React logo"
+              />
+            </Link>
+
             <Link className={styles.card} href="/nuxt/fingerprint-pro-vue">
               <h2>Fingerprint Pro Vue &rarr;</h2>
               <p>Vue3 lib, No Proxy, NuxtJS3 environment</p>
