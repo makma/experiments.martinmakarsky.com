@@ -37,3 +37,15 @@ test('Cloudflare Proxy Integration on staging returns the visitorId', async ({ p
 
   expect(preText).toContain('\"visitorId\":');
 });
+
+test('Cloudflare Proxy Integration Manual integrations returns the visitorId', async ({ page }) => {
+  await page.goto(`${baseDomain}/fingerprint-pro-cloudflare-manual`);
+
+  const preSelector = 'pre';
+
+  await page.waitForSelector(preSelector, { timeout: 10 * 1000 });
+  const preElement = await page.$(preSelector);
+  const preText = await preElement.textContent();
+
+  expect(preText).toContain('\"visitorId\":');
+});
