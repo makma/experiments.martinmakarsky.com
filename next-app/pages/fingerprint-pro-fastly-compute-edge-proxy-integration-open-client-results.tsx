@@ -1,7 +1,7 @@
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import FingerprintJS, { GetResult } from "@fingerprintjs/fingerprintjs-pro";
-import { FINGERPRINT_PUBLIC_API_KEY } from "../shared/constants";
+import { FINGERPRINT_PUBLIC_API_KEY_OPEN_CLIENT_RESULT } from "../shared/constants";
 
 export default function FingerprintProFastlyComputeEdge() {
   const [fingerprintData, setFingerprintData] = useState<
@@ -11,11 +11,11 @@ export default function FingerprintProFastlyComputeEdge() {
   useEffect(() => {
     (async () => {
       const fpPromise = FingerprintJS.load({
-        apiKey: FINGERPRINT_PUBLIC_API_KEY,
+        apiKey: FINGERPRINT_PUBLIC_API_KEY_OPEN_CLIENT_RESULT,
         scriptUrlPattern:
           "https://wholly-evolved-pangolin.edgecompute.app/download-path?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
         endpoint:
-          "https://wholly-evolved-pangolin.edgecompute.app/get-result-path?region=eu",
+          "https://wholly-evolved-pangolin.edgecompute.app/get-result-path?region=us",
       });
       const fp = await fpPromise;
       const data = await fp.get({ extendedResult: true });

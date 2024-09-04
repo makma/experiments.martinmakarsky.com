@@ -206,15 +206,14 @@ export default function Home() {
 
             <Link
               className={styles.card}
-              href="/fingerprint-pro-fastly-compute-edge-proxy-integration"
+              href="/fingerprint-pro-fastly-compute-edge-proxy-integration-open-client-results"
             >
-              <h2>Fingerprint Pro Fastly Edge Compute &rarr;</h2>
+              <h2>Fingerprint Pro Fastly Edge Compute Open Client Result &rarr;</h2>
               <p>
-                NPM agent, Fastly Edge Compute Proxy Integration
-                result
+                NPM agent, Fastly Edge Compute Proxy Integration, Open Client Result
               </p>
               <div>
-                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>subId: sub_KpQKsqB3pwVKwi</pre>
                 <pre>env: prod</pre>
               </div>
               <Image

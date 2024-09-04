@@ -20,3 +20,7 @@ export const CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_STAGING = "https://
 export const CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_STAGING = "https://martinmakarsky.com/staging-worker-path/get-result-path"
 
 export const CUSTOM_SUBDOMAIN: string = "https://fp.martinmakarsky.com";
+
+
+// sub_KpQKsqB3pwVKwi open client result
+export const FINGERPRINT_PUBLIC_API_KEY_OPEN_CLIENT_RESULT = "awHQbFLn4HoIAxxIqZGZ"
