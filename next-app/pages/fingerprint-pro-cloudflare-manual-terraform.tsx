@@ -12,7 +12,7 @@ export default function FingerprintProCloudflare() {
     (async () => {
       const fpPromise = FingerprintJS.load({
         apiKey: FINGERPRINT_PUBLIC_API_KEY,
-        scriptUrlPattern: "https://cloudflare-proxy-integration-manual-via-terraform1.martinmakarsky.com/WORKER_PATH/AGENT_SCRIPT_DOWNLOAD_PATH?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
+        scriptUrlPattern: "https://cloudflare-proxy-integration-manual-via-terraform.martinmakarsky.com/WORKER_PATH/AGENT_SCRIPT_DOWNLOAD_PATH?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
         endpoint:"https://cloudflare-proxy-integration-manual-via-terraform.martinmakarsky.com/WORKER_PATH/GET_RESULT_PATH?region=eu",
       });
       const fp = await fpPromise;
