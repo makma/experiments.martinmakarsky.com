@@ -22,6 +22,7 @@ const [loginResult, setLoginResult] = useState<string | null>(null);
       const fp = await fpPromise;
       const data = await fp.get();
       setFingerprintData(data);
+      console.log(JSON.stringify(fingerprintData));
 
     const response = await fetch("/api/login", {
       method: "POST",
