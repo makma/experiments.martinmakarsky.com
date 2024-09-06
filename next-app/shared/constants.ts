@@ -13,6 +13,8 @@ export const CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_ZERO_TRUST = "https://martinm
 
 // sub_Ezq3jYsYhAKyXJ sealed results
 export const FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS: string = "BEczWb6HhcD4ORMrP0aA";
+export const CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_SEALED_CLIENT_RESULTS = "https://martinmakarsky.com/lDqYpEg2vyMYwD3l/nbtKmD2GT7ADvYRm?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>"
+export const CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_SEALED_CLIENT_RESULTS = "https://martinmakarsky.com/lDqYpEg2vyMYwD3l/WGiRx9E6BGi74Eem?region=eu"
 
 // sub_urYq4aadcfypu0 on STAGING
 export const FINGERPRINT_PUBLIC_API_KEY_STAGING: string = "bAW4LdHhP3gVx4kRBzym";
