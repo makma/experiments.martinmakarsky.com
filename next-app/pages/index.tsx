@@ -208,9 +208,12 @@ export default function Home() {
               className={styles.card}
               href="/fingerprint-pro-fastly-compute-edge-proxy-integration-open-client-results"
             >
-              <h2>Fingerprint Pro Fastly Edge Compute Open Client Result &rarr;</h2>
+              <h2>
+                Fingerprint Pro Fastly Edge Compute Open Client Result &rarr;
+              </h2>
               <p>
-                NPM agent, Fastly Edge Compute Proxy Integration, Open Client Result
+                NPM agent, Fastly Edge Compute Proxy Integration, Open Client
+                Result
               </p>
               <div>
                 <pre>subId: sub_KpQKsqB3pwVKwi</pre>
@@ -281,7 +284,9 @@ export default function Home() {
               className={styles.card}
               href="/fingerprint-pro-cloudflare-manual-terraform"
             >
-              <h2>Fingerprint Pro React Cloudflare Manual Terraform setup &rarr;</h2>
+              <h2>
+                Fingerprint Pro React Cloudflare Manual Terraform setup &rarr;
+              </h2>
               <p>React lib, Cloudflare integration, extended result</p>
               <div>
                 <pre>subId: sub_AHhMVKY0HFYj3W</pre>
@@ -518,7 +523,10 @@ export default function Home() {
               className={styles.card}
               href="/fingerprint-pro-react-cloudfront-v2-official-terraform"
             >
-              <h2>Fingerprint Pro React CloudFront v2, official terraform module &rarr;</h2>
+              <h2>
+                Fingerprint Pro React CloudFront v2, official terraform module
+                &rarr;
+              </h2>
               <p>React lib, CloudFront v2 integration, extended result</p>
               <div>
                 <pre>subId: sub_AHhMVKY0HFYj3W</pre>
@@ -798,7 +806,6 @@ export default function Home() {
                 alt="Golang logo"
               />
             </Link>
-            
 
             <Link className={styles.card} href="/api/events?requestId=">
               <h2>Event info from the Server API</h2>
@@ -905,6 +912,32 @@ export default function Home() {
                 width={80}
                 height={50}
                 alt="Dotnet logo"
+              />
+            </Link>
+          </div>
+
+          <h2>Random</h2>
+          <div className={styles.grid}>
+            <Link className={styles.card} href="/login">
+              <h2>Login?!</h2>
+              <p>Nobody knows</p>
+              <div>
+                <pre>subId: sub_Ezq3jYsYhAKyXJ</pre>
+                <pre>env: prod</pre>
+              </div>
+              <Image
+                className={styles.card_logo}
+                src="images/node-logo.svg"
+                width={80}
+                height={50}
+                alt="Node logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/cloudflare-logo.svg"
+                width={80}
+                height={50}
+                alt="Cloudflare logo"
               />
             </Link>
           </div>
