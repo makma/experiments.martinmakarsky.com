@@ -3,26 +3,26 @@
 
 import { useState } from "react";
 import FingerprintJS, { GetResult } from "@fingerprintjs/fingerprintjs-pro";
-import { FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS } from "../../shared/constants";
-
+import {
+  FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS,
+  CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_SEALED_CLIENT_RESULTS,
+  CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_SEALED_CLIENT_RESULTS,
+} from "../../shared/constants";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [fingerprintData, setFingerprintData] = useState<
-  GetResult | string | null
->(null);
-const [loginResult, setLoginResult] = useState<string | null>(null);
-
+  const [loginResult, setLoginResult] = useState<string | null>(null);
 
   const handleLogin = async () => {
     const fpPromise = FingerprintJS.load({
-        apiKey: FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS,
-      });
-      const fp = await fpPromise;
-      const data = await fp.get();
-      setFingerprintData(data);
-      console.log(JSON.stringify(fingerprintData));
+      apiKey: FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS,
+      scriptUrlPattern:
+        CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_SEALED_CLIENT_RESULTS,
+      endpoint: CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_SEALED_CLIENT_RESULTS,
+    });
+    const fp = await fpPromise;
+    const fingerprintData = await fp.get();
 
     const response = await fetch("/api/login", {
       method: "POST",
@@ -37,10 +37,10 @@ const [loginResult, setLoginResult] = useState<string | null>(null);
     });
 
     if (response.ok) {
-        setLoginResult("Login successful!");
-      } else {
-        setLoginResult("Login failed. Please check your credentials.");
-      }
+      setLoginResult("Login successful!");
+    } else {
+      setLoginResult("Login failed. Please check your credentials.");
+    }
   };
 
   return (
@@ -65,7 +65,12 @@ const [loginResult, setLoginResult] = useState<string | null>(null);
       </button>
 
       {loginResult && (
-        <div style={{ marginTop: 10, color: loginResult.includes("successful") ? "green" : "red" }}>
+        <div
+          style={{
+            marginTop: 10,
+            color: loginResult.includes("successful") ? "green" : "red",
+          }}
+        >
           <strong>Login Result:</strong> {loginResult}
         </div>
       )}
