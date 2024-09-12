@@ -9,15 +9,20 @@ import {
 import { FpjsProvider } from "@fingerprintjs/fingerprintjs-pro-react";
 import { NextPage } from "next";
 import { GetResult } from "@fingerprintjs/fingerprintjs-pro";
-import { CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT, CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN, FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS } from "../../shared/constants";
+import {
+  FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS,
+  CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_SEALED_CLIENT_RESULTS,
+  CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_SEALED_CLIENT_RESULTS,
+} from "../../shared/constants";
 
 export default function FingerprintSealedResultsCloudflareReact() {
   return (
     <FpjsProvider
       loadOptions={{
         apiKey: FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS,
-        scriptUrlPattern: CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN,
-        endpoint: CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT,
+        scriptUrlPattern:
+          CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_SEALED_CLIENT_RESULTS,
+        endpoint: CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_SEALED_CLIENT_RESULTS,
       }}
       cacheLocation={CacheLocation.SessionStorage}
       cacheTimeInSeconds={60}
@@ -33,7 +38,6 @@ const FingerprintData: NextPage = () => {
   const [unsealedData, setUnsealedData] = useState<
     GetResult | string | null | any
   >(null);
-
 
   const { isLoading, error, data, getData } = useVisitorData(
     { extendedResult, linkedId: "someRandomLinkedId" },
@@ -57,11 +61,14 @@ const FingerprintData: NextPage = () => {
       "Content-Type": "application/json",
     };
 
-    const response = await fetch(`/sealed-results-direct/unseal?method=${method}`, {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(
+      `/sealed-results-direct/unseal?method=${method}`,
+      {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(data),
+      }
+    );
     setUnsealedData(await response.json());
   }
 
@@ -113,12 +120,22 @@ const FingerprintData: NextPage = () => {
         </pre>
       ) : (
         <>
-        <button className={styles.button} onClick={() => { getSentUnsealedResultsRequest('custom') }}>
-          Get the unsealed result from the Server via custom unsealment
-        </button>
-        <button className={styles.button} onClick={() => { getSentUnsealedResultsRequest('node') }}>
-          Get the unsealed result from the Server via Node SDK unsealement
-        </button>
+          <button
+            className={styles.button}
+            onClick={() => {
+              getSentUnsealedResultsRequest("custom");
+            }}
+          >
+            Get the unsealed result from the Server via custom unsealment
+          </button>
+          <button
+            className={styles.button}
+            onClick={() => {
+              getSentUnsealedResultsRequest("node");
+            }}
+          >
+            Get the unsealed result from the Server via Node SDK unsealement
+          </button>
         </>
       )}
     </div>

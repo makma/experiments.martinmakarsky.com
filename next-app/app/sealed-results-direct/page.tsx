@@ -3,7 +3,11 @@
 import styles from "../../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import FingerprintJS, { GetResult } from "@fingerprintjs/fingerprintjs-pro";
-import { FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS } from "../../shared/constants";
+import {
+  FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS,
+  CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_SEALED_CLIENT_RESULTS,
+  CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_SEALED_CLIENT_RESULTS,
+} from "../../shared/constants";
 
 export default function FingerprintSealedResultsDirect() {
   const [fingerprintData, setFingerprintData] = useState<
@@ -17,6 +21,9 @@ export default function FingerprintSealedResultsDirect() {
     (async () => {
       const fpPromise = FingerprintJS.load({
         apiKey: FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS,
+        scriptUrlPattern:
+          CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_SEALED_CLIENT_RESULTS,
+        endpoint: CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_SEALED_CLIENT_RESULTS,
       });
       const fp = await fpPromise;
       const data = await fp.get();
@@ -29,11 +36,14 @@ export default function FingerprintSealedResultsDirect() {
       "Content-Type": "application/json",
     };
 
-    const response = await fetch(`/sealed-results-direct/unseal?method=${method}`, {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(fingerprintData),
-    });
+    const response = await fetch(
+      `/sealed-results-direct/unseal?method=${method}`,
+      {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(fingerprintData),
+      }
+    );
     setUnsealedData(await response.json());
   }
 
@@ -57,12 +67,22 @@ export default function FingerprintSealedResultsDirect() {
         </pre>
       ) : (
         <>
-        <button className={styles.button} onClick={() => { getSentUnsealedResultsRequest('custom') }}>
-          Get the unsealed result from the Server via custom unsealment
-        </button>
-        <button className={styles.button} onClick={() => { getSentUnsealedResultsRequest('node') }}>
-          Get the unsealed result from the Server via Node SDK unsealement
-        </button>
+          <button
+            className={styles.button}
+            onClick={() => {
+              getSentUnsealedResultsRequest("custom");
+            }}
+          >
+            Get the unsealed result from the Server via custom unsealment
+          </button>
+          <button
+            className={styles.button}
+            onClick={() => {
+              getSentUnsealedResultsRequest("node");
+            }}
+          >
+            Get the unsealed result from the Server via Node SDK unsealement
+          </button>
         </>
       )}
     </div>
