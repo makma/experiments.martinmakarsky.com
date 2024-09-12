@@ -24,5 +24,5 @@ export const CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_STAGING = "https://martinmaka
 export const CUSTOM_SUBDOMAIN: string = "https://fp.martinmakarsky.com";
 
 
-// sub_KpQKsqB3pwVKwi open client result
+// sub_KpQKsqB3pwVKwi open client response
 export const FINGERPRINT_PUBLIC_API_KEY_OPEN_CLIENT_RESULT = "awHQbFLn4HoIAxxIqZGZ"

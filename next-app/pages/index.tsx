@@ -206,14 +206,14 @@ export default function Home() {
 
             <Link
               className={styles.card}
-              href="/fingerprint-pro-fastly-compute-edge-proxy-integration-open-client-results"
+              href="/fingerprint-pro-fastly-compute-edge-proxy-integration-open-client-response"
             >
               <h2>
-                Fingerprint Pro Fastly Edge Compute Open Client Result &rarr;
+                Fingerprint Pro Fastly Edge Compute Open Client Response &rarr;
               </h2>
               <p>
                 NPM agent, Fastly Edge Compute Proxy Integration, Open Client
-                Result
+                Response
               </p>
               <div>
                 <pre>subId: sub_KpQKsqB3pwVKwi</pre>
@@ -225,6 +225,13 @@ export default function Home() {
                 width={80}
                 height={50}
                 alt="Fastly logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/node-logo.svg"
+                width={80}
+                height={50}
+                alt="Node logo"
               />
             </Link>
 
@@ -352,6 +359,28 @@ export default function Home() {
               <p>React library, Custom Proxy Integration</p>
               <div>
                 <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
+              <Image
+                className={styles.card_logo}
+                src="images/react-logo.svg"
+                width={80}
+                height={50}
+                alt="React logo"
+              />
+            </Link>
+
+            <Link
+              className={styles.card}
+              href="/custom-proxy-integration-open-client-response"
+            >
+              <h2>
+                Fingerprint Pro React Custom Proxy Integration, Open Client
+                Response &rarr;
+              </h2>
+              <p>React library, Custom Proxy Integration</p>
+              <div>
+                <pre>subId: sub_KpQKsqB3pwVKwi</pre>
                 <pre>env: prod</pre>
               </div>
               <Image
