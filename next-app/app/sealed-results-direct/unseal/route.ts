@@ -1,8 +1,5 @@
-import { DecryptionAlgorithm, unsealEventsResponse } from '@fingerprintjs/fingerprintjs-pro-server-api';
-import { createDecipheriv } from 'crypto';
 import { NextResponse } from 'next/server';
-import { promisify } from 'util';
-import { inflateRaw } from 'zlib';
+import { unsealViaSDK } from './utils';
 
 export async function POST(request: Request) {
   const { searchParams } = new URL(request.url)
@@ -62,17 +59,3 @@ export async function POST(request: Request) {
 
 //   return JSON.parse(payload.toString());
 // }
-
-async function unsealViaSDK(sealedResultBase64: string, key: Buffer) {
-  try {
-    const unsealedData = await unsealEventsResponse(Buffer.from(sealedResultBase64, 'base64'), [
-      {
-        key: key,
-        algorithm: DecryptionAlgorithm.Aes256Gcm,
-      },
-    ]);
-    return unsealedData;
-  } catch (e) {
-    console.error(e);
-  }
-}

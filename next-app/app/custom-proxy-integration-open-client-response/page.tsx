@@ -8,13 +8,13 @@ import {
 } from "@fingerprintjs/fingerprintjs-pro-react";
 import { FpjsProvider } from "@fingerprintjs/fingerprintjs-pro-react";
 import { NextPage } from "next";
-import { FINGERPRINT_PUBLIC_API_KEY_OPEN_CLIENT_RESULT } from "../../shared/constants";
+import { OPEN_CLIENT_RESPONSE_PUBLIC_API_KEY } from "../../shared/constants";
 
 export default function CustomProxyIntegration() {
   return (
     <FpjsProvider
       loadOptions={{
-        apiKey: FINGERPRINT_PUBLIC_API_KEY_OPEN_CLIENT_RESULT,
+        apiKey: OPEN_CLIENT_RESPONSE_PUBLIC_API_KEY,
         scriptUrlPattern:
           "/custom-proxy-integration-open-client-response/agent?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
         endpoint: "/custom-proxy-integration-open-client-response/result",

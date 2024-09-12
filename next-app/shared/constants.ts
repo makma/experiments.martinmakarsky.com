@@ -25,4 +25,5 @@ export const CUSTOM_SUBDOMAIN: string = "https://fp.martinmakarsky.com";
 
 
 // sub_KpQKsqB3pwVKwi open client response
-export const FINGERPRINT_PUBLIC_API_KEY_OPEN_CLIENT_RESULT = "awHQbFLn4HoIAxxIqZGZ"
+
+export const OPEN_CLIENT_RESPONSE_PUBLIC_API_KEY = "awHQbFLn4HoIAxxIqZGZ"

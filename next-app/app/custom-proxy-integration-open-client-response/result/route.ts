@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { URLSearchParams } from 'url';
 import { isNativeError } from 'util/types';
 import { parseCookies, parseHost, parseIp, randomShortString } from './utils';
+import { unsealViaSDK } from '../../sealed-results-direct/unseal/utils';
 
 export const dynamic = 'force-dynamic';
 
@@ -55,11 +56,11 @@ const proxyIdentificationRequest = async (request: NextRequest): Promise<Respons
     }
 
     // Add the necessary Fingerprint headers
-    const PROXY_SECRET_OPEN_CLIENT_RESPONSE = process.env.PROXY_SECRET_OPEN_CLIENT_RESPONSE;
-    if (!PROXY_SECRET_OPEN_CLIENT_RESPONSE) {
-        throw new Error('Missing PROXY_SECRET environment variable');
+    const OPEN_CLIENT_RESPONSE_PROXY_SECRET = process.env.OPEN_CLIENT_RESPONSE_PROXY_SECRET;
+    if (!OPEN_CLIENT_RESPONSE_PROXY_SECRET) {
+        throw new Error('Missing OPEN_CLIENT_RESPONSE_PROXY_SECRET environment variable');
     }
-    headers.set('FPJS-Proxy-Secret', PROXY_SECRET_OPEN_CLIENT_RESPONSE);
+    headers.set('FPJS-Proxy-Secret', OPEN_CLIENT_RESPONSE_PROXY_SECRET);
     headers.set('FPJS-Proxy-Client-IP', parseIp(request));
     headers.set('FPJS-Proxy-Forwarded-Host', parseHost(request));
 
@@ -74,8 +75,25 @@ const proxyIdentificationRequest = async (request: NextRequest): Promise<Respons
     // If your app needs to work using HTTP, remove the `strict-transport-security` header
     // updatedHeaders.delete('strict-transport-security');
 
+    const identificationResponseBlob = await identificationResponse.blob();
+
+    const blobText = await identificationResponseBlob.text();
+    let identificationResponseObject = JSON.parse(blobText);
+
+    const OPEN_CLIENT_RESPONSE_ENCRYPTION_KEY = process.env.OPEN_CLIENT_RESPONSE_ENCRYPTION_KEY;
+    if (!OPEN_CLIENT_RESPONSE_ENCRYPTION_KEY) {
+        throw new Error('Missing OPEN_CLIENT_RESPONSE_ENCRYPTION_KEY environment variable');
+    }
+    const encryption_key = Buffer.from(OPEN_CLIENT_RESPONSE_ENCRYPTION_KEY, 'base64')
+    const unsealedResult = await unsealViaSDK(identificationResponseObject.sealedResult, encryption_key);
+
+    // Add a custom property cos why not?! (Antipattern for debug only!!!)
+    identificationResponseObject.unsealedResult = unsealedResult;
+    const updatedBlobText = JSON.stringify(identificationResponseObject);
+    const updatedBlob = new Blob([updatedBlobText], { type: 'application/json' });
+
     // Return the response to the client
-    return new Response(await identificationResponse.blob(), {
+    return new Response(updatedBlob, {
         status: identificationResponse.status,
         statusText: identificationResponse.statusText,
         headers: updatedHeaders,
