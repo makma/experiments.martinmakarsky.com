@@ -62,10 +62,12 @@ export async function getServerSideProps(context: any) {
 
 export default FingerprintProWebhookEvent;
 
-const checkSignature = (signature: string, data: Buffer, secret: string) => {
-  return (
-    signature === crypto.createHmac("sha256", secret).update(data).digest("hex")
-  );
+const checkSignature = (signature: string, data: Buffer, secret: string): boolean => {
+  const computedSignature = crypto.createHmac("sha256", secret)
+    .update(new Uint8Array(data.buffer, data.byteOffset, data.byteLength)) // Convert Buffer to Uint8Array
+    .digest("hex");
+
+  return signature === computedSignature;
 };
 
 const verifySignatureHeaderCustomImplementation = (
