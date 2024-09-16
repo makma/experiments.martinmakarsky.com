@@ -19,6 +19,8 @@ jobs:
       run: yarn playwright install --with-deps
     - name: Set DELETION_SECRET
       run: echo "DELETION_SECRET=${{ secrets.DELETION_SECRET }}" >> $GITHUB_ENV
+    - name: Set CI env
+      run: echo "CI=true" >> $GITHUB_ENV
     - name: Run Playwright tests
       run:
         yarn playwright test
