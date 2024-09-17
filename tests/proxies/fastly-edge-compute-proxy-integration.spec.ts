@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 const baseDomain = "https://experiments.martinmakarsky.com"
 
 test('Fastly Edge Compute Proxy Integration returns the visitorId', async ({ page }) => {
-  await page.goto(`${baseDomain}/fingerprint-pro-fastly-compute-edge-proxy-integration-open-client-results`);
+  await page.goto(`${baseDomain}/fingerprint-pro-fastly-compute-edge-proxy-integration-open-client-response`);
 
   const preSelector = 'pre';
 
