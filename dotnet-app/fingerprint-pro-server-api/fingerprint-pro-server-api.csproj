@@ -13,6 +13,6 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="FingerprintPro.ServerSdk" Version="6.0.0-test.2" />
+    <PackageReference Include="FingerprintPro.ServerSdk" Version="6.2.2" />
   </ItemGroup>
 </Project>
