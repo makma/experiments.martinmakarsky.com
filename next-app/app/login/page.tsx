@@ -1,8 +1,8 @@
-// app/login/page.tsx
 "use client";
 
-import { useState } from "react";
-import FingerprintJS, { GetResult } from "@fingerprintjs/fingerprintjs-pro";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import FingerprintJS from "@fingerprintjs/fingerprintjs-pro";
 import {
   FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS,
   CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_SEALED_CLIENT_RESULTS,
@@ -13,17 +13,27 @@ export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginResult, setLoginResult] = useState<string | null>(null);
+  const [fp, setFp] = useState<any | null>(null);
+  const [isLoading, setIsLoading] = useState(false); 
+  
+
+  useEffect(() => {
+    (async () => {
+      const fpPromise = FingerprintJS.load({
+        apiKey: FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS,
+        scriptUrlPattern:
+          CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_SEALED_CLIENT_RESULTS,
+        endpoint: CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_SEALED_CLIENT_RESULTS,
+      });
+      const fp = await fpPromise;
+      setFp(fp);
+    })();
+  }, []);
 
   const handleLogin = async () => {
-    const fpPromise = FingerprintJS.load({
-      apiKey: FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS,
-      scriptUrlPattern:
-        CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_SEALED_CLIENT_RESULTS,
-      endpoint: CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_SEALED_CLIENT_RESULTS,
-    });
-    const fp = await fpPromise;
-    const fingerprintData = await fp.get();
+    setIsLoading(true);
 
+    const fingerprintData = await fp.get();
     const response = await fetch("/api/login", {
       method: "POST",
       headers: {
@@ -41,10 +51,20 @@ export default function LoginPage() {
     } else {
       setLoginResult("Login failed. Please check your credentials.");
     }
+    setIsLoading(false); // Stop spinner
   };
 
   return (
-    <div style={{ maxWidth: 300, margin: "auto" }}>
+    <div
+      style={{
+        maxWidth: 300,
+        margin: "auto",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <h2>Login</h2>
       <input
         type="text"
@@ -60,8 +80,33 @@ export default function LoginPage() {
         onChange={(e) => setPassword(e.target.value)}
         style={{ display: "block", width: "100%", marginBottom: 10 }}
       />
-      <button onClick={handleLogin} style={{ width: "100%" }}>
-        Login
+      <button
+        onClick={handleLogin}
+        style={{ width: "100%", position: "relative", height: "32px" }}
+        disabled= {!fp}
+      >
+        {isLoading ? (
+          <div
+            style={{
+              position: "absolute",
+              left: "50%",
+              top: "50%",
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            <Image
+              src="images/fingerprint-logo.svg"
+              alt="Loading"
+              width={20}
+              height={20}
+              style={{
+                animation: "spin 1s linear infinite",
+              }}
+            />
+          </div>
+        ) : (
+          "Login"
+        )}
       </button>
 
       {loginResult && (
@@ -74,6 +119,17 @@ export default function LoginPage() {
           <strong>Login Result:</strong> {loginResult}
         </div>
       )}
+
+      <style jsx>{`
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      `}</style>
     </div>
   );
 }
