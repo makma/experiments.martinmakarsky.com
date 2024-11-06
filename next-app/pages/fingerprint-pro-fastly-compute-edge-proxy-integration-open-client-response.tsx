@@ -13,9 +13,9 @@ export default function FingerprintProFastlyComputeEdge() {
       const fpPromise = FingerprintJS.load({
         apiKey: OPEN_CLIENT_RESPONSE_PUBLIC_API_KEY,
         scriptUrlPattern:
-          "https://wholly-evolved-pangolin.edgecompute.app/download-path?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
+          "https://fastly-compute-proxy-integration.martinmakarsky.com/download-path?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
         endpoint:
-          "https://wholly-evolved-pangolin.edgecompute.app/get-result-path?region=us",
+          "https://fastly-compute-proxy-integration.martinmakarsky.com/get-result-path",
       });
       const fp = await fpPromise;
       const data = await fp.get({ extendedResult: true });
