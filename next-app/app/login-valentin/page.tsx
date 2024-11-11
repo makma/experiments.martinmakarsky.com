@@ -34,7 +34,7 @@ export default function LoginPage() {
     setIsLoading(true);
 
     const fingerprintData = await fp.get();
-    const response = await fetch("/api/login", {
+    const response = await fetch("/api/login-valentin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
