@@ -1,86 +1,79 @@
 addEventListener("fetch", (event) => {
     event.respondWith(handleRequest(event.request));
-  });
-  
-  async function handleRequest(request) {
+});
+
+async function handleRequest(request) {
     const requestClone = request.clone();
-  
+
     if (request.method === "POST") {
         try {
             const requestBody = await request.json();
             const sealedResult = requestBody.fingerprintData.sealedResult;
-            // TODO: Handle missing Fingerprint data, probably meaning malicious party trying to tamper with the request
-  
-            // Replace this with your actual base64-encoded decryption key; ref: https://dev.fingerprint.com/docs/sealed-client-results
             const base64Key = ENCRYPTION_KEY;
-  
-            // Decrypt the sealed result
             const unsealedData = await unsealEventsResponse(sealedResult, base64Key);
-            // TODO: handle spoofed data that cannot be decrypted by the key
-  
             const fingerprintData = JSON.parse(unsealedData);
-  
-            // TODO: Check against replay protectiion; ref: https://dev.fingerprint.com/docs/protecting-from-client-side-tampering
-  
-  
-            // TODO: come up with your own rules based on the data provided by Fingerprint
-            // TODO: come up with your own actions based on the data provided by Fingerprint
-            const rules = [
-                {
-                    check: (data) => {
-                        const timestamp = data.products.identification.data.timestamp;
-                        const currentTime = Date.now();
-                        const timestampDate = new Date(timestamp);
-                        return (currentTime - timestampDate.getTime()) > 5000;
-                    },
-                    message: "Timestamp is older than 5 second!",
-                    status: 403,
-                },
-                {
-                    check: (data) => data.products.botd.data.bot.result !== "notDetected",
-                    message: "Bots are forbidden!",
-                    status: 403,
-                },
-                {
-                    check: (data) => data.products.suspectScore.data.result > 10,
-                    message: "Suspect score!",
-                    status: 403,
-                },
-                {
-                    check: (data) => data.products.ipBlocklist.data.result === true,
-                    message: "IP Blocklist!",
-                    status: 403,
-                },
-                {
-                    check: (data) => data.products.tampering.data.result === true,
-                    message: "Tampering is forbidden!",
-                    status: 403,
+
+            // Fetch rules from KV store with better error handling
+            let rulesData;
+            try {
+                rulesData = await FP_WALL_KV_RULES.get("rules", { type: "json" });
+                if (!rulesData || !rulesData.rules) {
+                    console.error("No rules found in KV store");
+                    return new Response("Configuration error", { status: 500 });
                 }
-            ];
-  
-  
-            // Apply rules
-            for (const rule of rules) {
-                if (rule.check(fingerprintData)) {
-                    // TODO: properly handle challenges, logging, etx based on business needs
+            } catch (kvError) {
+                console.error("Failed to fetch rules from KV:", kvError);
+                return new Response("Configuration error", { status: 500 });
+            }
+
+            // Apply rules from the rules array inside the rulesData object
+            for (const rule of rulesData.rules) {
+                if (await evaluateRule(rule, fingerprintData)) {
                     return new Response(rule.message, { status: rule.status });
                 }
             }
-  
+
+            // Forward the cloned request if no rules were violated
+            return fetch(requestClone).then((oldResponse) => new Response(oldResponse.body, oldResponse));
         } catch (error) {
-            console.error("Failed to unseal data:", error);
+            console.error("Error processing request:", error);
             return new Response("Malformed unexpected request", { status: 403 });
         }
-  
-        // Forward the cloned request to the origin server if no rule was violated
-        return fetch(requestClone).then((oldResponse) => new Response(oldResponse.body, oldResponse));
     }
-  
-    return new Response("Malformed unexpected request", { status: 403 });
-  }
-  
-  // Bellow is just the unsealemnet logic, quickly hacked, not tested thoroughly; ref: https://dev.fingerprint.com/docs/sealed-client-results
-  async function unsealEventsResponse(sealedDataBase64, base64Key) {
+
+    return new Response("Method not allowed", { status: 405 });
+}
+
+async function evaluateRule(rule, data) {
+    const { expression, operator, value } = rule;
+    const parts = expression.split('.');
+    let result = data;
+    
+    // Safely traverse the object path
+    for (const part of parts) {
+        if (result && typeof result === 'object') {
+            result = result[part];
+        } else {
+            return false;
+        }
+    }
+
+    switch (operator) {
+        case 'eq':
+            return result === value;
+        case 'gt':
+            return result > value;
+        case 'lt':
+            return result < value;
+        case 'ne':
+            return result !== value;
+        default:
+            return false;
+    }
+}
+
+// Bellow is just the unsealemnet logic, quickly hacked, not tested thoroughly; ref: https://dev.fingerprint.com/docs/sealed-client-results
+async function unsealEventsResponse(sealedDataBase64, base64Key) {
     // Convert base64 to Uint8Array
     const key = base64ToUint8Array(base64Key);
     const data = base64ToUint8Array(sealedDataBase64);
@@ -192,3 +185,44 @@ addEventListener("fetch", (event) => {
     const buffer = await blob.arrayBuffer();
     return new Uint8Array(buffer);
   }
+
+
+// Rules in the KV stored
+
+// {rules:[
+//     {
+//         expression: "products.identification.data.timestamp",
+//         operator: "lt",
+//         value: "${Date.now() - 5000}", // Note: This will need to be evaluated at runtime
+//         message: "Timestamp is older than 5 seconds!",
+//         status: 403
+//     },
+//     {
+//         expression: "products.botd.data.bot.result",
+//         operator: "ne",
+//         value: "notDetected",
+//         message: "Bots are forbidden!",
+//         status: 403
+//     },
+//     {
+//         expression: "products.suspectScore.data.result",
+//         operator: "gt",
+//         value: 10,
+//         message: "Suspect score!",
+//         status: 403
+//     },
+//     {
+//         expression: "products.ipBlocklist.data.result",
+//         operator: "eq",
+//         value: true,
+//         message: "IP Blocklist!",
+//         status: 403
+//     },
+//     {
+//         expression: "products.tampering.data.result",
+//         operator: "eq",
+//         value: true,
+//         message: "Tampering is forbidden!",
+//         status: 403
+//     }
+// ]}
