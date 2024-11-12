@@ -1,6 +1,13 @@
 {
   "rules": [
     {
+      "expression":"number_of_visitor_ids",
+      "operator":"gt",
+      "value": 3,
+      "message": "Unknown device",
+      "status": 200
+    },
+    {
       "expression": "products.vpn.data.result",
       "operator": "eq",
       "value": true,
@@ -33,7 +40,8 @@
       "operator": "eq",
       "value": true,
       "message": "Incognito mode is not allowed.",
-      "status": 403
+      "status": 403,
+      "action": "passkey"
     },
     {
       "expression": "products.developerTools.data.result",

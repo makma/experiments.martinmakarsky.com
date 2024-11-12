@@ -8,6 +8,10 @@ async function handleRequest(request, env) {
       const base64Key = env.ENCRYPTION_KEY;
       const unsealedData = await unsealEventsResponse(sealedResult, base64Key);
       const fingerprintData = JSON.parse(unsealedData);
+      // TODO: remove these logs later
+      const username = requestBody.username;
+      const visitorId = fingerprintData.products.identification.data.visitorId;
+      console.log("visitorId", visitorId);
 
       // Fetch rules from KV store with better error handling
       let rulesData;
@@ -24,6 +28,11 @@ async function handleRequest(request, env) {
 
       // Apply rules from the rules array inside the rulesData object
       for (const rule of rulesData.rules) {
+        if (await shouldChallengeOnNewVisitorId(username, rule, visitorId, env)) {
+          const res = new Response(rule.message, { status: rule.status });
+          res.headers.set('FP-WAF-Challenge-Type', 'passkey');
+          return res;
+        }
         if (await evaluateRule(rule, fingerprintData)) {
           const res = new Response(rule.message, { status: rule.status });
           if(rule.action === "log") {
@@ -34,7 +43,6 @@ async function handleRequest(request, env) {
           return res;
         }
       }
-
       // Forward the cloned request if no rules were violated
       return fetch(requestClone).then((oldResponse) => new Response(oldResponse.body, oldResponse));
     } catch (error) {
@@ -44,6 +52,26 @@ async function handleRequest(request, env) {
   }
 
   return new Response("Method not allowed", { status: 405 });
+}
+
+async function shouldChallengeOnNewVisitorId(username, rule, visitorId, env) {
+  if (rule && rule.expression === "number_of_visitor_ids") {
+    const visitorIdsArr = await env.FP_WALL_KV_VISITOR_IDS.get(username, { type: "json" });
+    var visitorIds = new Set(visitorIdsArr);
+    console.log("visitorIds: ",Array.from(visitorIds));
+    visitorIds.add(visitorId);
+    await env.FP_WALL_KV_VISITOR_IDS.put(username, JSON.stringify(Array.from(visitorIds)));
+    if(rule.operator === "gt" && visitorIds.size > Number(rule.value)){
+      // action should be called at this stage
+      // but only passkey challenge to should evaluate to true
+      if(rule.action === "passkey") {
+        return true;
+      } else if (rule.action === "log"){
+        console.log(`rule: number_of_visitor_ids, allowed: ${rule.value}, actual: ${visitorIds.size}`);
+      }
+    }
+  }
+  return false;
 }
 
 async function evaluateRule(rule, data) {
