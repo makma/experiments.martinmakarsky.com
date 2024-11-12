@@ -1,7 +1,3 @@
-addEventListener("fetch", (event) => {
-    event.respondWith(handleRequest(event.request));
-});
-
 async function handleRequest(request) {
     const requestClone = request.clone();
 
@@ -48,7 +44,7 @@ async function evaluateRule(rule, data) {
     const { expression, operator, value } = rule;
     const parts = expression.split('.');
     let result = data;
-    
+
     // Safely traverse the object path
     for (const part of parts) {
         if (result && typeof result === 'object') {
@@ -77,24 +73,24 @@ async function unsealEventsResponse(sealedDataBase64, base64Key) {
     // Convert base64 to Uint8Array
     const key = base64ToUint8Array(base64Key);
     const data = base64ToUint8Array(sealedDataBase64);
-  
+
     // Define the header and lengths
     const sealedHeaderHex = '9E85DCED';
     const sealedHeader = hexToUint8Array(sealedHeaderHex);
     const nonceLength = 12;
     const authTagLength = 16;
-  
+
     // Verify header
     const header = data.slice(0, sealedHeader.length);
     if (uint8ArrayToHex(header).toUpperCase() !== sealedHeaderHex) {
         throw new Error("Wrong header");
     }
-  
+
     // Extract nonce, ciphertext, and authTag
     const nonce = data.slice(sealedHeader.length, sealedHeader.length + nonceLength);
     const ciphertext = data.slice(sealedHeader.length + nonceLength, -authTagLength);
     const authTag = data.slice(-authTagLength);
-  
+
     // Import the key
     const cryptoKey = await crypto.subtle.importKey(
         "raw",
@@ -103,7 +99,7 @@ async function unsealEventsResponse(sealedDataBase64, base64Key) {
         false,
         ["decrypt"]
     );
-  
+
     try {
         // Decrypt the data
         const decrypted = await crypto.subtle.decrypt(
@@ -111,17 +107,17 @@ async function unsealEventsResponse(sealedDataBase64, base64Key) {
             cryptoKey,
             new Uint8Array([...ciphertext, ...authTag])
         );
-  
+
         // Convert the decrypted data from ArrayBuffer to Uint8Array
         const decryptedArray = new Uint8Array(decrypted);
-  
+
         return await decompress(decryptedArray)
     } catch (error) {
         console.error("Decryption error details:", error);
         throw new Error("Decryption failed: " + error.message);
     }
   }
-  
+
   function base64ToUint8Array(base64) {
     const binaryString = atob(base64);
     const len = binaryString.length;
@@ -131,7 +127,7 @@ async function unsealEventsResponse(sealedDataBase64, base64Key) {
     }
     return bytes;
   }
-  
+
   function hexToUint8Array(hex) {
     const length = hex.length / 2;
     const bytes = new Uint8Array(length);
@@ -140,14 +136,14 @@ async function unsealEventsResponse(sealedDataBase64, base64Key) {
     }
     return bytes;
   }
-  
+
   function uint8ArrayToHex(uint8Array) {
     return Array.from(uint8Array)
         .map(byte => byte.toString(16).padStart(2, '0'))
         .join('');
   }
-  
-  
+
+
   /**
   * Decompress bytes into a UTF-8 string.
   *
@@ -157,23 +153,23 @@ async function unsealEventsResponse(sealedDataBase64, base64Key) {
   async function decompress(compressedBytes) {
     // Convert the bytes to a stream.
     const stream = new Blob([compressedBytes]).stream();
-  
+
     // Create a decompressed stream.
     const decompressedStream = stream.pipeThrough(
         new DecompressionStream("deflate-raw")
     );
-  
+
     // Read all the bytes from this stream.
     const chunks = [];
     for await (const chunk of decompressedStream) {
         chunks.push(chunk);
     }
     const stringBytes = await concatUint8Arrays(chunks);
-  
+
     // Convert the bytes to a string.
     return new TextDecoder().decode(stringBytes);
   }
-  
+
   /**
   * Combine multiple Uint8Arrays into one.
   *
@@ -226,3 +222,9 @@ async function unsealEventsResponse(sealedDataBase64, base64Key) {
 //         status: 403
 //     }
 // ]}
+
+export default {
+    async fetch(request, env) {
+      return handleRequest(request)
+    }
+}
