@@ -16,8 +16,8 @@ export async function POST(req: NextRequest) {
       const verification = await verifyRegistrationResponse({
         response: attestationResponse,
         expectedChallenge: currentChallenge as string,
-        expectedOrigin: 'http://localhost:3000',
-        expectedRPID: 'localhost',
+        expectedOrigin: 'https://experiments.martinmakarsky.com',
+        expectedRPID: 'experiments.martinmakarsky.com',
       });
 
       if (verification.verified && verification.registrationInfo) {

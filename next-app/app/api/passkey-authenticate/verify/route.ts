@@ -25,8 +25,8 @@ export async function POST(req: NextRequest) {
         const verification = await verifyAuthenticationResponse({
             response: credentialResponse,
             expectedChallenge,
-            expectedOrigin: 'http://localhost:3000',
-            expectedRPID: 'localhost',
+            expectedOrigin: 'https://experiments.martinmakarsky.com',
+            expectedRPID: 'experiments.martinmakarsky.com',
             credential: credentials,
         });
         console.log(verification)

@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
         const credentials = JSON.parse(credentialsJSON);
         // Generate authentication options
         const options = await generateAuthenticationOptions({
-            rpID: "localhost",
+            rpID: "experiments.martinmakarsky.com",
             allowCredentials: [{id: credentials.id}],
             userVerification: 'preferred',
         });

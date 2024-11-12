@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
     const { username } = await req.json();
 
     const options = await generateRegistrationOptions({
-      rpID: "localhost",
+      rpID: "experiments.martinmakarsky.com",
       rpName: 'Hackathon 2024 ATO Login Demo',
       userName: username,
     });
