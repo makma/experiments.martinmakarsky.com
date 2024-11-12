@@ -218,5 +218,15 @@
         value: 5,
         message: "Multiple countries detected for the given visitor.",
         status: 403
+    },
+    {
+        dashboardExpression: "Developer tools detected",
+        dashboardOperators: ["eq", "nq"],
+        dashboardValues: true,
+        expression: "products.developerTools.data.result",
+        operator: "eq",
+        value: true,
+        message: "Developer tools detected.",
+        status: 403
     }
 ]}
