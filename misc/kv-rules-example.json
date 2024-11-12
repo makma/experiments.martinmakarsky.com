@@ -1,0 +1,74 @@
+{
+  "rules": [
+    {
+      "expression": "products.vpn.data.result",
+      "operator": "eq",
+      "value": true,
+      "message": "Request comes from the VPN.",
+      "status": 403
+    },
+    {
+      "expression": "products.tor.data.result",
+      "operator": "eq",
+      "value": true,
+      "message": "Request comes from the TOR network.",
+      "status": 403
+    },
+    {
+      "expression": "products.identification.data.ipLocation.country.code",
+      "operator": "eq",
+      "value": "US",
+      "message": "Requests from the given country code are not allowed.",
+      "status": 403
+    },
+    {
+      "expression": "products.identification.data.visitorFound",
+      "operator": "eq",
+      "value": false,
+      "message": "First time visitors must login via passkey.",
+      "status": 403
+    },
+    {
+      "expression": "products.incognito.data.result",
+      "operator": "eq",
+      "value": true,
+      "message": "Incognito mode is not allowed.",
+      "status": 403
+    },
+    {
+      "expression": "products.developerTools.data.result",
+      "operator": "eq",
+      "value": true,
+      "message": "Developer tools detected!",
+      "status": 403
+    },
+    {
+      "expression": "products.botd.data.bot.result",
+      "operator": "ne",
+      "value": "notDetected",
+      "message": "Bots are forbidden!",
+      "status": 403
+    },
+    {
+      "expression": "products.suspectScore.data.result",
+      "operator": "gt",
+      "value": 10,
+      "message": "Suspect score!",
+      "status": 403
+    },
+    {
+      "expression": "products.ipBlocklist.data.result",
+      "operator": "eq",
+      "value": true,
+      "message": "IP Blocklist!",
+      "status": 403
+    },
+    {
+      "expression": "products.tampering.data.result",
+      "operator": "eq",
+      "value": true,
+      "message": "Tampering is forbidden!",
+      "status": 403
+    }
+  ]
+}
