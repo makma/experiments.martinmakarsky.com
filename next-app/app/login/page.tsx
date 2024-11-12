@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useRouter } from 'next/navigation';
 import FingerprintJS from "@fingerprintjs/fingerprintjs-pro";
 import {
   FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS,
@@ -15,7 +16,7 @@ export default function LoginPage() {
   const [loginResult, setLoginResult] = useState<string | null>(null);
   const [fp, setFp] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState(false); 
-  
+  const router = useRouter();
 
   useEffect(() => {
     (async () => {
@@ -45,11 +46,16 @@ export default function LoginPage() {
         fingerprintData,
       }),
     });
-
+    // storing the user name for the passkey authentication page for convenience
+    // in prod we should use a WebAuthN library random user id
+    localStorage.setItem("hackathon-ato-username", username)
     if (response.ok) {
       setLoginResult("Login successful!");
     } else {
-      setLoginResult("Login failed. Please check your credentials.");
+      // TODO: here we can optionally redirect to the passkey authentication to
+      // verify account ownership as a challenge mechanism.
+      // setLoginResult("Login failed. Please check your credentials.");
+      router.push('/passkey-authenticate');
     }
     setIsLoading(false); // Stop spinner
   };
@@ -108,6 +114,9 @@ export default function LoginPage() {
           "Login"
         )}
       </button>
+      <center>
+        <a href="/passkey-register">Register passkey</a>
+      </center>
 
       {loginResult && (
         <div
