@@ -17,4 +17,4 @@ Both adding and authenticating require two API routes.
 
 2. Authenticating with a passkey:
     a. /api/passkey-authenticate
-    b. /api/passkey-authenticate-verify
+    b. /api/passkey-authenticate/verify

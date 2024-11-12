@@ -49,13 +49,13 @@ export default function LoginPage() {
     // storing the user name for the passkey authentication page for convenience
     // in prod we should use a WebAuthN library random user id
     localStorage.setItem("hackathon-ato-username", username)
+    if(response.headers.get('FP-WAF-Challenge-Type') === "passkey") {
+      router.push('/passkey-authenticate');
+    }
     if (response.ok) {
       setLoginResult("Login successful!");
     } else {
-      // TODO: here we can optionally redirect to the passkey authentication to
-      // verify account ownership as a challenge mechanism.
-      // setLoginResult("Login failed. Please check your credentials.");
-      router.push('/passkey-authenticate');
+      setLoginResult("Login failed. Please check your credentials.");
     }
     setIsLoading(false); // Stop spinner
   };
