@@ -1,18 +1,18 @@
-async function handleRequest(request) {
+async function handleRequest(request, env) {
     const requestClone = request.clone();
 
     if (request.method === "POST") {
         try {
             const requestBody = await request.json();
             const sealedResult = requestBody.fingerprintData.sealedResult;
-            const base64Key = ENCRYPTION_KEY;
+            const base64Key = env.ENCRYPTION_KEY;
             const unsealedData = await unsealEventsResponse(sealedResult, base64Key);
             const fingerprintData = JSON.parse(unsealedData);
 
             // Fetch rules from KV store with better error handling
             let rulesData;
             try {
-                rulesData = await FP_WALL_KV_RULES.get("rules", { type: "json" });
+                rulesData = await env.FP_WALL_KV_RULES.get("rules", { type: "json" });
                 if (!rulesData || !rulesData.rules) {
                     console.error("No rules found in KV store");
                     return new Response("Configuration error", { status: 500 });
@@ -182,49 +182,8 @@ async function unsealEventsResponse(sealedDataBase64, base64Key) {
     return new Uint8Array(buffer);
   }
 
-
-// Rules in the KV stored
-
-// {rules:[
-//     {
-//         expression: "products.identification.data.timestamp",
-//         operator: "lt",
-//         value: "${Date.now() - 5000}", // Note: This will need to be evaluated at runtime
-//         message: "Timestamp is older than 5 seconds!",
-//         status: 403
-//     },
-//     {
-//         expression: "products.botd.data.bot.result",
-//         operator: "ne",
-//         value: "notDetected",
-//         message: "Bots are forbidden!",
-//         status: 403
-//     },
-//     {
-//         expression: "products.suspectScore.data.result",
-//         operator: "gt",
-//         value: 10,
-//         message: "Suspect score!",
-//         status: 403
-//     },
-//     {
-//         expression: "products.ipBlocklist.data.result",
-//         operator: "eq",
-//         value: true,
-//         message: "IP Blocklist!",
-//         status: 403
-//     },
-//     {
-//         expression: "products.tampering.data.result",
-//         operator: "eq",
-//         value: true,
-//         message: "Tampering is forbidden!",
-//         status: 403
-//     }
-// ]}
-
 export default {
     async fetch(request, env) {
-      return handleRequest(request)
+      return handleRequest(request, env)
     }
 }
