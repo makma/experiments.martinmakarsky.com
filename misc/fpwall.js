@@ -28,7 +28,7 @@ async function handleRequest(request, env) {
           const res = new Response(rule.message, { status: rule.status });
           if(rule.action === "log") {
             console.log(`FPWALL rule.action.log=${rule.message}`);
-          } else if (rule.action === "challenge" && rule.challengeType === "passkey"){
+          } else if (rule.action === "passkey"){
             res.headers.set('FP-WAF-Challenge-Type', 'passkey');
           }
           return res;
