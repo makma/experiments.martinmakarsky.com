@@ -6,8 +6,8 @@ async function handleRequest(request, env) {
       const requestBody = await request.json();
       const sealedResult = requestBody.fingerprintData.sealedResult;
       const base64Key = env.ENCRYPTION_KEY;
-      console.log('unsealEventsResponse base64Key')
-      console.log(base64Key)
+      console.log('unsealEventsResponse base64Key');
+      console.log(base64Key);
       const unsealedData = await unsealEventsResponse(sealedResult, base64Key);
       const fingerprintData = JSON.parse(unsealedData);
       // TODO: remove these logs later
