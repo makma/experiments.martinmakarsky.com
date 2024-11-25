@@ -78,6 +78,7 @@ const proxyIdentificationRequest = async (request: NextRequest): Promise<Respons
     const identificationResponseBlob = await identificationResponse.blob();
 
     const blobText = await identificationResponseBlob.text();
+    console.log('blobText', blobText);
     let identificationResponseObject = JSON.parse(blobText);
 
     const OPEN_CLIENT_RESPONSE_ENCRYPTION_KEY = process.env.OPEN_CLIENT_RESPONSE_ENCRYPTION_KEY;
