@@ -16,8 +16,8 @@ export default function CustomProxyIntegration() {
       loadOptions={{
         apiKey: FINGERPRINT_PUBLIC_API_KEY,
         scriptUrlPattern:
-          "/custom-proxy-integration/agent?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
-        endpoint: "/custom-proxy-integration/result?region=eu",
+          "https://experiments.martinmakarsky.com/custom-proxy-integration/agent?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>",
+        endpoint: "https://experiments.martinmakarsky.com/custom-proxy-integration/result?region=eu",
       }}
       cacheLocation={CacheLocation.SessionStorage}
       cacheTimeInSeconds={60}
