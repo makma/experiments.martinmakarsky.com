@@ -5,6 +5,7 @@ export const FINGERPRINT_PUBLIC_API_KEY_SECONDARY = "deo4QJZKMnmvTT1C9Hmt"
 export const FINGERPRINT_PUBLIC_API_KEY_SAMPLEP_ENVIRONMENT = "dzbq3RL5nuUFAmRlsP4R";
 export const CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN = "https://martinmakarsky.com/ZBXJUjor56j9EQCU/KAY8SvdbISPMEu6r?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>"
 export const CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT = "https://martinmakarsky.com/ZBXJUjor56j9EQCU/5iUMYiulWYS5IY5P?region=eu"
+export const FINGERPRINT_PUBLIC_API_KEY_SEALED_ENV_AHhMVKY0HFYj3W = "QlQ8ypcQ9XWoB0ow4LVO"
 
 // sub_8VLhgjoASvOwjH zero trust + botd
 export const FINGERPRINT_PUBLIC_API_KEY_ZERO_TRUST: string = "xI1tKWIHK6UGTshR8vDc";

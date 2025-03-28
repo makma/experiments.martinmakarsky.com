@@ -8,7 +8,7 @@ export async function POST(request: Request) {
   const body = await request.json();
   const sealedResultBase64 = body.sealedResult;
 
-  const SEALED_RESULTS_DECRYPTION_KEY = process.env.SEALED_RESULTS_DECRYPTION_KEY;
+  const SEALED_RESULTS_DECRYPTION_KEY = process.env.FINGERPRINT_ENCRYPTION_KEY_AHhMVKY0HFYj3W;
   if (!SEALED_RESULTS_DECRYPTION_KEY) {
     throw new Error('Missing SEALED_RESULTS_DECRYPTION_KEY environment variable');
   }

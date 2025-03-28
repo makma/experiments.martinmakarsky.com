@@ -4,9 +4,9 @@ import styles from "../../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import FingerprintJS, { GetResult } from "@fingerprintjs/fingerprintjs-pro";
 import {
-  FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS,
   CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_SEALED_CLIENT_RESULTS,
   CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_SEALED_CLIENT_RESULTS,
+  FINGERPRINT_PUBLIC_API_KEY_SEALED_ENV_AHhMVKY0HFYj3W,
 } from "../../shared/constants";
 
 export default function FingerprintSealedResultsDirect() {
@@ -20,7 +20,7 @@ export default function FingerprintSealedResultsDirect() {
   useEffect(() => {
     (async () => {
       const fpPromise = FingerprintJS.load({
-        apiKey: FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS,
+        apiKey: FINGERPRINT_PUBLIC_API_KEY_SEALED_ENV_AHhMVKY0HFYj3W,
         scriptUrlPattern:
           CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_SEALED_CLIENT_RESULTS,
         endpoint: CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_SEALED_CLIENT_RESULTS,
