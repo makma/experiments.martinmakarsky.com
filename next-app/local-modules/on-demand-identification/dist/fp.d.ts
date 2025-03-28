@@ -1,5 +1,5 @@
 /**
- * Fingerprint Pro static v3.11.8 - Copyright (c) FingerprintJS, Inc, 2025 (https://fingerprint.com)
+ * Fingerprint Pro static v3.12.0-beta.0 - Copyright (c) FingerprintJS, Inc, 2025 (https://fingerprint.com)
  */
 
 interface Confidence {
@@ -240,6 +240,9 @@ type ExtendedGetResult = ExtendedVisitorId & ResultExtraFields;
  * @deprecated Not used. Left for backward compatibility.
  */
 type FullIpExtendedGetResult = ExtendedGetResult;
+/**
+ * Result of collecting on demand fingerprint data
+ */
 type CollectResult = string;
 
 declare const ERROR_WRONG_REGION: string;
@@ -536,9 +539,9 @@ type PublicCollectOptions = {
     linkedId?: string;
 };
 /**
- * Options of handling on demand response data
+ * Options of handling on demand agent data
  */
-type PublicHandleOnDemandResponseOptions = {
+type PublicHandleAgentDataOptions = {
     /**
      * Override storages name (cookies, localStorage, etc).
      * Should only be used when the default name conflicts with some of your existing names.
@@ -546,10 +549,6 @@ type PublicHandleOnDemandResponseOptions = {
      */
     storageKey?: string;
 };
-/**
- * The real options of collecting on demand fingerprint data
- */
-type CollectOptions = PublicCollectOptions;
 
 /**
  * Derives the get result type based on input options
@@ -568,21 +567,21 @@ interface PublicAgent {
      */
     get<TExtended extends boolean = false, TIP = unknown>(options?: Readonly<PublicGetOptions<TExtended, TIP>>): Promise<DeriveGetResult<TExtended>>;
     /**
-     * Collects OnDemand fingerprint data.
+     * Collects on demand fingerprint data.
      */
-    collect(options?: Readonly<CollectOptions>): Promise<CollectResult>;
+    collect(options?: Readonly<PublicCollectOptions>): Promise<CollectResult>;
 }
 /**
  * Builds an instance of Agent
  */
 declare const publicLoad: (options: Readonly<PublicLoadOptions>) => Promise<PublicAgent>;
 /**
- * Handles the on-demand response data sent from the remote agent.
+ * Handles the on demand agent data sent from the remote agent.
  * Intended for use in integrations where response data is received out-of-band (via /send endpoint).
  *
- * @throws ERROR_HANDLE_ON_DEMAND_RESPONSE_DATA if `response` is malformed.
+ * @throws ERROR_HANDLE_AGENT_DATA if `response` is malformed.
  */
-declare const publicHandleOnDemandResponseData: (response: string, options?: Readonly<PublicHandleOnDemandResponseOptions> | undefined) => void;
+declare const publicHandleAgentData: (data: string, options?: Readonly<PublicHandleAgentDataOptions> | undefined) => void;
 
 declare const ERROR_CLIENT_TIMEOUT = "Client timeout";
 declare const ERROR_NETWORK_CONNECTION = "Network connection error";
@@ -590,7 +589,7 @@ declare const ERROR_NETWORK_ABORT = "Network request aborted";
 declare const ERROR_BAD_RESPONSE_FORMAT = "Response cannot be parsed";
 declare const ERROR_CSP_BLOCK = "Blocked by CSP";
 declare const ERROR_INVALID_ENDPOINT = "The endpoint parameter is not a valid URL";
-declare const ERROR_HANDLE_ON_DEMAND_RESPONSE_DATA = "Handle on demand response data error";
+declare const ERROR_HANDLE_AGENT_DATA = "Handle on demand agent data error";
 
 declare const ERROR_API_KEY_MISSING: string;
 declare const ERROR_API_KEY_INVALID: string;
@@ -609,7 +608,7 @@ declare const ERROR_TOKEN_INVALID: string;
 declare const ERROR_TOKEN_EXPIRED: string;
 declare const _default: {
     readonly load: (options: Readonly<PublicLoadOptions>) => Promise<PublicAgent>;
-    readonly handleOnDemandData: (response: string, options?: Readonly<PublicHandleOnDemandResponseOptions> | undefined) => void;
+    readonly handleAgentData: (data: string, options?: Readonly<PublicHandleAgentDataOptions> | undefined) => void;
     readonly defaultEndpoint: {
         default: "endpoint";
     };
@@ -640,7 +639,7 @@ declare const _default: {
     readonly ERROR_NETWORK_RESTRICTED: string;
     readonly ERROR_INVALID_PROXY_INTEGRATION_SECRET: string;
     readonly ERROR_INVALID_PROXY_INTEGRATION_HEADERS: string;
-    readonly ERROR_HANDLE_ON_DEMAND_RESPONSE_DATA: "Handle on demand response data error";
+    readonly ERROR_HANDLE_AGENT_DATA: "Handle on demand agent data error";
     /** @deprecated Use ERROR_API_KEY_MISSING instead */
     readonly ERROR_TOKEN_MISSING: string;
     /** @deprecated Use ERROR_API_KEY_INVALID instead */
@@ -649,4 +648,4 @@ declare const _default: {
     readonly ERROR_TOKEN_EXPIRED: string;
 };
 
-export { type PublicAgent as Agent, type PublicCollectOptions as CollectOptions, type CollectResult, type Confidence, ERROR_API_KEY_EXPIRED, ERROR_API_KEY_INVALID, ERROR_API_KEY_MISSING, ERROR_BAD_REQUEST_FORMAT, ERROR_BAD_RESPONSE_FORMAT, ERROR_CLIENT_TIMEOUT, ERROR_CSP_BLOCK, ERROR_FORBIDDEN_ENDPOINT, ERROR_FORBIDDEN_HEADER, ERROR_FORBIDDEN_ORIGIN, ERROR_GENERAL_SERVER_FAILURE, ERROR_HANDLE_ON_DEMAND_RESPONSE_DATA, ERROR_INSTALLATION_METHOD_RESTRICTED, ERROR_INTEGRATION_FAILURE, ERROR_INVALID_ENDPOINT, ERROR_INVALID_PROXY_INTEGRATION_HEADERS, ERROR_INVALID_PROXY_INTEGRATION_SECRET, ERROR_NETWORK_ABORT, ERROR_NETWORK_CONNECTION, ERROR_NETWORK_RESTRICTED, ERROR_RATE_LIMIT, ERROR_SERVER_TIMEOUT, ERROR_SUBSCRIPTION_NOT_ACTIVE, ERROR_TOKEN_EXPIRED, ERROR_TOKEN_INVALID, ERROR_TOKEN_MISSING, ERROR_UNSUPPORTED_VERSION, ERROR_WRONG_REGION, type Endpoint, type ExtendedGetResult, type FullIpExtendedGetResult, type FullIpLocation, type PublicGetOptions as GetOptions, type GetResult, type PublicHandleOnDemandResponseOptions as HandleOnDemandResponseOptions, type IPResolution, type IpLocation, type PublicLoadOptions as LoadOptions, type Product, type Region, type TlsEndpoint, type ZeroTrust, _default as default, defaultEndpoint, defaultTlsEndpoint, publicHandleOnDemandResponseData as handleOnDemandData, publicLoad as load, makePublicBotdModule as makeBotdModule, makePublicConsoleDebugModule as makeConsoleDebugModule, makePublicIdentificationModule as makeIdentificationModule, makePublicLatencyReportModule as makeLatencyReportModule, makePublicRollbarDebugModule as makeRemoteDebugModule, makePublicValidationModule as makeValidationModule };
+export { type PublicAgent as Agent, type PublicCollectOptions as CollectOptions, type CollectResult, type Confidence, ERROR_API_KEY_EXPIRED, ERROR_API_KEY_INVALID, ERROR_API_KEY_MISSING, ERROR_BAD_REQUEST_FORMAT, ERROR_BAD_RESPONSE_FORMAT, ERROR_CLIENT_TIMEOUT, ERROR_CSP_BLOCK, ERROR_FORBIDDEN_ENDPOINT, ERROR_FORBIDDEN_HEADER, ERROR_FORBIDDEN_ORIGIN, ERROR_GENERAL_SERVER_FAILURE, ERROR_HANDLE_AGENT_DATA, ERROR_INSTALLATION_METHOD_RESTRICTED, ERROR_INTEGRATION_FAILURE, ERROR_INVALID_ENDPOINT, ERROR_INVALID_PROXY_INTEGRATION_HEADERS, ERROR_INVALID_PROXY_INTEGRATION_SECRET, ERROR_NETWORK_ABORT, ERROR_NETWORK_CONNECTION, ERROR_NETWORK_RESTRICTED, ERROR_RATE_LIMIT, ERROR_SERVER_TIMEOUT, ERROR_SUBSCRIPTION_NOT_ACTIVE, ERROR_TOKEN_EXPIRED, ERROR_TOKEN_INVALID, ERROR_TOKEN_MISSING, ERROR_UNSUPPORTED_VERSION, ERROR_WRONG_REGION, type Endpoint, type ExtendedGetResult, type FullIpExtendedGetResult, type FullIpLocation, type PublicGetOptions as GetOptions, type GetResult, type PublicHandleAgentDataOptions as HandleAgentDataOptions, type IPResolution, type IpLocation, type PublicLoadOptions as LoadOptions, type Product, type Region, type TlsEndpoint, type ZeroTrust, _default as default, defaultEndpoint, defaultTlsEndpoint, publicHandleAgentData as handleAgentData, publicLoad as load, makePublicBotdModule as makeBotdModule, makePublicConsoleDebugModule as makeConsoleDebugModule, makePublicIdentificationModule as makeIdentificationModule, makePublicLatencyReportModule as makeLatencyReportModule, makePublicRollbarDebugModule as makeRemoteDebugModule, makePublicValidationModule as makeValidationModule };
