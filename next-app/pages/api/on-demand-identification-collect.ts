@@ -61,7 +61,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.send({
       status: 200,
       response: {
-        agentData: fpResponse
+        rawFpResponse: fpResponse
       }
     });
   }
