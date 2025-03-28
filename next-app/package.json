@@ -28,7 +28,8 @@
     "redis": "^4.7.0",
     "sequelize": "^6.37.3",
     "sqlite3": "^5.1.7",
-    "zlib": "^1.0.5"
+    "zlib": "^1.0.5",
+    "@experiments/on-demand-identification": "file:local-modules/on-demand-identification"
   },
   "devDependencies": {
     "@types/node": "18.11.19",

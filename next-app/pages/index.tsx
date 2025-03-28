@@ -659,6 +659,22 @@ export default function Home() {
               />
             </Link>
 
+            <Link
+              className={styles.card}
+              href="/fingerprint-on-demand-identification"
+            >
+              <h2>
+                Fingerprint Pro On Demand Identification&rarr;
+              </h2>
+              <p>
+                Static lib
+              </p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
+            </Link>
+
             <Link className={styles.card} href="/fingerprint-pro-zero-trust">
               <h2>Fingerprint Pro, Zero Trust &rarr;</h2>
               <p>Browser SDK (agent), Zero Trust</p>
