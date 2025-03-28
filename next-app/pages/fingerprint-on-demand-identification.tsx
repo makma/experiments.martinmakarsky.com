@@ -30,7 +30,7 @@ export default function FingerprintOnDemandIdentification() {
           body: JSON.stringify({ browserData })
         });
         const result = await response.json();
-        console.log('Response data:', result.response.rawFpResponse); // Debug log
+        console.log('Response data:', result.response); // Debug log
         
         // First set the data
         setFingerprintData(result.response.rawFpResponse);
@@ -42,10 +42,10 @@ export default function FingerprintOnDemandIdentification() {
           if (!agentData) {
             throw new Error('No agent data received');
           }
-          OnDemand.handleOnDemandData(result.response.rawFpResponse.agentData);
+          OnDemand.handleOnDemandData(agentData);
         } catch (handleError) {
           console.error('Error handling OnDemand data:', handleError);
-          console.error('Data that caused error:', result.response.rawFpResponse.agentData);
+          console.error('Agent Data that caused error:', result.response.rawFpResponse.agentData);
         }
       } catch (error) {
         console.error('Error:', error);
