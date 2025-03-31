@@ -176,13 +176,6 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.57.1.tgz#de633db3ec2ef6a3c89e2f19038063e8a122e2c2"
   integrity sha512-d9zaMRSTIKDLhctzH12MtXvJKSSUhaHcjV+2Z+GK+EEY7XKpP5yR4x+N3TAcHTcu963nIr+TMcCb4DBCYX1z6Q==
 
-"@experiments/on-demand-identification@file:local-modules/on-demand-identification":
-  version "3.11.8"
-  dependencies:
-    "@fingerprintjs/botd" "1.9.1"
-    "@fingerprintjs/fingerprintjs" "4.6.1"
-    tslib "^2.4.1"
-
 "@fingerprintjs/botd@1.9.1":
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/@fingerprintjs/botd/-/botd-1.9.1.tgz#6217541bc822bef4f17b3b1931955d2ddac5d4ec"
@@ -211,26 +204,19 @@
     "@fingerprintjs/fingerprintjs-pro" "^3.11.0"
     tslib "^2.7.0"
 
-"@fingerprintjs/fingerprintjs-pro-static@^3.9.6":
-  version "3.11.8"
-  resolved "https://npm.fpregistry.io/@fingerprintjs/fingerprintjs-pro-static/-/fingerprintjs-pro-static-3.11.8.tgz#772f55e0b49e9b6732b57e1389d88acf6d3c547c"
-  integrity sha512-uzZumDkMaaRb39kffYx+JsBicpBvQuGKSxhIePnWlVoRzBKRTAz2gnvFfOr2IQZdMXWw0s5350k2ghhKdRAHFQ==
+"@fingerprintjs/fingerprintjs-pro-static@3.12.0-beta.0":
+  version "3.12.0-beta.0"
+  resolved "https://npm.fpregistry.io/@fingerprintjs/fingerprintjs-pro-static/-/fingerprintjs-pro-static-3.12.0-beta.0.tgz#5addb2072c88b226c29fc65ae25061ac00f17f8c"
+  integrity sha512-NlmYeZKz0Qnq+1JyeEQWmgLCsk3WMoI71DNYQj+LP/K0vdQoO4HoB2peZ0bCyZA8XGAoxkmCy0jLw6+xrP6xHA==
   dependencies:
     "@fingerprintjs/botd" "1.9.1"
-    "@fingerprintjs/fingerprintjs" "4.6.0"
+    "@fingerprintjs/fingerprintjs" "4.6.1"
     tslib "^2.4.1"
 
 "@fingerprintjs/fingerprintjs-pro@^3.11.0", "@fingerprintjs/fingerprintjs-pro@^3.11.1":
   version "3.11.8"
   resolved "https://registry.yarnpkg.com/@fingerprintjs/fingerprintjs-pro/-/fingerprintjs-pro-3.11.8.tgz#bde4fc4c370c82abe2ee7fc641c7ad9845658d2b"
   integrity sha512-hZjFaSlBPYJvQv1nRlfJads9A+1QzaJEea/+EvECln+uZY13yrpeeIYKff+0REkohAWZRSVnG80+5PREIsgBpQ==
-  dependencies:
-    tslib "^2.4.1"
-
-"@fingerprintjs/fingerprintjs@4.6.0":
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@fingerprintjs/fingerprintjs/-/fingerprintjs-4.6.0.tgz#ff09864c7758c5f8f6ce901c08e6e201be1c3b64"
-  integrity sha512-g2z4lF2saGxVT+AQSmJhPSwW/hBn8vnFJMW6UYOMl9ipJT7re0RZbr2+lB2eCZj/lJ89wWc21FMA14v9iOKroQ==
   dependencies:
     tslib "^2.4.1"
 

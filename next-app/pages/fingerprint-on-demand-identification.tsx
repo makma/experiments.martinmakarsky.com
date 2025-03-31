@@ -1,6 +1,6 @@
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
-import * as OnDemand from "@experiments/on-demand-identification"
+import * as OnDemand from "@fingerprintjs/fingerprintjs-pro-static"
 import { FINGERPRINT_PUBLIC_API_KEY } from "../shared/constants";
 
 export default function FingerprintOnDemandIdentification() {
