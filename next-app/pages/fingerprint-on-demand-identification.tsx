@@ -42,7 +42,7 @@ export default function FingerprintOnDemandIdentification() {
           if (!agentData) {
             throw new Error('No agent data received');
           }
-          OnDemand.handleOnDemandData(agentData);
+          OnDemand.handleAgentData(agentData);
         } catch (handleError) {
           console.error('Error handling OnDemand data:', handleError);
           console.error('Agent Data that caused error:', result.response.rawFpResponse.agentData);
