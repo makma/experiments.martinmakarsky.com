@@ -57,6 +57,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(500).json({ error: 'Failed to send data to Fingerprint API' });
     }
 
+    // Set cookies from the /send response
+    const rawCookies = response.headers.getSetCookie?.();
+    if (rawCookies) {
+      rawCookies.forEach(cookie => {
+        res.setHeader('Set-Cookie', cookie);
+      });
+    }
+
     const fpResponse = await response.json();
     return res.send({
       status: 200,
