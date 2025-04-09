@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 import FingerprintJS from "@fingerprintjs/fingerprintjs-pro";
 import {
-  FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS,
+  FWALL_ENVIRONEMNT_PUBLIC_KEY,
   CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_SEALED_CLIENT_RESULTS,
   CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_SEALED_CLIENT_RESULTS,
 } from "../../shared/constants";
@@ -21,7 +21,7 @@ export default function LoginPage() {
   useEffect(() => {
     (async () => {
       const fpPromise = FingerprintJS.load({
-        apiKey: FINGERPRINT_PUBLIC_API_KEY_SEALED_RESULTS,
+        apiKey: FWALL_ENVIRONEMNT_PUBLIC_KEY,
         scriptUrlPattern:
           CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_SEALED_CLIENT_RESULTS,
         endpoint: CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_SEALED_CLIENT_RESULTS,
