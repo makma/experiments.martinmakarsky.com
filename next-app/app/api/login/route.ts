@@ -13,15 +13,21 @@ export async function POST(request: NextRequest) {
   if (password === hardcodedPassword) {
     // Handle successful login, e.g., issue a session token
     console.log("Login successful for user:", username);
-    return NextResponse.json({ 
+    const response = NextResponse.json({ 
       message: "Login successful",
       headers
     });
+    // Add fingerprint data as header
+    response.headers.set('x-fingerprint-data', fingerprintData);
+    return response;
   } else {
     // Handle failed login
-    return NextResponse.json({ 
+    const response = NextResponse.json({ 
       message: "Invalid credentials", 
       headers 
     }, { status: 401 });
+    // Add fingerprint data as header
+    response.headers.set('x-fingerprint-data', fingerprintData);
+    return response;
   }
 }
