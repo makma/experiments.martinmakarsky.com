@@ -39,11 +39,11 @@ export default function LoginPage() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "x-fingerprint-data": JSON.stringify(fingerprintData),
       },
       body: JSON.stringify({
         username,
         password,
-        fingerprintData,
       }),
     });
     // storing the user name for the passkey authentication page for convenience

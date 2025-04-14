@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
-  const { username, password, fingerprintData } = await request.json();
+  const { username, password } = await request.json();
   
   // Extract request headers
   const headers = Object.fromEntries(request.headers);
@@ -13,21 +13,15 @@ export async function POST(request: NextRequest) {
   if (password === hardcodedPassword) {
     // Handle successful login, e.g., issue a session token
     console.log("Login successful for user:", username);
-    const response = NextResponse.json({ 
+    return NextResponse.json({ 
       message: "Login successful",
       headers
     });
-    // Add fingerprint data as header
-    response.headers.set('x-fingerprint-data', fingerprintData);
-    return response;
   } else {
     // Handle failed login
-    const response = NextResponse.json({ 
+    return NextResponse.json({ 
       message: "Invalid credentials", 
       headers 
     }, { status: 401 });
-    // Add fingerprint data as header
-    response.headers.set('x-fingerprint-data', fingerprintData);
-    return response;
   }
 }
