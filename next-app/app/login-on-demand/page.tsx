@@ -42,7 +42,7 @@ export default function LoginPage() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-fingerprint-collected-data": JSON.stringify(collectedBrowserData),
+        "x-fingerprint-collected-data": collectedBrowserData,
       },
       body: JSON.stringify({
         username,
