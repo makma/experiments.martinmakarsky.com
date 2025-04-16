@@ -1,14 +1,38 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from "react";
+import * as OnDemand from "@fingerprintjs/fingerprintjs-pro-static"
+import { FINGERPRINT_PUBLIC_API_KEY } from "../../shared/constants";
+
+// Extend Window interface to include temp property
+declare global {
+  interface Window {
+    temp: any;
+  }
+}
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginResult, setLoginResult] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
+  
+  useEffect(() => {
+    (async () => {
+      const fpPromise = OnDemand.load({
+        apiKey: FINGERPRINT_PUBLIC_API_KEY,
+        region: "eu",
+        modules: [
+          OnDemand.makeIdentificationModule(), 
+          OnDemand.makeBotdModule(),
+          OnDemand.makeLatencyReportModule(),
+        ],
+      });
+      window.temp = fpPromise;
+
+    })();
+  }, []);
 
   const handleLogin = async () => {
     setIsLoading(true);
