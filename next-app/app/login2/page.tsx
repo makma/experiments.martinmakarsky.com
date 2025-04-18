@@ -9,6 +9,8 @@ import { FINGERPRINT_PUBLIC_API_KEY } from "../../shared/constants";
 declare global {
   interface Window {
     temp: any;
+    onDemand: typeof OnDemand;
+    fpPromise: Promise<any>;
   }
 }
 
@@ -29,7 +31,8 @@ export default function LoginPage() {
           OnDemand.makeLatencyReportModule(),
         ],
       });
-      window.temp = fpPromise;
+      window.onDemand = OnDemand;
+      window.fpPromise = fpPromise;
 
     })();
   }, []);
