@@ -2,40 +2,13 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import * as OnDemand from "@fingerprintjs/fingerprintjs-pro-static"
-import { FINGERPRINT_PUBLIC_API_KEY } from "../../shared/constants";
 
-// Extend Window interface to include temp property
-declare global {
-  interface Window {
-    temp: any;
-    onDemand: typeof OnDemand;
-    fpPromise: Promise<any>;
-  }
-}
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginResult, setLoginResult] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  
-  useEffect(() => {
-    (async () => {
-      const fpPromise = OnDemand.load({
-        apiKey: FINGERPRINT_PUBLIC_API_KEY,
-        region: "eu",
-        modules: [
-          OnDemand.makeIdentificationModule(), 
-          OnDemand.makeBotdModule(),
-          OnDemand.makeLatencyReportModule(),
-        ],
-      });
-      window.onDemand = OnDemand;
-      window.fpPromise = fpPromise;
-
-    })();
-  }, []);
 
   const handleLogin = async () => {
     setIsLoading(true);
@@ -56,7 +29,7 @@ export default function LoginPage() {
     } else {
       setLoginResult("Login failed. Please check your credentials.");
     }
-    setIsLoading(false); // Stop spinner
+    setIsLoading(false);
   };
 
   return (
