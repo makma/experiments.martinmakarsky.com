@@ -661,13 +661,29 @@ export default function Home() {
 
             <Link
               className={styles.card}
-              href="/fingerprint-on-demand-identification"
+              href="/fingerprint-on-demand-identification-static"
+            >
+              <h2>
+                Static Fingerprint Pro On Demand Identification&rarr;
+              </h2>
+              <p>
+                Static lib
+              </p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
+            </Link>
+
+            <Link
+              className={styles.card}
+              href="/fingerprint-on-demand-identification-pro-cdn"
             >
               <h2>
                 Fingerprint Pro On Demand Identification&rarr;
               </h2>
               <p>
-                Static lib
+                Pro CDN lib
               </p>
               <div>
                 <pre>subId: sub_AHhMVKY0HFYj3W</pre>

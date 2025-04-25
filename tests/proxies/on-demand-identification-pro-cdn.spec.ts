@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 const baseDomain = "https://experiments.martinmakarsky.com"
 
 test('On demand integrations returns the visitorId', async ({ page }) => {
-  await page.goto(`${baseDomain}/fingerprint-on-demand-identification`);
+  await page.goto(`${baseDomain}/fingerprint-on-demand-identification-static`);
 
   const preSelector = 'pre';
 
