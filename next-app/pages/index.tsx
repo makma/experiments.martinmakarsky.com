@@ -72,6 +72,15 @@ export default function Home() {
               </div>
             </Link>
 
+            <Link className={styles.card} href="/fingerprint-pro-direct-custom-tls-endpoint">
+              <h2>Fingerprint Pro Direct TLS endpoint testing &rarr;</h2>
+              <p>No lib, TS NPM agent, No subdomain setup, extended result</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
+            </Link>
+
             <Link className={styles.card} href="/fingerprint-pro-static-agent">
               <h2>Fingerprint Pro Static Agent &rarr;</h2>
               <p>No lib, Static agent, subdomain setup, extended result</p>
