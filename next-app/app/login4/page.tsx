@@ -1,4 +1,12 @@
-"use client";
+'use client';
+
+const config = {
+  // This tells Next.js not to transform XMLHttpRequest
+  experimental: {
+    disableOptimizedLoading: true,
+    disablePostcssPresetEnv: true,
+  }
+};
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -10,26 +18,31 @@ export default function LoginPage() {
   const [loginResult, setLoginResult] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = async () => {
+  const handleLogin = () => {
     setIsLoading(true);
 
-    const response = await fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    });
-    
-    if (response.ok) {
-      setLoginResult("Login successful!");
-    } else {
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/api/login", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.onload = function() {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        setLoginResult("Login successful!");
+      } else {
+        setLoginResult("Login failed. Please check your credentials.");
+      }
+      setIsLoading(false);
+    };
+
+    xhr.onerror = function() {
       setLoginResult("Login failed. Please check your credentials.");
-    }
-    setIsLoading(false);
+      setIsLoading(false);
+    };
+
+    xhr.send(JSON.stringify({
+      username,
+      password,
+    }));
   };
 
   return (
