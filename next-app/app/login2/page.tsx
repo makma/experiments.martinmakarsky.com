@@ -24,10 +24,12 @@ export default function LoginPage() {
       }),
     });
     
+    const data = await response.json();
+    
     if (response.ok) {
-      setLoginResult("Login successful!");
+      setLoginResult(data.message || "Login successful!");
     } else {
-      setLoginResult("Login failed. Please check your credentials.");
+      setLoginResult(data.message || "Login failed. Please check your credentials.");
     }
     setIsLoading(false);
   };
