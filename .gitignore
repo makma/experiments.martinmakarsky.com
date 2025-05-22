@@ -2,6 +2,9 @@
 # dependencies
 node_modules
 
+# editors
+.vscode
+
 # debug
 npm-debug.log*
 yarn-debug.log*
