@@ -10,6 +10,12 @@ export default function SignUpPage() {
     e.preventDefault();
     // TODO: Implement sign up logic
     console.log("Sign up:", { email, password });
+    const response = await fetch("/api/signup", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+    });
+    const data = await response.json();
+    console.log(data);
   };
 
   return (
