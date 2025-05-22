@@ -3,23 +3,41 @@
 import { Label } from "@radix-ui/react-label";
 import { cn } from "../../components/lib/utils";
 import { Button } from "../../components/ui/button";
-import { FormEvent, MouseEventHandler } from "react";
+import { FormEvent } from "react";
 import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { SignupPayload } from "../api/signup/route";
+import { AlertCircle } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "../../components/ui/alert";
 
 export default function SignUpPage() {
   const [email, setEmail] = useState("marks@gmail.com");
   const [password, setPassword] = useState("password");
 
+  const {
+    mutate: signup,
+    isPending,
+    data,
+    error,
+  } = useMutation({
+    mutationFn: async (credentials: SignupPayload) => {
+      const response = await fetch("/api/signup", {
+        method: "POST",
+        body: JSON.stringify(credentials),
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message);
+      }
+      return response.json();
+    },
+  });
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await fetch("/api/signup", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-    });
-    const data = await response.json();
-    console.log(data);
+    signup({ email, password });
   };
 
   return (
@@ -46,6 +64,7 @@ export default function SignUpPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
+                      disabled={isPending}
                     />
                   </div>
                   <div className="grid gap-2">
@@ -58,11 +77,33 @@ export default function SignUpPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
+                      disabled={isPending}
                     />
                   </div>
-                  <Button type="submit" className="w-full my-3" size="lg">
-                    Sign up
+                  <Button
+                    type="submit"
+                    className="w-full my-1"
+                    size="lg"
+                    disabled={isPending}
+                  >
+                    {isPending ? "Signing up..." : "Sign up"}
                   </Button>
+                  {error && (
+                    <Alert variant="destructive">
+                      <AlertCircle className="h-4 w-4" />
+                      <AlertTitle>Error</AlertTitle>
+                      <AlertDescription>{error.message}</AlertDescription>
+                    </Alert>
+                  )}
+                  {data && (
+                    <Alert variant="success">
+                      <AlertCircle className="h-4 w-4" />
+                      <AlertTitle>Success</AlertTitle>
+                      <AlertDescription>
+                        Account created successfully
+                      </AlertDescription>
+                    </Alert>
+                  )}
                 </div>
               </form>
               <div className="hidden bg-muted md:flex items-center justify-center">
