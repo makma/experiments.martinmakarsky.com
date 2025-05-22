@@ -8,13 +8,19 @@ import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { SignupPayload } from "../api/signup/route";
+import { SignupPayload, SignupResponse } from "../api/signup/route";
 import { AlertCircle } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "../../components/ui/alert";
 
 export default function SignUpPage() {
   const [email, setEmail] = useState("marks@gmail.com");
   const [password, setPassword] = useState("password");
+
+  // Save previous response and error to avoid flickering on retry
+  const [currentResponse, setCurrentResponse] = useState<SignupResponse | null>(
+    null
+  );
+  const [currentError, setCurrentError] = useState<Error | null>(null);
 
   const {
     mutate: signup,
@@ -32,6 +38,14 @@ export default function SignUpPage() {
         throw new Error(error.message);
       }
       return response.json();
+    },
+    onSuccess: (data) => {
+      setCurrentResponse(data);
+      setCurrentError(null);
+    },
+    onError: (error) => {
+      setCurrentError(error);
+      setCurrentResponse(null);
     },
   });
 
@@ -64,7 +78,6 @@ export default function SignUpPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      disabled={isPending}
                     />
                   </div>
                   <div className="grid gap-2">
@@ -77,7 +90,6 @@ export default function SignUpPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
-                      disabled={isPending}
                     />
                   </div>
                   <Button
@@ -88,19 +100,21 @@ export default function SignUpPage() {
                   >
                     {isPending ? "Signing up..." : "Sign up"}
                   </Button>
-                  {error && (
+                  {currentError && (
                     <Alert variant="destructive">
                       <AlertCircle className="h-4 w-4" />
                       <AlertTitle>Error</AlertTitle>
-                      <AlertDescription>{error.message}</AlertDescription>
+                      <AlertDescription>
+                        {currentError.message}
+                      </AlertDescription>
                     </Alert>
                   )}
-                  {data && (
+                  {currentResponse && (
                     <Alert variant="success">
                       <AlertCircle className="h-4 w-4" />
                       <AlertTitle>Success</AlertTitle>
                       <AlertDescription>
-                        Account created successfully
+                        {currentResponse.message}
                       </AlertDescription>
                     </Alert>
                   )}

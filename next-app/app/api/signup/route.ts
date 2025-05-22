@@ -5,18 +5,28 @@ export type SignupPayload = {
   password: string;
 };
 
+export type SignupResponse = {
+  message: string;
+  headers?: Record<string, string>;
+};
+
 const EXISTING_USERS = [
   {
-    email: "hellyr@gmail.com",
+    email: "hellyr@lumon.com",
   },
   {
-    email: "misterm@gmail.com",
+    email: "misterm@lumon.com",
   },
 ];
 
-export async function POST(request: NextRequest) {
+export async function POST(
+  request: NextRequest
+): Promise<NextResponse<SignupResponse>> {
   const { email, password } = (await request.json()) as SignupPayload;
   console.log(email, password);
+
+  // Wait for 300ms to avoid UI flickering
+  await new Promise((resolve) => setTimeout(resolve, 300));
 
   const existingUser = EXISTING_USERS.find((user) => user.email === email);
 
