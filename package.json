@@ -9,9 +9,13 @@
     "node": "20.x"
   },
   "scripts": {
-    "test": "playwright test"
+    "test": "playwright test",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   },
   "dependencies": {
     "@playwright/test": "^1.49.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5"
   }
 }
