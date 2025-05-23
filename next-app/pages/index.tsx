@@ -72,7 +72,10 @@ export default function Home() {
               </div>
             </Link>
 
-            <Link className={styles.card} href="/fingerprint-pro-direct-custom-tls-endpoint">
+            <Link
+              className={styles.card}
+              href="/fingerprint-pro-direct-custom-tls-endpoint"
+            >
               <h2>Fingerprint Pro Direct TLS endpoint testing &rarr;</h2>
               <p>No lib, TS NPM agent, No subdomain setup, extended result</p>
               <div>
@@ -672,12 +675,8 @@ export default function Home() {
               className={styles.card}
               href="/fingerprint-on-demand-identification-static"
             >
-              <h2>
-                Static Fingerprint Pro On Demand Identification&rarr;
-              </h2>
-              <p>
-                Static lib
-              </p>
+              <h2>Static Fingerprint Pro On Demand Identification&rarr;</h2>
+              <p>Static lib</p>
               <div>
                 <pre>subId: sub_AHhMVKY0HFYj3W</pre>
                 <pre>env: prod</pre>
@@ -688,12 +687,8 @@ export default function Home() {
               className={styles.card}
               href="/fingerprint-on-demand-identification-pro-cdn"
             >
-              <h2>
-                Fingerprint Pro On Demand Identification&rarr;
-              </h2>
-              <p>
-                Pro CDN lib
-              </p>
+              <h2>Fingerprint Pro On Demand Identification&rarr;</h2>
+              <p>Pro CDN lib</p>
               <div>
                 <pre>subId: sub_AHhMVKY0HFYj3W</pre>
                 <pre>env: prod</pre>
@@ -989,6 +984,25 @@ export default function Home() {
                 <pre>subId: sub_Ezq3jYsYhAKyXJ</pre>
                 <pre>env: prod</pre>
               </div>
+              <Image
+                className={styles.card_logo}
+                src="images/node-logo.svg"
+                width={80}
+                height={50}
+                alt="Node logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/cloudflare-logo.svg"
+                width={80}
+                height={50}
+                alt="Cloudflare logo"
+              />
+            </Link>
+
+            <Link className={styles.card} href="/signup-flow">
+              <h2>Signup Flow</h2>
+              <p>Signup Flow</p>
               <Image
                 className={styles.card_logo}
                 src="images/node-logo.svg"

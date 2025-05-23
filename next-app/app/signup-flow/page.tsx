@@ -12,7 +12,7 @@ import { SignupPayload, SignupResponse } from "../api/signup/route";
 import { ErrorAlert, SuccessAlert } from "../../components/ui/alert";
 
 export default function SignUpPage() {
-  const [email, setEmail] = useState("marks@gmail.com");
+  const [email, setEmail] = useState("marks@lumon.com");
   const [password, setPassword] = useState("password");
 
   // Save previous response and error to avoid flickering on retry
@@ -107,7 +107,7 @@ export default function SignUpPage() {
                   )}
                 </div>
               </form>
-              <div className="hidden bg-muted md:flex items-center justify-center">
+              <div className="hidden bg-muted/70 md:flex items-center justify-center">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="images/lumon-globe-logo.svg"
