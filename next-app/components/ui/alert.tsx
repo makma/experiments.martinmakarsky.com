@@ -1,6 +1,7 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
+import { AlertCircle } from "lucide-react";
 
 const alertVariants = cva(
   "relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground",
@@ -57,4 +58,28 @@ const AlertDescription = React.forwardRef<
 ));
 AlertDescription.displayName = "AlertDescription";
 
-export { Alert, AlertTitle, AlertDescription };
+const ErrorAlert = React.forwardRef<
+  HTMLDivElement,
+  { message: string } & Omit<React.HTMLAttributes<HTMLDivElement>, "children">
+>(({ message, ...props }, ref) => (
+  <Alert ref={ref} variant="destructive" {...props}>
+    <AlertCircle className="h-4 w-4" />
+    <AlertTitle>Error</AlertTitle>
+    <AlertDescription>{message}</AlertDescription>
+  </Alert>
+));
+ErrorAlert.displayName = "ErrorAlert";
+
+const SuccessAlert = React.forwardRef<
+  HTMLDivElement,
+  { message: string } & Omit<React.HTMLAttributes<HTMLDivElement>, "children">
+>(({ message, ...props }, ref) => (
+  <Alert ref={ref} variant="success" {...props}>
+    <AlertCircle className="h-4 w-4" />
+    <AlertTitle>Success</AlertTitle>
+    <AlertDescription>{message}</AlertDescription>
+  </Alert>
+));
+SuccessAlert.displayName = "SuccessAlert";
+
+export { Alert, AlertTitle, AlertDescription, ErrorAlert, SuccessAlert };

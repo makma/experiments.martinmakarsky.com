@@ -9,8 +9,7 @@ import { Input } from "../../components/ui/input";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { SignupPayload, SignupResponse } from "../api/signup/route";
-import { AlertCircle } from "lucide-react";
-import { Alert, AlertDescription, AlertTitle } from "../../components/ui/alert";
+import { ErrorAlert, SuccessAlert } from "../../components/ui/alert";
 
 export default function SignUpPage() {
   const [email, setEmail] = useState("marks@gmail.com");
@@ -101,22 +100,10 @@ export default function SignUpPage() {
                     {isPending ? "Signing up..." : "Sign up"}
                   </Button>
                   {currentError && (
-                    <Alert variant="destructive">
-                      <AlertCircle className="h-4 w-4" />
-                      <AlertTitle>Error</AlertTitle>
-                      <AlertDescription>
-                        {currentError.message}
-                      </AlertDescription>
-                    </Alert>
+                    <ErrorAlert message={currentError.message} />
                   )}
                   {currentResponse && (
-                    <Alert variant="success">
-                      <AlertCircle className="h-4 w-4" />
-                      <AlertTitle>Success</AlertTitle>
-                      <AlertDescription>
-                        {currentResponse.message}
-                      </AlertDescription>
-                    </Alert>
+                    <SuccessAlert message={currentResponse.message} />
                   )}
                 </div>
               </form>
