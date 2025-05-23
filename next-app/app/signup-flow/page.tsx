@@ -1,5 +1,6 @@
 "use client";
 
+import "../../styles/preflight-scoped.css";
 import { Label } from "@radix-ui/react-label";
 import { cn } from "../../components/lib/utils";
 import { Button } from "../../components/ui/button";
@@ -16,9 +17,7 @@ export default function SignUpPage() {
   const [password, setPassword] = useState("password");
 
   // Save previous response and error to avoid flickering on retry
-  const [currentResponse, setCurrentResponse] = useState<SignupResponse | null>(
-    null
-  );
+  const [currentResponse, setCurrentResponse] = useState<SignupResponse | null>(null);
   const [currentError, setCurrentError] = useState<Error | null>(null);
 
   const {
@@ -62,9 +61,7 @@ export default function SignUpPage() {
               <form className="p-6 md:p-8" onSubmit={handleSubmit}>
                 <div className="flex flex-col gap-6">
                   <div className="flex flex-col items-center text-center">
-                    <h1 className="text-2xl font-bold">
-                      Create a trial account
-                    </h1>
+                    <h1 className="text-2xl font-bold">Create a trial account</h1>
                     <p className="text-balance text-muted-foreground">
                       Start with $20 in free credits
                     </p>
@@ -91,20 +88,11 @@ export default function SignUpPage() {
                       required
                     />
                   </div>
-                  <Button
-                    type="submit"
-                    className="w-full my-1"
-                    size="lg"
-                    disabled={isPending}
-                  >
+                  <Button type="submit" className="w-full my-1" size="lg" disabled={isPending}>
                     {isPending ? "Signing up..." : "Sign up"}
                   </Button>
-                  {currentError && (
-                    <ErrorAlert message={currentError.message} />
-                  )}
-                  {currentResponse && (
-                    <SuccessAlert message={currentResponse.message} />
-                  )}
+                  {currentError && <ErrorAlert message={currentError.message} />}
+                  {currentResponse && <SuccessAlert message={currentResponse.message} />}
                 </div>
               </form>
               <div className="hidden bg-muted/70 md:flex items-center justify-center">
@@ -118,9 +106,8 @@ export default function SignUpPage() {
             </CardContent>
           </Card>
           <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
-            Please enjoy each credit equally. By clicking continue, you agree to
-            our <a href="#">Terms of Service</a> and{" "}
-            <a href="#">Privacy Policy</a>.
+            Please enjoy each credit equally. By clicking continue, you agree to our{" "}
+            <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
           </div>
         </div>
       </div>

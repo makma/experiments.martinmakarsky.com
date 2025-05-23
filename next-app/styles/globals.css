@@ -1,6 +1,11 @@
-@tailwind base;
+/** Do not apply tailwind base globally to preserve existing styles */
+/** Tailwind base is applied in the preflight-scoped.css file 
+ which individual pages can import as needed */
+
+/* @tailwind base; */
 @tailwind components;
 @tailwind utilities;
+
 html,
 body {
   padding: 0;
@@ -28,7 +33,7 @@ a {
   }
 }
 
-@layer base {
+
   :root {
     --background: 0 0% 100%;
     --foreground: 20 14.3% 4.1%;
@@ -82,13 +87,12 @@ a {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
 
-@layer base {
+
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
   }
-}
+
