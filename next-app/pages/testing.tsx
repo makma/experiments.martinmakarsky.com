@@ -50,6 +50,7 @@ export default function TestingAutomatic() {
         scriptUrlPattern:
         CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_TESTING,
         endpoint:CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_TESTING,
+        remoteControlDetection: true,
       });
       const fp = await fpPromise;
       const data = await fp.get({ extendedResult: true });
