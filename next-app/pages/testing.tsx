@@ -15,15 +15,10 @@ export default function TestingAutomatic() {
     const urlParams = new URLSearchParams(window.location.search);
     const params: Record<string, string> = {};
     
-    // Check for the specific parameters we're interested in
-    const targetParams = ['os', 'br', 'vpn', 'vm', 'devtools', 'private'];
-    
-    targetParams.forEach(param => {
-      const value = urlParams.get(param);
-      if (value !== null) {
-        params[param] = value;
-      }
-    });
+    // Serialize all query parameters
+    for (const [key, value] of urlParams.entries()) {
+      params[key] = value;
+    }
     
     return params;
   };
