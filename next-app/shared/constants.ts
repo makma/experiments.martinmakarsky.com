@@ -29,3 +29,8 @@ export const CUSTOM_SUBDOMAIN: string = "https://fp.martinmakarsky.com";
 // sub_KpQKsqB3pwVKwi open client response
 
 export const OPEN_CLIENT_RESPONSE_PUBLIC_API_KEY = "awHQbFLn4HoIAxxIqZGZ"
+
+// sub_sZjVxPvnExpRUU testing
+export const FINGERPRINT_PUBLIC_API_KEY_TESTING = "KVyN39rM8EUgLgXE9k7A";
+export const CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_TESTING = "https://martinmakarsky.com/ZtgXygaxmTkwiimg/HUDWO3LTWEHoRcUL?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>"
+export const CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_TESTING = "https://martinmakarsky.com/ZtgXygaxmTkwiimg/7yzX07VysLl7qdxQ?region=us"
