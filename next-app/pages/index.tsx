@@ -132,6 +132,24 @@ export default function Home() {
               />
             </Link>
 
+            <Link className={styles.card} href="/fingerprint-pro-cloudflare-environments">
+              <h2>Fingerprint Pro Cloudflare Environments &rarr;</h2>
+              <p>
+                No lib, TS NPM agent, cloudflare integration, extended result
+              </p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod, Environmetns testing environment</pre>
+              </div>
+              <Image
+                className={styles.card_logo}
+                src="images/cloudflare-logo.svg"
+                width={80}
+                height={50}
+                alt="Cloudflare logo"
+              />
+            </Link>
+
             <Link
               className={styles.card}
               href="/fingerprint-pro-cloudflare-2nd-managed-integration"
