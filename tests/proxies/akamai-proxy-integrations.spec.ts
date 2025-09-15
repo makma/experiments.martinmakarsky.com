@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 
 const baseDomain = "https://experiments.martinmakarsky.com"
 
-test.skip('Akamai Proxy Integration returns the visitorId', async ({ page }) => {
+test('Akamai Proxy Integration returns the visitorId', async ({ page }) => {
   await page.goto(`${baseDomain}/fingerprint-pro-react-akamai`);
 
   const preSelector = 'pre';
