@@ -1036,6 +1036,25 @@ export default function Home() {
                 alt="Cloudflare logo"
               />
             </Link>
+
+            <Link className={styles.card} href="/payment">
+              <h2>Payment Flow</h2>
+              <p>Payment Flow</p>
+              <Image
+                className={styles.card_logo}
+                src="images/node-logo.svg"
+                width={80}
+                height={50}
+                alt="Node logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/cloudflare-logo.svg"
+                width={80}
+                height={50}
+                alt="Cloudflare logo"
+              />
+            </Link>
           </div>
         </main>
 
