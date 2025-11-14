@@ -21,10 +21,12 @@ export default function PaymentPage() {
   const [currentError, setCurrentError] = useState<Error | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [lastMethod, setLastMethod] = useState<HttpMethod | null>(null);
+  const [lastTransport, setLastTransport] = useState<"fetch" | "xhr" | null>(null);
 
   const handleRequest = async (method: HttpMethod) => {
     setIsLoading(true);
     setLastMethod(method);
+    setLastTransport("fetch");
     setCurrentError(null);
     setCurrentResponse(null);
 
@@ -69,6 +71,66 @@ export default function PaymentPage() {
       setCurrentError(error instanceof Error ? error : new Error("An error occurred"));
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleXhrRequest = (method: HttpMethod) => {
+    setIsLoading(true);
+    setLastMethod(method);
+    setLastTransport("xhr");
+    setCurrentError(null);
+    setCurrentResponse(null);
+
+    const xhr = new XMLHttpRequest();
+    const payload: PaymentPayload = {
+      cardNumber,
+      cvv: parseInt(cvv),
+      expirationDate,
+    };
+
+    xhr.onload = () => {
+      setIsLoading(false);
+      if (xhr.status >= 200 && xhr.status < 300) {
+        try {
+          const data = JSON.parse(xhr.responseText);
+          setCurrentResponse(data);
+        } catch (error) {
+          setCurrentError(new Error("Failed to parse response"));
+        }
+      } else {
+        try {
+          const error = JSON.parse(xhr.responseText);
+          setCurrentError(new Error(error.message || "Request failed"));
+        } catch {
+          setCurrentError(new Error(`Request failed with status ${xhr.status}`));
+        }
+      }
+    };
+
+    xhr.onerror = () => {
+      setIsLoading(false);
+      setCurrentError(new Error("Network error occurred"));
+    };
+
+    xhr.ontimeout = () => {
+      setIsLoading(false);
+      setCurrentError(new Error("Request timeout"));
+    };
+
+    if (method === "GET") {
+      // For GET, send data as query parameters
+      const params = new URLSearchParams({
+        cardNumber,
+        cvv,
+        expirationDate,
+      });
+      xhr.open("GET", `/api/pay?${params.toString()}`);
+      xhr.send();
+    } else {
+      // For other methods, send data in JSON body
+      xhr.open(method, "/api/pay");
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.send(JSON.stringify(payload));
     }
   };
 
@@ -118,62 +180,117 @@ export default function PaymentPage() {
                     required
                   />
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-2 mt-4">
-                  <Button
-                    type="button"
-                    onClick={() => handleRequest("POST")}
-                    disabled={isLoading}
-                    variant="default"
-                    className="w-full"
-                  >
-                    POST
-                  </Button>
-                  <Button
-                    type="button"
-                    onClick={() => handleRequest("GET")}
-                    disabled={isLoading}
-                    variant="default"
-                    className="w-full"
-                  >
-                    GET
-                  </Button>
-                  <Button
-                    type="button"
-                    onClick={() => handleRequest("PUT")}
-                    disabled={isLoading}
-                    variant="default"
-                    className="w-full"
-                  >
-                    PUT
-                  </Button>
-                  <Button
-                    type="button"
-                    onClick={() => handleRequest("PATCH")}
-                    disabled={isLoading}
-                    variant="default"
-                    className="w-full"
-                  >
-                    PATCH
-                  </Button>
-                  <Button
-                    type="button"
-                    onClick={() => handleRequest("DELETE")}
-                    disabled={isLoading}
-                    variant="destructive"
-                    className="w-full"
-                  >
-                    DELETE
-                  </Button>
+                <div className="space-y-4 mt-4">
+                  <div>
+                    <h3 className="text-sm font-medium mb-2">Fetch API</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
+                      <Button
+                        type="button"
+                        onClick={() => handleRequest("POST")}
+                        disabled={isLoading}
+                        variant="default"
+                        className="w-full"
+                      >
+                        POST
+                      </Button>
+                      <Button
+                        type="button"
+                        onClick={() => handleRequest("GET")}
+                        disabled={isLoading}
+                        variant="default"
+                        className="w-full"
+                      >
+                        GET
+                      </Button>
+                      <Button
+                        type="button"
+                        onClick={() => handleRequest("PUT")}
+                        disabled={isLoading}
+                        variant="default"
+                        className="w-full"
+                      >
+                        PUT
+                      </Button>
+                      <Button
+                        type="button"
+                        onClick={() => handleRequest("PATCH")}
+                        disabled={isLoading}
+                        variant="default"
+                        className="w-full"
+                      >
+                        PATCH
+                      </Button>
+                      <Button
+                        type="button"
+                        onClick={() => handleRequest("DELETE")}
+                        disabled={isLoading}
+                        variant="destructive"
+                        className="w-full"
+                      >
+                        DELETE
+                      </Button>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium mb-2">XHR</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
+                      <Button
+                        type="button"
+                        onClick={() => handleXhrRequest("POST")}
+                        disabled={isLoading}
+                        variant="default"
+                        className="w-full"
+                      >
+                        POST
+                      </Button>
+                      <Button
+                        type="button"
+                        onClick={() => handleXhrRequest("GET")}
+                        disabled={isLoading}
+                        variant="default"
+                        className="w-full"
+                      >
+                        GET
+                      </Button>
+                      <Button
+                        type="button"
+                        onClick={() => handleXhrRequest("PUT")}
+                        disabled={isLoading}
+                        variant="default"
+                        className="w-full"
+                      >
+                        PUT
+                      </Button>
+                      <Button
+                        type="button"
+                        onClick={() => handleXhrRequest("PATCH")}
+                        disabled={isLoading}
+                        variant="default"
+                        className="w-full"
+                      >
+                        PATCH
+                      </Button>
+                      <Button
+                        type="button"
+                        onClick={() => handleXhrRequest("DELETE")}
+                        disabled={isLoading}
+                        variant="destructive"
+                        className="w-full"
+                      >
+                        DELETE
+                      </Button>
+                    </div>
+                  </div>
                 </div>
                 {isLoading && (
                   <p className="text-center text-sm text-muted-foreground">
-                    Sending {lastMethod} request...
+                    Sending {lastMethod} request via {lastTransport?.toUpperCase()}...
                   </p>
                 )}
                 {currentError && <ErrorAlert message={currentError.message} />}
                 {currentResponse && (
                   <SuccessAlert 
-                    message={`${lastMethod} ${currentResponse.message}`}
+                    message={`${lastMethod} (${lastTransport?.toUpperCase()}) ${currentResponse.message}`}
                   />
                 )}
               </div>
