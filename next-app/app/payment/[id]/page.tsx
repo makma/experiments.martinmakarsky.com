@@ -1,19 +1,25 @@
 "use client";
 
-import "../../styles/preflight-scoped.css";
+import "../../../styles/preflight-scoped.css";
 import { Label } from "@radix-ui/react-label";
-import { cn } from "../../components/lib/utils";
-import { Button } from "../../components/ui/button";
-import { Card, CardContent } from "../../components/ui/card";
-import { Input } from "../../components/ui/input";
+import { cn } from "../../../components/lib/utils";
+import { Button } from "../../../components/ui/button";
+import { Card, CardContent } from "../../../components/ui/card";
+import { Input } from "../../../components/ui/input";
 import { useEffect, useRef, useState } from "react";
-import { PaymentPayload, PaymentResponse } from "../api/pay/route";
-import { ErrorAlert, SuccessAlert } from "../../components/ui/alert";
+import { useParams } from "next/navigation";
+import { PaymentPayload, PaymentResponse } from "../../api/payment/[id]/route";
+import { ErrorAlert, SuccessAlert } from "../../../components/ui/alert";
 
 type HttpMethod = "POST" | "GET" | "PUT" | "PATCH" | "DELETE";
 type TransportMethod = "fetch" | "xhr" | "form";
 
 export default function PaymentPage() {
+  const params = useParams<{ id?: string | string[] }>();
+  const idParam = Array.isArray(params?.id) ? params?.id[0] : params?.id;
+  const pageId = idParam && typeof idParam === "string" ? idParam : "default";
+  const apiRoute = `/api/pay-${pageId}`;
+
   const [cardNumber, setCardNumber] = useState("4111111111111111");
   const [cvv, setCvv] = useState("123");
   const [expirationDate, setExpirationDate] = useState("12/25");
@@ -48,12 +54,12 @@ export default function PaymentPage() {
           cvv,
           expirationDate,
         });
-        response = await fetch(`/api/pay?${params.toString()}`, {
+        response = await fetch(`${apiRoute}?${params.toString()}`, {
           method: "GET",
         });
       } else {
         // For other methods, send data in JSON body
-        response = await fetch("/api/pay", {
+        response = await fetch(apiRoute, {
           method,
           headers: {
             "Content-Type": "application/json",
@@ -126,11 +132,11 @@ export default function PaymentPage() {
         cvv,
         expirationDate,
       });
-      xhr.open("GET", `/api/pay?${params.toString()}`);
+      xhr.open("GET", `${apiRoute}?${params.toString()}`);
       xhr.send();
     } else {
       // For other methods, send data in JSON body
-      xhr.open(method, "/api/pay");
+      xhr.open(method, apiRoute);
       xhr.setRequestHeader("Content-Type", "application/json");
       xhr.send(JSON.stringify(payload));
     }
@@ -179,7 +185,7 @@ export default function PaymentPage() {
               <form
                 className="flex flex-col gap-6"
                 method="POST"
-                action="/api/pay"
+                action={apiRoute}
                 target="paymentFormTarget"
                 encType="application/x-www-form-urlencoded"
                 onSubmit={() => {
@@ -346,7 +352,7 @@ export default function PaymentPage() {
                           POST (form-encoded)
                         </Button>
                         <p className="text-xs text-muted-foreground">
-                          Uses a plain HTML form submission to POST directly to /api/pay.
+                          Uses a plain HTML form submission to POST directly to {apiRoute}.
                         </p>
                       </div>
                     </div>

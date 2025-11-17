@@ -1037,7 +1037,7 @@ export default function Home() {
               />
             </Link>
 
-            <Link className={styles.card} href="/payment">
+            <Link className={styles.card} href="/payment-1">
               <h2>Payment Flow</h2>
               <p>Payment Flow</p>
               <Image
