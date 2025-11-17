@@ -6,11 +6,12 @@ import { cn } from "../../components/lib/utils";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PaymentPayload, PaymentResponse } from "../api/pay/route";
 import { ErrorAlert, SuccessAlert } from "../../components/ui/alert";
 
 type HttpMethod = "POST" | "GET" | "PUT" | "PATCH" | "DELETE";
+type TransportMethod = "fetch" | "xhr" | "form";
 
 export default function PaymentPage() {
   const [cardNumber, setCardNumber] = useState("4111111111111111");
@@ -21,7 +22,8 @@ export default function PaymentPage() {
   const [currentError, setCurrentError] = useState<Error | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [lastMethod, setLastMethod] = useState<HttpMethod | null>(null);
-  const [lastTransport, setLastTransport] = useState<"fetch" | "xhr" | null>(null);
+  const [lastTransport, setLastTransport] = useState<TransportMethod | null>(null);
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
   const handleRequest = async (method: HttpMethod) => {
     setIsLoading(true);
@@ -134,13 +136,60 @@ export default function PaymentPage() {
     }
   };
 
+  useEffect(() => {
+    const iframe = iframeRef.current;
+    if (!iframe) {
+      return;
+    }
+
+    const handleLoad = () => {
+      try {
+        const doc = iframe.contentDocument;
+        const responseText = doc?.body?.innerText?.trim();
+
+        if (!responseText) {
+          throw new Error("Empty response from form submission");
+        }
+
+        const data = JSON.parse(responseText) as PaymentResponse;
+        setCurrentResponse(data);
+        setCurrentError(null);
+      } catch (error) {
+        const err =
+          error instanceof Error
+            ? error
+            : new Error("Failed to parse form submission response");
+        setCurrentError(err);
+        setCurrentResponse(null);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    iframe.addEventListener("load", handleLoad);
+    return () => iframe.removeEventListener("load", handleLoad);
+  }, []);
+
   return (
     <div className="flex min-h-svh flex-col items-center justify-center bg-muted p-6 md:p-10">
       <div className="w-full max-w-sm md:max-w-3xl">
         <div className={cn("flex flex-col gap-6")}>
           <Card className="overflow-hidden">
             <CardContent className="p-6 md:p-8">
-              <div className="flex flex-col gap-6">
+              <form
+                className="flex flex-col gap-6"
+                method="POST"
+                action="/api/pay"
+                target="paymentFormTarget"
+                encType="application/x-www-form-urlencoded"
+                onSubmit={() => {
+                  setIsLoading(true);
+                  setLastMethod("POST");
+                  setLastTransport("form");
+                  setCurrentError(null);
+                  setCurrentResponse(null);
+                }}
+              >
                 <div className="flex flex-col items-center text-center">
                   <h1 className="text-2xl font-bold">Payment Form</h1>
                   <p className="text-balance text-muted-foreground">
@@ -151,6 +200,7 @@ export default function PaymentPage() {
                   <Label htmlFor="cardNumber">Card Number</Label>
                   <Input
                     id="cardNumber"
+                    name="cardNumber"
                     type="text"
                     value={cardNumber}
                     onChange={(e) => setCardNumber(e.target.value)}
@@ -162,6 +212,7 @@ export default function PaymentPage() {
                   <Label htmlFor="cvv">CVV</Label>
                   <Input
                     id="cvv"
+                    name="cvv"
                     type="text"
                     value={cvv}
                     onChange={(e) => setCvv(e.target.value)}
@@ -173,6 +224,7 @@ export default function PaymentPage() {
                   <Label htmlFor="expirationDate">Expiration Date</Label>
                   <Input
                     id="expirationDate"
+                    name="expirationDate"
                     type="text"
                     value={expirationDate}
                     onChange={(e) => setExpirationDate(e.target.value)}
@@ -281,6 +333,24 @@ export default function PaymentPage() {
                       </Button>
                     </div>
                   </div>
+                  <div>
+                    <h3 className="text-sm font-medium mb-2">HTTP Form</h3>
+                    <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-4">
+                      <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-4">
+                        <Button
+                          type="submit"
+                          variant="outline"
+                          className="w-full md:w-auto"
+                          disabled={isLoading}
+                        >
+                          POST (form-encoded)
+                        </Button>
+                        <p className="text-xs text-muted-foreground">
+                          Uses a plain HTML form submission to POST directly to /api/pay.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 {isLoading && (
                   <p className="text-center text-sm text-muted-foreground">
@@ -293,11 +363,17 @@ export default function PaymentPage() {
                     message={`${lastMethod} (${lastTransport?.toUpperCase()}) ${currentResponse.message}`}
                   />
                 )}
-              </div>
+              </form>
             </CardContent>
           </Card>
         </div>
       </div>
+      <iframe
+        name="paymentFormTarget"
+        ref={iframeRef}
+        title="payment-form-target"
+        style={{ display: "none" }}
+      />
     </div>
   );
 }
