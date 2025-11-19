@@ -365,9 +365,17 @@ export default function PaymentPage() {
                 )}
                 {currentError && <ErrorAlert message={currentError.message} />}
                 {currentResponse && (
-                  <SuccessAlert 
-                    message={`${lastMethod} (${lastTransport?.toUpperCase()}) ${currentResponse.message}`}
-                  />
+                  <>
+                    <SuccessAlert 
+                      message={`${lastMethod} (${lastTransport?.toUpperCase()}) ${currentResponse.message}`}
+                    />
+                    <div className="mt-4">
+                      <h3 className="text-sm font-medium mb-2">Response Body</h3>
+                      <pre className="bg-muted p-4 rounded-md overflow-auto text-xs border">
+                        {JSON.stringify(currentResponse, null, 2)}
+                      </pre>
+                    </div>
+                  </>
                 )}
               </form>
             </CardContent>
