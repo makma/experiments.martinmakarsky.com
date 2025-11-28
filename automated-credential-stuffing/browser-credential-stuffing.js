@@ -2,20 +2,20 @@ const puppeteer = require("puppeteer");
 const proxies = require("./proxies");
 const credentials = require("./credentials");
 
-const TARGET_URL = "https://experiments.martinmakarsky.com/signup-flow";
-const BUTTON_SELECTOR = "#signup-submit";
+const TARGET_URL = "https://experiments.martinmakarsky.com/signin-flow";
+const BUTTON_SELECTOR = "#signin-submit";
 const USE_PROXIES = true;
 const HEADLESS = false; // set to false for full browser window
 
-async function fillSignupForm(page, email, password) {
+async function fillSigninForm(page, email, password) {
 
-  const emailInput = await page.$("#signup-email");
+  const emailInput = await page.$("#signin-email");
   if (emailInput) {
     await emailInput.click({ clickCount: 3 });
     await emailInput.type(email);
   }
 
-  const passwordInput = await page.$("#signup-password");
+  const passwordInput = await page.$("#signin-password");
   if (passwordInput) {
     await passwordInput.click({ clickCount: 3 });
     await passwordInput.type(password);
@@ -78,7 +78,7 @@ async function main() {
     await page.goto(TARGET_URL, { waitUntil: "networkidle2" });
     await page.waitForSelector(BUTTON_SELECTOR, { timeout: 10000 });
 
-    await fillSignupForm(page, creds.email, creds.password);
+    await fillSigninForm(page, creds.email, creds.password);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     const clickPromise = clickSignupButton(page).catch((error) => {

@@ -1,6 +1,6 @@
 const credentials = require("./credentials");
 
-const URL = "https://experiments.martinmakarsky.com/api/signup";
+const URL = "https://experiments.martinmakarsky.com/api/signin";
 
 async function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));

@@ -1018,7 +1018,7 @@ export default function Home() {
               />
             </Link>
 
-            <Link className={styles.card} href="/signin-flow">
+            <Link className={styles.card} href="/signin">
               <h2>Sign-in Flow</h2>
               <p>Sign-in Flow</p>
               <Image
