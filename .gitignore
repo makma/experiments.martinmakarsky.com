@@ -1,7 +1,7 @@
 # <---------Root Section--------->
 # dependencies
 node_modules
-puppeteer-monitor/proxies.js
+automated-credential-stuffing/proxies.js
 
 # editors
 .vscode
