@@ -1,6 +1,7 @@
 # <---------Root Section--------->
 # dependencies
 node_modules
+puppeteer-monitor/proxies.js
 
 # editors
 .vscode
