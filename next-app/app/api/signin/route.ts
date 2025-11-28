@@ -19,8 +19,7 @@ export async function POST(
   // Extract request headers
   const headers = Object.fromEntries(request.headers);
 
-  // Simulate origin behavior: 25% success, 80% forbidden
-  const success = Math.random() < 0.33;
+  const success = Math.random() < 1.0;
 
   if (success) {
     return NextResponse.json(
