@@ -1,39 +1,54 @@
 const puppeteer = require("puppeteer");
 const proxies = require("./proxies");
+const credentials = require("./credentials");
 
 const TARGET_URL = "https://experiments.martinmakarsky.com/signup-flow";
-const BUTTON_TEXT = "sign up";
+const BUTTON_SELECTOR = "#signup-submit";
 const USE_PROXIES = true;
+const HEADLESS = false; // set to false for full browser window
 
-async function clickSignupButton(page) {
-  const buttonHandle = await page.evaluateHandle((text) => {
-    const lowerText = text.toLowerCase();
-    const buttons = Array.from(document.querySelectorAll("button"));
-    return (
-      buttons.find((btn) => btn.textContent && btn.textContent.trim().toLowerCase().includes(lowerText)) ||
-      null
-    );
-  }, BUTTON_TEXT);
+async function fillSignupForm(page, email, password) {
 
-  if (!buttonHandle || !(await buttonHandle.asElement())) {
-    throw new Error(`Unable to find a button containing text "${BUTTON_TEXT}"`);
+  const emailInput = await page.$("#signup-email");
+  if (emailInput) {
+    await emailInput.click({ clickCount: 3 });
+    await emailInput.type(email);
   }
 
-  const elementHandle = buttonHandle.asElement();
-  await elementHandle.click();
+  const passwordInput = await page.$("#signup-password");
+  if (passwordInput) {
+    await passwordInput.click({ clickCount: 3 });
+    await passwordInput.type(password);
+  }
+}
+
+async function clickSignupButton(page) {
+  const buttonHandle = await page.$(BUTTON_SELECTOR);
+
+  if (!buttonHandle) {
+    throw new Error(`Unable to find signup button with selector "${BUTTON_SELECTOR}"`);
+  }
+
+  await buttonHandle.click();
 }
 
 async function main() {
   let iteration = 0;
+  let proxyIndex = 0;
+  let credentialIndex = 0;
   console.log(`Monitoring started at ${new Date().toISOString()}`);
   console.log(`Target: ${TARGET_URL}`);
 
   while (true) {
     iteration += 1;
 
-    const proxy = USE_PROXIES
-      ? proxies[Math.floor(Math.random() * proxies.length)]
-      : null;
+    const proxy =
+      USE_PROXIES && proxies.length > 0
+        ? proxies[proxyIndex % proxies.length]
+        : null;
+    if (proxy) {
+      proxyIndex += 1;
+    }
 
     const launchArgs = [];
     if (proxy) {
@@ -44,7 +59,10 @@ async function main() {
       console.log(`\n[${new Date().toISOString()}] Iteration ${iteration} without proxy`);
     }
 
-    const browser = await puppeteer.launch({ headless: "new", args: launchArgs });
+    const browser = await puppeteer.launch({
+      headless: HEADLESS ? "new" : false,
+      args: launchArgs,
+    });
     const page = await browser.newPage();
 
     if (proxy && proxy.username && proxy.password) {
@@ -54,17 +72,14 @@ async function main() {
       });
     }
 
+    const creds = credentials[credentialIndex % credentials.length];
+    credentialIndex += 1;
+
     await page.goto(TARGET_URL, { waitUntil: "networkidle2" });
-    await page.waitForFunction(
-      (text) => {
-        const lowerText = text.toLowerCase();
-        return Array.from(document.querySelectorAll("button")).some(
-          (btn) => btn.textContent && btn.textContent.trim().toLowerCase().includes(lowerText)
-        );
-      },
-      { timeout: 10000 },
-      BUTTON_TEXT
-    );
+    await page.waitForSelector(BUTTON_SELECTOR, { timeout: 10000 });
+
+    await fillSignupForm(page, creds.email, creds.password);
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
     const clickPromise = clickSignupButton(page).catch((error) => {
       console.error(`Error clicking button: ${error.message}`);
@@ -113,6 +128,9 @@ async function main() {
           `-----------------------------`
       );
     }
+
+    // Stay on the page briefly after receiving the response
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
     await browser.close();
     await new Promise((resolve) => setTimeout(resolve, 1000));
