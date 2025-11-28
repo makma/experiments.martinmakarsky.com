@@ -36,10 +36,10 @@ async function main() {
         bodyText = `<error reading body: ${error.message}>`;
       }
 
-      const preview = bodyText.length > 200 ? `${bodyText.slice(0, 200)}...` : bodyText;
+      const preview = bodyText.length > 100 ? `${bodyText.slice(0, 100)}...` : bodyText;
 
       console.log(`Status: ${status}`);
-      console.log("Body (first 200 chars):");
+      console.log("Body (first 100 chars):");
       console.log(preview);
       console.log("-----------------------------");
     } catch (error) {

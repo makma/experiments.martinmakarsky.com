@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Evil Console</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #000;
+        color: #0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      .card {
+        background: #000;
+        border: 1px solid #16a34a;
+        padding: 24px;
+        max-width: 900px;
+        width: 100%;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+      }
+      h1 {
+        font-family: monospace;
+        font-size: 24px;
+        color: #ef4444;
+        margin: 0 0 8px;
+      }
+      p.subtitle {
+        font-family: monospace;
+        font-size: 12px;
+        color: #86efac;
+        margin: 0 0 16px;
+      }
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+        font-family: monospace;
+        font-size: 12px;
+        margin-bottom: 12px;
+      }
+      .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      button {
+        padding: 8px 14px;
+        border-radius: 4px;
+        border: 1px solid #16a34a;
+        background: #022c22;
+        color: #d1fae5;
+        font-family: monospace;
+        font-size: 12px;
+        cursor: pointer;
+      }
+      button.danger {
+        border-color: #f97316;
+        background: #451a03;
+        color: #fed7aa;
+      }
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+      pre {
+        background: #000;
+        border: 1px solid #16a34a;
+        border-radius: 4px;
+        padding: 8px;
+        font-family: monospace;
+        font-size: 11px;
+        height: 340px;
+        overflow: auto;
+        white-space: pre-wrap;
+      }
+      label {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+      input[type="checkbox"] {
+        accent-color: #16a34a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>EVIL CONSOLE</h1>
+      <p class="subtitle">
+        Basic operator panel for automated credential stuffing. For research/demo only.
+      </p>
+
+      <div class="controls">
+        <label>
+          <input type="checkbox" id="useProxies" />
+          Use proxies (browser mode)
+        </label>
+        <label>
+          <input type="checkbox" id="headless" />
+          Headless (browser mode)
+        </label>
+      </div>
+
+      <div class="buttons">
+        <button id="runHttp">HTTP stuffing (fetch)</button>
+        <button id="runBrowser" class="danger">Browser stuffing (Puppeteer)</button>
+        <button id="stopRun">Stop current run</button>
+        <button id="clearLogs">Clear output</button>
+      </div>
+
+      <pre id="logs">Idle...</pre>
+    </div>
+
+    <script>
+      const logsEl = document.getElementById("logs");
+      const runHttpBtn = document.getElementById("runHttp");
+      const runBrowserBtn = document.getElementById("runBrowser");
+      const clearLogsBtn = document.getElementById("clearLogs");
+      const stopRunBtn = document.getElementById("stopRun");
+      const useProxiesEl = document.getElementById("useProxies");
+      const headlessEl = document.getElementById("headless");
+
+      let isRunning = false;
+      let currentController = null;
+
+      function appendLog(text) {
+        if (!logsEl.textContent || logsEl.textContent === "Idle...") {
+          logsEl.textContent = text;
+        } else {
+          logsEl.textContent += "\n" + text;
+        }
+        logsEl.scrollTop = logsEl.scrollHeight;
+      }
+
+      async function callApi(path, body, controller) {
+        const res = await fetch(path, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body || {}),
+          signal: controller ? controller.signal : undefined,
+        });
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error(`HTTP ${res.status}: ${text}`);
+        }
+        return res.json();
+      }
+
+      async function run(mode) {
+        if (isRunning) return;
+        isRunning = true;
+        runHttpBtn.disabled = true;
+        runBrowserBtn.disabled = true;
+        stopRunBtn.disabled = false;
+
+        const controller = new AbortController();
+        currentController = controller;
+
+        appendLog(`\n[${new Date().toISOString()}] Starting ${mode} stuffing...`);
+
+        try {
+          if (mode === "http") {
+            const data = await callApi("/api/http", null, controller);
+            if (data.logs) appendLog(data.logs);
+          } else if (mode === "browser") {
+            const data = await callApi(
+              "/api/browser",
+              {
+                useProxies: useProxiesEl.checked,
+                headless: headlessEl.checked,
+              },
+              controller
+            );
+            if (data.logs) appendLog(data.logs);
+          }
+        } catch (e) {
+          if (e.name === "AbortError") {
+            appendLog("Run aborted by user.");
+          } else {
+            appendLog(`Error: ${e.message}`);
+          }
+        } finally {
+          isRunning = false;
+          runHttpBtn.disabled = false;
+          runBrowserBtn.disabled = false;
+          stopRunBtn.disabled = true;
+          currentController = null;
+        }
+      }
+
+      runHttpBtn.addEventListener("click", () => run("http"));
+      runBrowserBtn.addEventListener("click", () => run("browser"));
+      stopRunBtn.addEventListener("click", () => {
+        if (currentController) {
+          currentController.abort();
+        }
+      });
+      clearLogsBtn.addEventListener("click", () => {
+        logsEl.textContent = "Idle...";
+      });
+    </script>
+  </body>
+</html>

@@ -2,7 +2,7 @@ const puppeteer = require("puppeteer");
 const proxies = require("./proxies");
 const credentials = require("./credentials");
 
-const TARGET_URL = "https://experiments.martinmakarsky.com/signin-flow";
+const TARGET_URL = "https://experiments.martinmakarsky.com/signin";
 const BUTTON_SELECTOR = "#signin-submit";
 const USE_PROXIES = true;
 const HEADLESS = false; // set to false for full browser window
@@ -116,8 +116,8 @@ async function main() {
         } catch (error) {
           bodyText = `<error reading body: ${error.message}>`;
         }
-        const preview = bodyText.length > 200 ? `${bodyText.slice(0, 200)}...` : bodyText;
-        logOutput += `Body (first 200 chars):\n${preview}\n`;
+        const preview = bodyText.length > 200 ? `${bodyText.slice(0, 100)}...` : bodyText;
+        logOutput += `Body (first 100 chars):\n${preview}\n`;
       } else {
         logOutput += "Body: <omitted for status 200>\n";
       }
