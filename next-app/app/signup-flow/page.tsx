@@ -67,9 +67,10 @@ export default function SignUpPage() {
                     </p>
                   </div>
                   <div className="grid gap-2">
-                    <Label htmlFor="email">Email</Label>
+                    <Label htmlFor="signup-email">Email</Label>
                     <Input
-                      id="email"
+                      id="signup-email"
+                      name="email"
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -78,17 +79,24 @@ export default function SignUpPage() {
                   </div>
                   <div className="grid gap-2">
                     <div className="flex items-center">
-                      <Label htmlFor="password">Password</Label>
+                      <Label htmlFor="signup-password">Password</Label>
                     </div>
                     <Input
-                      id="password"
+                      id="signup-password"
+                      name="password"
                       type="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
                     />
                   </div>
-                  <Button type="submit" className="w-full my-1" size="lg" disabled={isPending}>
+                  <Button
+                    id="signup-submit"
+                    type="submit"
+                    className="w-full my-1"
+                    size="lg"
+                    disabled={isPending}
+                  >
                     {isPending ? "Signing up..." : "Sign up"}
                   </Button>
                   {currentError && <ErrorAlert message={currentError.message} />}
