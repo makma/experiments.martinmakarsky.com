@@ -10,15 +10,6 @@ export type SigninResponse = {
   headers?: Record<string, string>;
 };
 
-const EXISTING_USERS = [
-  {
-    email: "hellyr@lumon.com",
-  },
-  {
-    email: "misterm@lumon.com",
-  },
-];
-
 export async function POST(
   request: NextRequest
 ): Promise<NextResponse<SigninResponse>> {
@@ -28,8 +19,8 @@ export async function POST(
   // Extract request headers
   const headers = Object.fromEntries(request.headers);
 
-  // Simulate origin behavior: 20% success, 80% forbidden
-  const success = Math.random() < 0.2;
+  // Simulate origin behavior: 25% success, 80% forbidden
+  const success = Math.random() < 0.25;
 
   if (success) {
     return NextResponse.json(
