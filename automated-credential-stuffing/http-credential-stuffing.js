@@ -36,9 +36,11 @@ async function main() {
         bodyText = `<error reading body: ${error.message}>`;
       }
 
+      const preview = bodyText.length > 200 ? `${bodyText.slice(0, 200)}...` : bodyText;
+
       console.log(`Status: ${status}`);
-      console.log("Body:");
-      console.log(bodyText);
+      console.log("Body (first 200 chars):");
+      console.log(preview);
       console.log("-----------------------------");
     } catch (error) {
       console.error(`Request failed: ${error instanceof Error ? error.message : String(error)}`);

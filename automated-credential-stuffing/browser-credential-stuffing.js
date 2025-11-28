@@ -116,7 +116,8 @@ async function main() {
         } catch (error) {
           bodyText = `<error reading body: ${error.message}>`;
         }
-        logOutput += `Body:\n${bodyText}\n`;
+        const preview = bodyText.length > 200 ? `${bodyText.slice(0, 200)}...` : bodyText;
+        logOutput += `Body (first 200 chars):\n${preview}\n`;
       } else {
         logOutput += "Body: <omitted for status 200>\n";
       }
