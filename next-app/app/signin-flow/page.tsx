@@ -9,25 +9,25 @@ import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { SignupPayload, SignupResponse } from "../api/signup/route";
+import { SigninPayload, SigninResponse } from "../api/signin/route";
 import { ErrorAlert, SuccessAlert } from "../../components/ui/alert";
 
-export default function SignUpPage() {
+export default function SignInPage() {
   const [email, setEmail] = useState("marks@lumon.com");
   const [password, setPassword] = useState("password");
 
   // Save previous response and error to avoid flickering on retry
-  const [currentResponse, setCurrentResponse] = useState<SignupResponse | null>(null);
+  const [currentResponse, setCurrentResponse] = useState<SigninResponse | null>(null);
   const [currentError, setCurrentError] = useState<Error | null>(null);
 
   const {
-    mutate: signup,
+    mutate: signin,
     isPending,
     data,
     error,
   } = useMutation({
-    mutationFn: async (credentials: SignupPayload) => {
-      const response = await fetch("/api/signup", {
+    mutationFn: async (credentials: SigninPayload) => {
+      const response = await fetch("/api/signin", {
         method: "POST",
         body: JSON.stringify(credentials),
       });
@@ -49,7 +49,7 @@ export default function SignUpPage() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    signup({ email, password });
+    signin({ email, password });
   };
 
   return (
@@ -61,15 +61,15 @@ export default function SignUpPage() {
               <form className="p-6 md:p-8" onSubmit={handleSubmit}>
                 <div className="flex flex-col gap-6">
                   <div className="flex flex-col items-center text-center">
-                    <h1 className="text-2xl font-bold">Create a trial account</h1>
+                    <h1 className="text-2xl font-bold">Sign in to your account</h1>
                     <p className="text-balance text-muted-foreground">
                       Start with $20 in free credits
                     </p>
                   </div>
                   <div className="grid gap-2">
-                    <Label htmlFor="signup-email">Email</Label>
+                    <Label htmlFor="signin-email">Email</Label>
                     <Input
-                      id="signup-email"
+                      id="signin-email"
                       name="email"
                       type="email"
                       value={email}
@@ -79,10 +79,10 @@ export default function SignUpPage() {
                   </div>
                   <div className="grid gap-2">
                     <div className="flex items-center">
-                      <Label htmlFor="signup-password">Password</Label>
+                      <Label htmlFor="signin-password">Password</Label>
                     </div>
                     <Input
-                      id="signup-password"
+                      id="signin-password"
                       name="password"
                       type="password"
                       value={password}
@@ -91,13 +91,13 @@ export default function SignUpPage() {
                     />
                   </div>
                   <Button
-                    id="signup-submit"
+                    id="signin-submit"
                     type="submit"
                     className="w-full my-1"
                     size="lg"
                     disabled={isPending}
                   >
-                    {isPending ? "Signing up..." : "Sign up"}
+                    {isPending ? "Signing in..." : "Sign in"}
                   </Button>
                   {currentError && <ErrorAlert message={currentError.message} />}
                   {currentResponse && <SuccessAlert message={currentResponse.message} />}
