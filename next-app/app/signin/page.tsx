@@ -93,9 +93,7 @@ export default function SignInPage() {
       }
 
       const turnstileRequired =
-        response.status === 403 &&
-        (response.headers.get("X-Turnstile-Required") === "1" ||
-          data?.code === "turnstile_required");
+        response.status === 403 && data?.code === "turnstile_required";
 
       return {
         status: response.status,
@@ -106,7 +104,8 @@ export default function SignInPage() {
     onSuccess: (result) => {
       if (result.turnstileRequired) {
         setShowTurnstile(true);
-        setCurrentError("Please complete the security check and try again.");
+        // Do not render any status box when Turnstile is being requested.
+        setCurrentError(null);
         setCurrentResponse(null);
         return;
       }
@@ -159,12 +158,6 @@ export default function SignInPage() {
                       required
                     />
                   </div>
-                  {showTurnstile && (
-                    <div className="grid gap-2">
-                      <Label>Security check</Label>
-                      <div className="mt-1" id="turnstile-container" />
-                    </div>
-                  )}
                   <div className="grid gap-2">
                     <div className="flex items-center">
                       <Label htmlFor="signin-password">Password</Label>
@@ -187,8 +180,16 @@ export default function SignInPage() {
                   >
                     {isPending ? "Signing in..." : "Sign in"}
                   </Button>
-                  {currentError && <ErrorAlert message={currentError} />}
-                  {currentResponse && <SuccessAlert message={currentResponse.message} />}
+                  {showTurnstile && (
+                    <div className="grid gap-2 mt-2">
+                      <Label>Security check</Label>
+                      <div className="mt-1" id="turnstile-container" />
+                    </div>
+                  )}
+                  {!showTurnstile && currentError && <ErrorAlert message={currentError} />}
+                  {!showTurnstile && currentResponse && (
+                    <SuccessAlert message={currentResponse.message} />
+                  )}
                 </div>
               </form>
               <div className="hidden bg-muted/70 md:flex items-center justify-center">
