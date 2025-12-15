@@ -7,49 +7,131 @@ import { Button } from "../../components/ui/button";
 import { FormEvent } from "react";
 import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { SigninPayload, SigninResponse } from "../api/signin/route";
 import { ErrorAlert, SuccessAlert } from "../../components/ui/alert";
+import { TURNSTILE_SITE_KEY } from "../../shared/constants";
+
+type SigninPayload = {
+  email: string;
+  password: string;
+  // Turnstile token, named in a worker-friendly way
+  "cf-turnstile-response"?: string;
+};
+
+type SigninResponse = {
+  message: string;
+};
+
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (
+        selector: string | HTMLElement,
+        options: {
+          sitekey: string;
+          action?: string;
+          callback?: (token: string) => void;
+        }
+      ) => void;
+    };
+  }
+}
 
 export default function SignInPage() {
   const [email, setEmail] = useState("marks@lumon.com");
   const [password, setPassword] = useState("password");
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [showTurnstile, setShowTurnstile] = useState(false);
+
+  // Helper to render the Turnstile widget into the container.
+  const renderTurnstile = () => {
+    if (!window.turnstile) return;
+    window.turnstile.render("#turnstile-container", {
+      sitekey: TURNSTILE_SITE_KEY,
+      action: "login",
+      callback: (token: string) => {
+        setTurnstileToken(token);
+      },
+    });
+  };
+
+  // Load Turnstile script once we know we need the challenge (based on API response).
+  useEffect(() => {
+    if (!showTurnstile) return;
+
+    if (!document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]')) {
+      const script = document.createElement("script");
+      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+      script.async = true;
+      script.defer = true;
+      script.onload = renderTurnstile;
+      document.body.appendChild(script);
+    } else {
+      renderTurnstile();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showTurnstile]);
 
   // Save previous response and error to avoid flickering on retry
   const [currentResponse, setCurrentResponse] = useState<SigninResponse | null>(null);
-  const [currentError, setCurrentError] = useState<Error | null>(null);
+  const [currentError, setCurrentError] = useState<string | null>(null);
 
-  const {
-    mutate: signin,
-    isPending,
-    data,
-    error,
-  } = useMutation({
+  const { mutate: signin, isPending } = useMutation({
     mutationFn: async (credentials: SigninPayload) => {
       const response = await fetch("/api/signin", {
         method: "POST",
         body: JSON.stringify(credentials),
       });
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message);
+
+      // Try to read JSON, but fall back gracefully.
+      let data: any = null;
+      try {
+        data = await response.json();
+      } catch {
+        data = null;
       }
-      return response.json();
+
+      const turnstileRequired =
+        response.status === 403 &&
+        (response.headers.get("X-Turnstile-Required") === "1" ||
+          data?.code === "turnstile_required");
+
+      return {
+        status: response.status,
+        turnstileRequired,
+        body: data as SigninResponse | null,
+      };
     },
-    onSuccess: (data) => {
-      setCurrentResponse(data);
-      setCurrentError(null);
+    onSuccess: (result) => {
+      if (result.turnstileRequired) {
+        setShowTurnstile(true);
+        setCurrentError("Please complete the security check and try again.");
+        setCurrentResponse(null);
+        return;
+      }
+
+      if (result.status >= 200 && result.status < 300 && result.body) {
+        setCurrentResponse(result.body);
+        setCurrentError(null);
+      } else {
+        setCurrentError(result.body?.message ?? "Sign in failed");
+        setCurrentResponse(null);
+      }
     },
-    onError: (error) => {
-      setCurrentError(error);
+    onError: () => {
+      setCurrentError("Unexpected error during sign in");
       setCurrentResponse(null);
     },
   });
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    signin({ email, password });
+    signin({
+      email,
+      password,
+      "cf-turnstile-response": turnstileToken ?? undefined,
+    });
   };
 
   return (
@@ -77,6 +159,12 @@ export default function SignInPage() {
                       required
                     />
                   </div>
+                  {showTurnstile && (
+                    <div className="grid gap-2">
+                      <Label>Security check</Label>
+                      <div className="mt-1" id="turnstile-container" />
+                    </div>
+                  )}
                   <div className="grid gap-2">
                     <div className="flex items-center">
                       <Label htmlFor="signin-password">Password</Label>
@@ -99,7 +187,7 @@ export default function SignInPage() {
                   >
                     {isPending ? "Signing in..." : "Sign in"}
                   </Button>
-                  {currentError && <ErrorAlert message={currentError.message} />}
+                  {currentError && <ErrorAlert message={currentError} />}
                   {currentResponse && <SuccessAlert message={currentResponse.message} />}
                 </div>
               </form>

@@ -38,3 +38,6 @@ export const CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_TESTING = "https://martinmaka
 export const FINGERPRINT_PUBLIC_API_KEY_TESTING_2 = "GssRiX4z92UKLAD8aJCo";
 export const CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_TESTING_2 = "https://experiments.cfi-fingerprint.com/ZtgXygaxmTkwiimg/HUDWO3LTWEHoRcUL?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>"
 export const CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_TESTING_2 = "https://experiments.cfi-fingerprint.com/ZtgXygaxmTkwiimg/7yzX07VysLl7qdxQ?region=us"
+
+// Turnstile demo Lumon
+export const TURNSTILE_SITE_KEY = "0x4AAAAAACGw49uNJoXVhVS5";
