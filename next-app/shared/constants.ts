@@ -39,5 +39,10 @@ export const FINGERPRINT_PUBLIC_API_KEY_TESTING_2 = "GssRiX4z92UKLAD8aJCo";
 export const CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_TESTING_2 = "https://experiments.cfi-fingerprint.com/ZtgXygaxmTkwiimg/HUDWO3LTWEHoRcUL?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>"
 export const CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_TESTING_2 = "https://experiments.cfi-fingerprint.com/ZtgXygaxmTkwiimg/7yzX07VysLl7qdxQ?region=us"
 
+// testing2 sub - sub_YjU4wve1CfPMQK
+export const FINGERPRINT_PUBLIC_API_KEY_TESTING_4 = "2AC6s5dARtCsSRZCUkV9";
+export const CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_TESTING_4 = "https://martinmakarsky.com/XpTV27BhPx0PoSXH/0aSTi3ZpvtrcGAle?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>"
+export const CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_TESTING_4 = "https://martinmakarsky.com/XpTV27BhPx0PoSXH/e8v70LoI0dVr36oZ?region=us"
+
 // Turnstile demo Lumon
 export const TURNSTILE_SITE_KEY = "0x4AAAAAACGw49uNJoXVhVS5";
