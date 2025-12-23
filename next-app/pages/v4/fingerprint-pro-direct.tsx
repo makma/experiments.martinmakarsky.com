@@ -4,8 +4,7 @@ import * as Fingerprint from '@fingerprint/agent'
 import { FINGERPRINT_PUBLIC_API_KEY } from "../../shared/constants";
 
 export default function FingerprintProVanillaAgentDirect() {
-  const [fingerprintData, setFingerprintData] = useState<
-    GetResult | string | null
+  const [fingerprintData, setFingerprintData] = useState< any |string | null
   >(null);
 
   useEffect(() => {
