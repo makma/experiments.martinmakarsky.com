@@ -1,0 +1,20 @@
+name: php-app
+region: nyc
+
+# PHP web service - DO will auto-detect PHP
+services:
+  - name: php-signin
+    github:
+      repo: makma/experiments.martinmakarsky.com
+      branch: main
+      deploy_on_push: true
+    source_dir: php-app
+    # No build/run commands needed - simple PHP app
+    build_command: ""
+    run_command: ""
+    environment_slug: php
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    routes:
+      - path: /
+
