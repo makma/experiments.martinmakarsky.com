@@ -12,7 +12,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@fingerprint/agent": "^4.0.0-beta.3",
+    "@fingerprint/agent": "^4.0.0-beta.5",
     "@fingerprintjs/fingerprintjs-pro": "^3.11.8",
     "@fingerprintjs/fingerprintjs-pro-react": "2.6.3",
     "@fingerprintjs/fingerprintjs-pro-server-api": "6.2.0-test.0",

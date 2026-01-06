@@ -261,10 +261,10 @@
   resolved "https://registry.npmjs.org/@eslint/js/-/js-8.57.1.tgz"
   integrity sha512-d9zaMRSTIKDLhctzH12MtXvJKSSUhaHcjV+2Z+GK+EEY7XKpP5yR4x+N3TAcHTcu963nIr+TMcCb4DBCYX1z6Q==
 
-"@fingerprint/agent@^4.0.0-beta.3":
-  version "4.0.0-beta.3"
-  resolved "https://registry.npmjs.org/@fingerprint/agent/-/agent-4.0.0-beta.3.tgz"
-  integrity sha512-VXWSDfcWXGm3AJ6BDwBS9aB4I+EKPkCVwnBWj9G/9P159VBIgUadjoaPhPKkUrGMNEwevOHKXHk4nOWQ2laC8g==
+"@fingerprint/agent@^4.0.0-beta.5":
+  version "4.0.0-beta.5"
+  resolved "https://registry.npmjs.org/@fingerprint/agent/-/agent-4.0.0-beta.5.tgz"
+  integrity sha512-XtylYPFIv5lh2x6iXTjOeZmQy1UYFaEhDxwtCk/mPUExOOb/htWt617q9XQb4ShoHta+BTsh63yeFHrWTYFzYQ==
 
 "@fingerprintjs/botd@1.9.1":
   version "1.9.1"
