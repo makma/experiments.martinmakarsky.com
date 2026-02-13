@@ -21,6 +21,8 @@ export default function Home() {
             </Link>
           </h1>
 
+          <h2>Identification API v3</h2>
+
           <div className={styles.grid}>
             <Link className={styles.card} href="/fingerprint-pro-subdomain">
               <h2>Fingerprint Pro Custom subdomain &rarr;</h2>
@@ -82,36 +84,6 @@ export default function Home() {
                 <pre>subId: sub_AHhMVKY0HFYj3W</pre>
                 <pre>env: prod</pre>
               </div>
-            </Link>
-
-            <Link className={styles.card} href="/fingerprint-pro-static-agent">
-              <h2>Fingerprint Pro Static Agent &rarr;</h2>
-              <p>No lib, Static agent, subdomain setup, extended result</p>
-              <div>
-                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
-                <pre>env: prod</pre>
-              </div>
-            </Link>
-
-            <Link
-              className={styles.card}
-              href="/fingerprint-pro-react-package-static-agent"
-            >
-              <h2>Fingerprint Pro React, Static Agent &rarr;</h2>
-              <p>
-                React library, Static agent, subdomain setup, extended result
-              </p>
-              <div>
-                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
-                <pre>env: prod</pre>
-              </div>
-              <Image
-                className={styles.card_logo}
-                src="images/react-logo.svg"
-                width={80}
-                height={50}
-                alt="React logo"
-              />
             </Link>
 
             <Link className={styles.card} href="/fingerprint-pro-cloudflare">
@@ -667,42 +639,6 @@ export default function Home() {
 
             <Link
               className={styles.card}
-              href="/fingerprint-pro-spa-package-static-agent"
-            >
-              <h2>
-                Fingerprint Pro Custom subdomain SPA lib static agent&rarr;
-              </h2>
-              <p>
-                React NPM lib, subdomain setup, extended and basic result,
-                static agent
-              </p>
-              <div>
-                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
-                <pre>env: prod</pre>
-              </div>
-              <Image
-                className={styles.card_logo}
-                src="images/react-logo.svg"
-                width={80}
-                height={50}
-                alt="React logo"
-              />
-            </Link>
-
-            <Link
-              className={styles.card}
-              href="/fingerprint-on-demand-identification-static"
-            >
-              <h2>Static Fingerprint Pro On Demand Identification&rarr;</h2>
-              <p>Static lib</p>
-              <div>
-                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
-                <pre>env: prod</pre>
-              </div>
-            </Link>
-
-            <Link
-              className={styles.card}
               href="/fingerprint-on-demand-identification-pro-cdn"
             >
               <h2>Fingerprint Pro On Demand Identification&rarr;</h2>
@@ -791,7 +727,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <h2>Server API</h2>
+          <h2>Server API v3</h2>
 
           <div className={styles.grid}>
             <Link
