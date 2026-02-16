@@ -37,7 +37,7 @@ export default function FingerprintOnDemandIdentification() {
             throw new Error('No agent data received');
           }
           // @ts-ignore - handleAgentData method exists at runtime
-          Fingerprint.handleAgentData(agentData);
+          fp.handleAgentData(agentData);
         } catch (handleError) {
           console.error('Error handling OnDemand data:', handleError);
           console.error('Agent Data that caused error:', result.response.rawFpResponse.agentData);
