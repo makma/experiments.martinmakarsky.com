@@ -1,7 +1,7 @@
-import styles from "../styles/Home.module.css";
+import styles from "../../styles/Home.module.css";
 import { useState, useEffect } from "react";
-import * as OnDemand from "@fingerprintjs/fingerprintjs-pro"
-import { FWALL_ENVIRONEMNT_PUBLIC_KEY } from "../shared/constants";
+import * as Fingerprint from '@fingerprint/agent'
+import { FWALL_ENVIRONEMNT_PUBLIC_KEY } from "../../shared/constants";
 
 export default function FingerprintOnDemandIdentification() {
   const [fingerprintData, setFingerprintData] = useState<
@@ -10,14 +10,11 @@ export default function FingerprintOnDemandIdentification() {
 
   useEffect(() => {
     (async () => {
-      // @ts-ignore - Ignoring LoadOptions type error
-      const fpPromise = OnDemand.load({
+      const fp = Fingerprint.start({
         apiKey: FWALL_ENVIRONEMNT_PUBLIC_KEY,
         region: "eu"
       });
-      const fp = await fpPromise;
       try {
-        // @ts-ignore - collect method exists at runtime
         const browserData = await fp.collect();
         const response = await fetch('/api/on-demand-identification-collect', {
           method: 'POST',

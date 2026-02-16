@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   async rewrites() {
     return [
       {
@@ -13,6 +12,10 @@ const nextConfig = {
         destination: "/api/payment/:id",
       },
     ];
+  },
+  turbopack: {
+    // Make sure Next treats `next-app` as the workspace root.
+    root: __dirname,
   },
 };
 

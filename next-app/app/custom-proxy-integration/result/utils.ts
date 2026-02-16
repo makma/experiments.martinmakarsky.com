@@ -14,12 +14,12 @@ export const parseCookies = (cookieHeader?: string | null) => {
 };
 
 export const parseIp = (request: NextRequest) => {
-    return (
-        request.ip ??
-        request.headers.get('x-real-ip') ??
-        request.headers.get('x-forwarded-for')?.split(',')[0] ??
-        '127.0.0.1'
-    );
+  // `NextRequest` doesn't type an `ip` property; rely on headers only.
+  return (
+    request.headers.get("x-real-ip") ??
+    request.headers.get("x-forwarded-for")?.split(",")[0] ??
+    "127.0.0.1"
+  );
 };
 
 export const parseHost = (request: Request) => {
