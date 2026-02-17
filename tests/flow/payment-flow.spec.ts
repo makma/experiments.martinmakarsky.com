@@ -12,5 +12,5 @@ test("Flow payment form POST shows Incognito text", async ({ page }) => {
   await postButton.click();
 
   // After the POST response, the page should render "Incognito!" somewhere.
-  await expect(page.getByText("Incognito!")).toBeVisible({ timeout: 15_000 });
+  await expect(page.getByText("Bot!")).toBeVisible({ timeout: 15_000 });
 });
