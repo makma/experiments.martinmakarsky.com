@@ -1,7 +1,7 @@
 import styles from "../../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import * as Fingerprint from '@fingerprint/agent'
-import { FINGERPRINT_PUBLIC_API_KEY } from "../../shared/constants";
+import { CUSTOM_SUBDOMAIN, FINGERPRINT_PUBLIC_API_KEY } from "../../shared/constants";
 
 export default function FingerprintOnDemandIdentification() {
   const [fingerprintData, setFingerprintData] = useState<
@@ -12,6 +12,7 @@ export default function FingerprintOnDemandIdentification() {
     (async () => {
       const fp = Fingerprint.start({
         apiKey: FINGERPRINT_PUBLIC_API_KEY,
+        endpoints: CUSTOM_SUBDOMAIN,
         region: "eu"
       });
       try {
