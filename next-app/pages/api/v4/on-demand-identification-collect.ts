@@ -39,6 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         clientHeaders[key] = value;
       }
     }
+    console.log("FINGERPRINT_SECRET_API_KEY present?", !!process.env.FINGERPRINT_SECRET_API_KEY);
 
     const response = await fetch('https://eu.api.fpjs.io/v4/send', {
       method: 'POST',
