@@ -1,7 +1,7 @@
 import styles from "../../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import * as Fingerprint from '@fingerprint/agent'
-import { FWALL_ENVIRONEMNT_PUBLIC_KEY } from "../../shared/constants";
+import { FINGERPRINT_PUBLIC_API_KEY } from "../../shared/constants";
 
 export default function FingerprintOnDemandIdentification() {
   const [fingerprintData, setFingerprintData] = useState<
@@ -11,12 +11,12 @@ export default function FingerprintOnDemandIdentification() {
   useEffect(() => {
     (async () => {
       const fp = Fingerprint.start({
-        apiKey: FWALL_ENVIRONEMNT_PUBLIC_KEY,
+        apiKey: FINGERPRINT_PUBLIC_API_KEY,
         region: "eu"
       });
       try {
         const browserData = await fp.collect();
-        const response = await fetch('/api/on-demand-identification-collect', {
+        const response = await fetch('/api/v4/on-demand-identification-collect', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ export default function FingerprintOnDemandIdentification() {
             throw new Error('No agent data received');
           }
           // @ts-ignore - handleAgentData method exists at runtime
-          fp.handleAgentData(agentData);
+          Fingerprint.handleAgentData(agentData);
         } catch (handleError) {
           console.error('Error handling OnDemand data:', handleError);
           console.error('Agent Data that caused error:', result.response.rawFpResponse.agentData);

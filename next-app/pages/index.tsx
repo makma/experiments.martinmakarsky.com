@@ -24,7 +24,7 @@ export default function Home() {
           <h2>Identification API v4</h2>
 
           <div className={styles.grid}>
-            <Link className={styles.card} href="/v4/fingerprint-on-demand-identification-pro-cdn">
+            <Link className={styles.card} href="/v4/fingerprint-on-demand-identification-npm">
               <h2>Fingerprint Pro ODI &rarr;</h2>
               <p>TS NPM agent</p>
               <div>
