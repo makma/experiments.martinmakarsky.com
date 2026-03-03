@@ -1,12 +1,16 @@
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
-import FingerprintJS, { GetResult } from "@fingerprintjs/fingerprintjs-pro";
-import { CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_TESTING, CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_TESTING, FINGERPRINT_PUBLIC_API_KEY_TESTING } from "../shared/constants";
+import * as Fingerprint from "@fingerprint/agent";
+import type { GetResult } from "@fingerprint/agent";
+import {
+  CUSTOM_SUBDOMAIN_TESTING,
+  FINGERPRINT_PUBLIC_API_KEY_TESTING,
+} from "../shared/constants";
 
 export default function TestingAutomatic() {
-  const [fingerprintData, setFingerprintData] = useState<
-    GetResult | string | null
-  >(null);
+  const [fingerprintData, setFingerprintData] = useState<GetResult | null>(
+    null,
+  );
 
   // Function to parse query string parameters
   const getQueryParams = () => {
@@ -25,27 +29,12 @@ export default function TestingAutomatic() {
 
   useEffect(() => {
     (async () => {
-      const fpPromise = FingerprintJS.load({
+      const fp = Fingerprint.start({
         apiKey: FINGERPRINT_PUBLIC_API_KEY_TESTING,
-        scriptUrlPattern:
-        CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN_TESTING,
-        endpoint:CLOUDFLARE_PROXY_INTEGRATION_ENDPOINT_TESTING,
-        remoteControlDetection: true,
+        endpoints: CUSTOM_SUBDOMAIN_TESTING,
       });
-      const fp = await fpPromise;
-      const data = await fp.get({ extendedResult: true });
+      const data = await fp.get();
       setFingerprintData(data);
-
-      // Check if any query parameters are present
-      const queryParams = getQueryParams();
-      if (Object.keys(queryParams).length > 0 && typeof data === 'object' && data !== null) {
-        // Create JSON object with query parameters and fingerprint data
-        const resultData = {
-          ...queryParams,
-          requestId: data.requestId,
-          visitorId: data.visitorId
-        };
-      }
     })();
   }, []);
 
@@ -53,15 +42,7 @@ export default function TestingAutomatic() {
     <div className={styles.container}>
       {fingerprintData ? (
         <pre className={styles.data}>
-          {typeof fingerprintData === 'object' && fingerprintData !== null ? (
-            <>
-              Request ID: {fingerprintData.requestId}
-              {'\n'}
-              Visitor ID: {fingerprintData.visitorId}
-            </>
-          ) : (
-            fingerprintData
-          )}
+          {JSON.stringify(fingerprintData, null, 2)}
         </pre>
       ) : (
         <h3>Waiting or data...</h3>
