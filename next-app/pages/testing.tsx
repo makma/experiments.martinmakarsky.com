@@ -42,7 +42,16 @@ export default function TestingAutomatic() {
     <div className={styles.container}>
       {fingerprintData ? (
         <pre className={styles.data}>
-          {JSON.stringify(fingerprintData, null, 2)}
+          {typeof fingerprintData === "object" && fingerprintData !== null ? (
+            <>
+              Request ID: {/* v4 uses event_id; keep name for consistency */}
+              {" " + (fingerprintData as any).requestId}
+              {"\n"}
+              Visitor ID: {(fingerprintData as any).visitorId}
+            </>
+          ) : (
+            fingerprintData
+          )}
         </pre>
       ) : (
         <h3>Waiting or data...</h3>
