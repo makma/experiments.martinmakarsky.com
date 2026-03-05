@@ -52,6 +52,19 @@ export default function Home() {
             </Link>
           </div>
 
+          <h2>Identification + Server API API v4</h2>
+
+          <div className={styles.grid}>
+            <Link className={styles.card} href="/v4/event-details-node-sdk">
+              <h2>Node SDK event details + agent + cusotm subdomain&rarr;</h2>
+              <p>TS NPM agent</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
+            </Link>
+          </div>
+
           <h2>Identification API v3</h2>
 
           <div className={styles.grid}>
