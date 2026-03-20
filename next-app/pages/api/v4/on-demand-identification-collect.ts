@@ -45,10 +45,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       method: 'POST',
       headers: {
         'Content-Encoding': 'application/json',
-        "Auth-API-Key": apiKey
+        "Authorization": `Bearer ${apiKey}`
       },
       body: JSON.stringify({
-        fingerprintData: req.body.browserData,
+        fingerprint_data: req.body.browserData,
         client_host: host,
         client_user_agent: userAgent,
         client_ip: clientIp,
@@ -62,15 +62,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(500).json({ error: 'Failed to send data to Fingerprint API' });
     }
 
-    // Set cookies from the /send response
-    const rawCookies = response.headers.getSetCookie?.();
-    if (rawCookies) {
-      rawCookies.forEach(cookie => {
-        res.setHeader('Set-Cookie', cookie);
-      });
-    }
-
+    // Fingerprint /v4/send returns agent_data + setCookieHeaders in the JSON body.
     const fpResponse = await response.json();
+
+    const setCookieHeaders = fpResponse?.set_cookie_headers;
+    res.setHeader('Set-Cookie', setCookieHeaders);
+
     return res.send({
       status: 200,
       response: {

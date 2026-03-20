@@ -25,19 +25,16 @@ export default function FingerprintOnDemandIdentification() {
           body: JSON.stringify({ browserData })
         });
         const result = await response.json();
-        console.log('Response data:', result.response); // Debug log
         
         // First set the data
         setFingerprintData(result.response.rawFpResponse);
         
         // Then handle the data with OnDemand
         try {
-          // Make sure we're passing the correct format
-          const agentData = result.response.rawFpResponse.agentData;
+          const agentData = result.response.rawFpResponse.agent_data;
           if (!agentData) {
             throw new Error('No agent data received');
           }
-          // @ts-ignore - handleAgentData method exists at runtime
           Fingerprint.handleAgentData(agentData);
         } catch (handleError) {
           console.error('Error handling OnDemand data:', handleError);
