@@ -26,3 +26,15 @@ test('V4 npm custom subdomain returns the visitorId', async ({ page }) => {
 
   expect(preText).toContain('\"visitorId\":');
 });
+
+test('V4 ODI NPM returns the visitorId', async ({ page }) => {
+  await page.goto(`${baseDomain}/v4/fingerprint-on-demand-identification-npm`);
+
+  const preSelector = 'pre';
+
+  await page.waitForSelector(preSelector, { timeout: 10 * 1000 });
+  const preElement = await page.$(preSelector);
+  const preText = await preElement.textContent();
+
+  expect(preText).toContain('\"visitorId\":');
+});
