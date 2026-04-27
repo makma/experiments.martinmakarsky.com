@@ -23,6 +23,7 @@ export async function reportVisitorId(
 ): Promise<void> {
   const visitorId = extractVisitorId(raw);
   if (!visitorId) return;
+  console.log(`[visitorId] ${info.title}: ${visitorId}`);
   await info.attach('visitorId.txt', {
     body: visitorId,
     contentType: 'text/plain',
