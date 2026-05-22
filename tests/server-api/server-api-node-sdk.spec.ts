@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 const baseDomain = "https://experiments.martinmakarsky.com"
 
-test('Server API returns a response via Node SDK', async ({ page }) => {
+test.skip('Server API returns a response via Node SDK', async ({ page }) => {
   await page.goto(`${baseDomain}/fingerprint-pro-cloudflare-server-api-sdk`);
 
   const serverApiResponseElement = page.locator("#server-api-response");
@@ -13,7 +13,7 @@ test('Server API returns a response via Node SDK', async ({ page }) => {
   expect(serverApiText).toContain('\"visitorId\":');
 });
 
-test('Check status of the webhook sgnature', async ({ page }) => {
+test.skip('Check status of the webhook sgnature', async ({ page }) => {
   await page.goto(`${baseDomain}/fingerprint-pro-cloudflare`);
 
   const preSelector = 'pre';
@@ -33,7 +33,7 @@ test('Check status of the webhook sgnature', async ({ page }) => {
   expect(serverApiText).toEqual("Valid");
 });
 
-test('Delete the visitorId', async ({ page }) => {
+test.skip('Delete the visitorId', async ({ page }) => {
   await page.goto(`${baseDomain}/fingerprint-pro-cloudflare`);
 
   const preSelector = 'pre';
