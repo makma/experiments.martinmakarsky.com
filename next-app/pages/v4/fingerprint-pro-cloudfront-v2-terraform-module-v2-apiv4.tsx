@@ -16,7 +16,7 @@ export default function FingerprintProCloudFrontV2ModuleV2ApiV4() {
       try {
         const fp = Fingerprint.start({
           apiKey: FINGERPRINT_PUBLIC_API_KEY,
-          endpoints: CLOUDFRONT_V2_MODULE_V2_APIV4_ENDPOINT,
+          endpoints: Fingerprint.withoutDefault(CLOUDFRONT_V2_MODULE_V2_APIV4_ENDPOINT),
           region: "eu",
         });
         const result = await fp.get();
