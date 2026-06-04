@@ -50,6 +50,35 @@ export default function Home() {
                 <pre>env: prod</pre>
               </div>
             </Link>
+
+            <Link
+              className={styles.card}
+              href="/v4/fingerprint-pro-cloudfront-v2-terraform-module-v2-apiv4"
+            >
+              <h2>
+                CloudFront proxy integration v2 — Terraform module v2, API v4
+                &rarr;
+              </h2>
+              <p>Agent v4, CloudFront proxy integration v2 (Terraform module v2.0.0)</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
+              <Image
+                className={styles.card_logo}
+                src="images/cloudfront-logo.svg"
+                width={80}
+                height={50}
+                alt="Cloudfront logo"
+              />
+              <Image
+                className={styles.card_logo}
+                src="images/terraform-logo.svg"
+                width={80}
+                height={50}
+                alt="Terraform logo"
+              />
+            </Link>
           </div>
 
           <h2>Identification + Server API API v4</h2>
@@ -598,35 +627,6 @@ export default function Home() {
                 width={80}
                 height={50}
                 alt="React logo"
-              />
-              <Image
-                className={styles.card_logo}
-                src="images/terraform-logo.svg"
-                width={80}
-                height={50}
-                alt="Terraform logo"
-              />
-            </Link>
-
-            <Link
-              className={styles.card}
-              href="/v4/fingerprint-pro-cloudfront-v2-terraform-module-v2-apiv4"
-            >
-              <h2>
-                CloudFront proxy integration v2 — Terraform module v2, API v4
-                &rarr;
-              </h2>
-              <p>Agent v4, CloudFront proxy integration v2 (Terraform module v2.0.0)</p>
-              <div>
-                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
-                <pre>env: prod</pre>
-              </div>
-              <Image
-                className={styles.card_logo}
-                src="images/cloudfront-logo.svg"
-                width={80}
-                height={50}
-                alt="Cloudfront logo"
               />
               <Image
                 className={styles.card_logo}
