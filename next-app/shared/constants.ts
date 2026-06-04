@@ -1,6 +1,7 @@
 
 // sub_AHhMVKY0HFYj3W martinmakarsky.com
 export const FINGERPRINT_PUBLIC_API_KEY = "tQUwQQOuG9TNwqc6F4I2";
+export const CLOUDFRONT_V2_MODULE_V2_APIV4_ENDPOINT = "https://cloudfront-v2-module-v2-apiv4.martinmakarsky.com";
 export const FINGERPRINT_PUBLIC_API_KEY_SECONDARY = "deo4QJZKMnmvTT1C9Hmt"
 export const FINGERPRINT_PUBLIC_API_KEY_SAMPLEP_ENVIRONMENT = "dzbq3RL5nuUFAmRlsP4R";
 export const CLOUDFLARE_PROXY_INTEGRATION_SCRIPT_URL_PATTERN = "https://martinmakarsky.com/ZBXJUjor56j9EQCU/KAY8SvdbISPMEu6r?apiKey=<apiKey>&version=<version>&loaderVersion=<loaderVersion>"

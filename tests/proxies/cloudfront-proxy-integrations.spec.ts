@@ -87,6 +87,20 @@ test('Terraform module for CloudFront v2 Proxy Integration returns the visitorId
   expect(preText).toContain('\"visitorId\":');
 });
 
+test('CloudFront proxy integration v2, Terraform module v2, API v4 returns the visitor_id', async ({ page }) => {
+  await page.goto(`${baseDomain}/v4/fingerprint-pro-cloudfront-v2-terraform-module-v2-apiv4`);
+
+  const preSelector = 'pre';
+
+  await page.waitForSelector(preSelector, { timeout: 10 * 1000 });
+  const preElement = await page.$(preSelector);
+  expect(preElement).not.toBeNull();
+  const preText = await preElement!.textContent();
+  await reportVisitorId(test.info(), preText);
+
+  expect(preText).toContain('\"visitor_id\":');
+});
+
 test('CloudFront v2 Proxy Integration Staging returns the visitorId', async ({ page }) => {
   await page.goto(`${baseDomain}/fingerprint-pro-react-cloudfront-v2-terraform-staging`);
 
