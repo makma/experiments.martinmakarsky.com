@@ -72,3 +72,17 @@ test('Cloudflare Proxy Integration Manual integrations via Terraform returns the
 
   expect(preText).toContain('\"visitorId\":');
 });
+
+test('Cloudflare proxy integration API v4 returns the visitor_id', async ({ page }) => {
+  await page.goto(`${baseDomain}/v4/fingerprint-pro-cloudflare-apiv4`);
+
+  const preSelector = 'pre';
+
+  await page.waitForSelector(preSelector, { timeout: 10 * 1000 });
+  const preElement = await page.$(preSelector);
+  expect(preElement).not.toBeNull();
+  const preText = await preElement!.textContent();
+  await reportVisitorId(test.info(), preText);
+
+  expect(preText).toContain('\"visitor_id\":');
+});

@@ -79,6 +79,25 @@ export default function Home() {
                 alt="Terraform logo"
               />
             </Link>
+
+            <Link
+              className={styles.card}
+              href="/v4/fingerprint-pro-cloudflare-apiv4"
+            >
+              <h2>Cloudflare proxy integration — API v4 &rarr;</h2>
+              <p>Agent v4, Cloudflare proxy integration</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
+              <Image
+                className={styles.card_logo}
+                src="images/cloudflare-logo.svg"
+                width={80}
+                height={50}
+                alt="Cloudflare logo"
+              />
+            </Link>
           </div>
 
           <h2>Identification + Server API API v4</h2>
