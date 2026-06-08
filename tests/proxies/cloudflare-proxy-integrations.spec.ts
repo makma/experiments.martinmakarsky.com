@@ -86,3 +86,17 @@ test('Cloudflare proxy integration API v4 returns the visitor_id', async ({ page
 
   expect(preText).toContain('\"visitor_id\":');
 });
+
+test('Cloudflare proxy integration React SDK API v4 returns the visitor_id', async ({ page }) => {
+  await page.goto(`${baseDomain}/v4/fingerprint-pro-cloudflare-react-apiv4`);
+
+  const preSelector = 'pre';
+
+  await page.waitForSelector(preSelector, { timeout: 10 * 1000 });
+  const preElement = await page.$(preSelector);
+  expect(preElement).not.toBeNull();
+  const preText = await preElement!.textContent();
+  await reportVisitorId(test.info(), preText);
+
+  expect(preText).toContain('\"visitor_id\":');
+});

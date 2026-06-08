@@ -98,6 +98,25 @@ export default function Home() {
                 alt="Cloudflare logo"
               />
             </Link>
+
+            <Link
+              className={styles.card}
+              href="/v4/fingerprint-pro-cloudflare-react-apiv4"
+            >
+              <h2>Cloudflare proxy integration — React SDK, API v4 &rarr;</h2>
+              <p>@fingerprint/react, Cloudflare proxy integration</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
+              <Image
+                className={styles.card_logo}
+                src="images/cloudflare-logo.svg"
+                width={80}
+                height={50}
+                alt="Cloudflare logo"
+              />
+            </Link>
           </div>
 
           <h2>Identification + Server API API v4</h2>
