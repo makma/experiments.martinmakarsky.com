@@ -38,7 +38,7 @@ IP: first non-empty of the platform client-IP header, then the first entry of `x
 URL: `x-forwarded-proto` (default `https`) + `host` header + request path and query, no fragment.
 
 **5. Configuration.**
-`FINGERPRINT_SECRET_API_KEY` and `FINGERPRINT_REGION` (`global` | `eu` | `ap`, mapped to `api.fpjs.io`, `eu.api.fpjs.io`, `ap.api.fpjs.io`). Anything else falls back to the global base URL and is shown on the page as the base URL used. Missing key renders a config error and skips the call.
+`FINGERPRINT_SECRET_API_KEY` and `FINGERPRINT_REGION` (`global` | `eu` | `ap`, case-insensitive, trimmed, mapped to `api.fpjs.io`, `eu.api.fpjs.io`, `ap.api.fpjs.io`). A missing or unrecognized region is a configuration error shown on the page, with no API call: silently defaulting to global makes a workspace in another region fail with a misleading `secret_api_key_not_found` (observed on the first deploy, where the region variable was unset). Missing key renders a config error and skips the call. The base URL used is displayed with every result or API error.
 
 **6. Labeling.**
 `linked_id = crypto.randomUUID()`. `?agent=` is validated against `^[A-Za-z0-9._-]{1,64}$`; sent as `tags: { agent, page: "/automation-intelligence" }`; invalid values are dropped silently. Both are displayed so a run can be located in the dashboard.

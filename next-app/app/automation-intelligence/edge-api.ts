@@ -86,7 +86,7 @@ export type AnalysisResult =
     }
   | {
       kind: "skipped";
-      reason: "missing_secret_key" | "client_ip_unknown";
+      reason: "missing_secret_key" | "invalid_region" | "client_ip_unknown";
       message: string;
     }
   | {
@@ -97,9 +97,12 @@ export type AnalysisResult =
       message: string;
     };
 
-export function resolveBaseUrl(region: string | undefined): string {
+// Returns null for a missing or unrecognized region: falling back to the global
+// endpoint would make a workspace in another region fail with a misleading
+// `secret_api_key_not_found`.
+export function resolveBaseUrl(region: string | undefined): string | null {
   const key = (region ?? "").trim().toLowerCase();
-  return REGION_BASE_URLS[key] ?? REGION_BASE_URLS.global;
+  return REGION_BASE_URLS[key] ?? null;
 }
 
 export function parseAgentLabel(
@@ -211,6 +214,15 @@ export async function callEdgeApi(args: {
   }
 
   const baseUrl = resolveBaseUrl(args.region);
+  if (!baseUrl) {
+    return {
+      kind: "skipped",
+      reason: "invalid_region",
+      message: `FINGERPRINT_REGION is ${
+        args.region?.trim() ? `"${args.region.trim()}", which is not recognized` : "not set"
+      }; set it to one of: ${Object.keys(REGION_BASE_URLS).join(", ")}. No API call was made.`,
+    };
+  }
   const doFetch = args.fetchImpl ?? fetch;
 
   let res: Response;

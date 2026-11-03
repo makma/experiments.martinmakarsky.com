@@ -91,8 +91,24 @@ test("region mapping", () => {
   assert.equal(resolveBaseUrl("eu"), "https://eu.api.fpjs.io");
   assert.equal(resolveBaseUrl("AP"), "https://ap.api.fpjs.io");
   assert.equal(resolveBaseUrl("global"), "https://api.fpjs.io");
-  assert.equal(resolveBaseUrl(undefined), "https://api.fpjs.io");
-  assert.equal(resolveBaseUrl("mars"), "https://api.fpjs.io");
+  assert.equal(resolveBaseUrl(" EU "), "https://eu.api.fpjs.io");
+  assert.equal(resolveBaseUrl(undefined), null);
+  assert.equal(resolveBaseUrl(""), null);
+  assert.equal(resolveBaseUrl("mars"), null);
+});
+
+test("missing or unrecognized region: visible config error, no API call", async () => {
+  for (const region of [undefined, "", "mars"]) {
+    let called = false;
+    const r = await callEdgeApi({
+      secretKey: "k", region, body,
+      fetchImpl: async () => { called = true; return new Response("{}"); },
+    });
+    assert.equal(r.kind, "skipped");
+    assert.equal(r.reason, "invalid_region");
+    assert.match(r.message, /FINGERPRINT_REGION/);
+    assert.equal(called, false);
+  }
 });
 
 test("page URL is absolute, has no fragment, and keeps the query", () => {
@@ -159,7 +175,7 @@ test("calls the regional endpoint with Bearer auth", async () => {
 
 test("API error 429 surfaces status and code", async () => {
   const r = await callEdgeApi({
-    secretKey: "k", region: undefined, body,
+    secretKey: "k", region: "global", body,
     fetchImpl: async () =>
       new Response(JSON.stringify({ error: { code: "too_many_requests", message: "slow down" } }), { status: 429 }),
   });

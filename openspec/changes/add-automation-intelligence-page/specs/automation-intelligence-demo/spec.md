@@ -42,6 +42,10 @@ The system SHALL authenticate to the API with the workspace secret key sent as a
 - **WHEN** the configured region is `eu`
 - **THEN** the system calls `https://eu.api.fpjs.io/v4/edge`
 
+#### Scenario: Region missing or unrecognized
+- **WHEN** the configured region is unset or is not one of `global`, `eu` or `ap`
+- **THEN** the page shows a configuration error naming the region setting and its allowed values, and makes no API call
+
 #### Scenario: Key not leaked
 - **WHEN** the page is fetched
 - **THEN** neither the HTML nor any script served with it contains the secret key
@@ -69,7 +73,7 @@ The system SHALL accept an optional `agent` query parameter, send it to the API 
 - **THEN** no `agent` tag is sent and the page shows no label
 
 ### Requirement: Failures are visible and non-fatal
-The system SHALL still return the page content when analysis cannot be completed, and SHALL show the reason in place of the result. The system MUST NOT call the API when the secret key is unset or no client IP can be determined.
+The system SHALL still return the page content when analysis cannot be completed, and SHALL show the reason in place of the result. The system MUST NOT call the API when the secret key is unset, the region is missing or unrecognized, or no client IP can be determined.
 
 #### Scenario: API error
 - **WHEN** the API responds with an error such as HTTP 429 `too_many_requests`
