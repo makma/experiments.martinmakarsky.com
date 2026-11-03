@@ -19,6 +19,10 @@
 - [ ] 4.1 Hand off to the user: they push and merge to `main`, and Digital Ocean builds automatically. Do not push, merge or deploy from the agent. Tell the user that `FINGERPRINT_SECRET_API_KEY` and `FINGERPRINT_REGION` must be set on the Digital Ocean app (never read or print their values). Verify, once the user confirms the deploy, by loading the deployed `/automation-intelligence` and checking that an `event_id` is shown and that the displayed client-IP header source is the platform's real client-IP header; record that finding in design.md Decision 4.
 - [x] 4.2 Add the new page and env var usage to the repo's docs (a short section in `README.md`: URL, `?agent=` usage, required env vars). Verify the documented URL and param work as written.
 
+## 5. Region validation (follow-up from first deploy)
+
+- [x] 5.1 Treat a missing or unrecognized `FINGERPRINT_REGION` as a visible configuration error with no API call, normalizing case and whitespace. Verify with the unit tests for `resolveBaseUrl` and `callEdgeApi`, `npx tsc --noEmit`, and a `curl` against `next dev` with `FINGERPRINT_REGION` unset showing the error and no `ai-event-id`.
+
 ## Workflow follow-up
 
 - Run `/opsx:verify` (if enabled) and then `/opsx:archive` once the page is deployed and checked.
