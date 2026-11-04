@@ -9,6 +9,9 @@ import {
   parseAgentLabel,
   resolveClientIp,
 } from "./edge-api";
+import { getEventDetail } from "./server-api";
+import { EventDetail, SmartSignals } from "./SmartSignals";
+import { BrowserAgentSection } from "./BrowserAgentSection";
 
 // The analysis is per request: never cache or prerender this page.
 export const dynamic = "force-dynamic";
@@ -196,17 +199,36 @@ export default async function AutomationIntelligencePage({
     });
   }
 
+  let edgeEventDetail: EventDetail | undefined;
+  if (analysis.kind === "ok") {
+    const result = await getEventDetail({
+      eventId: analysis.response.event_id,
+      secretKey: process.env.FINGERPRINT_SECRET_API_KEY,
+      region: process.env.FINGERPRINT_REGION,
+    });
+    edgeEventDetail =
+      result.kind === "ok"
+        ? { kind: "ok", event: result.event }
+        : { kind: "error", message: result.message };
+  }
+
   return (
     <div className={styles.container}>
       <h1>Automation Intelligence demo</h1>
       <p>
-        This page sends every visit it receives to Fingerprint&apos;s
-        Automation Intelligence API and shows the detection result below.
+        This page demonstrates two Fingerprint detection approaches side by
+        side: an edge-based request analysis that needs no browser agent, and
+        a browser-based JS Agent v4 identification enriched with Smart
+        Signals. Both show their full Server API detail below.
       </p>
 
       <hr />
 
-      <h2>Automation Intelligence result for this request</h2>
+      <h2>Automation Intelligence (edge, no browser agent)</h2>
+      <p>
+        This section sends every visit it receives to Fingerprint&apos;s
+        Automation Intelligence API and shows the detection result below.
+      </p>
       <table>
         <tbody>
           <tr>
@@ -231,6 +253,25 @@ export default async function AutomationIntelligencePage({
       </table>
 
       <Result analysis={analysis} ipSource={client?.source} />
+
+      {edgeEventDetail && (
+        <>
+          <h3>Server API detail (Smart Signals)</h3>
+          <div id="ai-server-api">
+            <SmartSignals detail={edgeEventDetail} />
+          </div>
+        </>
+      )}
+
+      <hr />
+
+      <h2>JS Agent v4 + Smart Signals (browser)</h2>
+      <p>
+        This section runs the Fingerprint JS Agent v4 in your browser through
+        the project&apos;s custom subdomain, then looks up that event&apos;s
+        Smart Signals via the Server API.
+      </p>
+      <BrowserAgentSection />
     </div>
   );
 }

@@ -130,6 +130,15 @@ export default function Home() {
                 <pre>env: prod</pre>
               </div>
             </Link>
+
+            <Link className={styles.card} href="/automation-intelligence">
+              <h2>Automation Intelligence + Agent v4 Smart Signals &rarr;</h2>
+              <p>Edge API (v4) bot detection and JS Agent v4 + Smart Signals, side by side, each with its Server API detail</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
+            </Link>
           </div>
 
           <h2>Identification API v3</h2>
@@ -839,7 +848,7 @@ export default function Home() {
 
             <Link className={styles.card} href="/automation-intelligence">
               <h2>Automation Intelligence &rarr;</h2>
-              <p>Edge API (v4) bot/agent detection from request metadata</p>
+              <p>Edge API (v4) bot/agent detection from request metadata, plus a browser JS Agent v4 + Smart Signals comparison</p>
               <div>
                 <pre>subId: sub_AHhMVKY0HFYj3W</pre>
                 <pre>env: prod</pre>
