@@ -198,17 +198,11 @@ export default async function AutomationIntelligencePage({
 
   return (
     <div className={styles.container}>
-      <h1>Atlas Outdoor Supply: spring catalog</h1>
+      <h1>Automation Intelligence demo</h1>
       <p>
-        Trail-ready backpacks, insulated bottles and lightweight tents, shipped
-        from our warehouse in three business days. Browse the catalog below or
-        contact support for bulk orders.
+        This page sends every visit it receives to Fingerprint&apos;s
+        Automation Intelligence API and shows the detection result below.
       </p>
-      <ul>
-        <li>Summit 40L backpack: $129</li>
-        <li>Ridge 2-person tent: $249</li>
-        <li>Basecamp 1L insulated bottle: $34</li>
-      </ul>
 
       <hr />
 

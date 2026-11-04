@@ -836,6 +836,15 @@ export default function Home() {
                 <pre>env: prod</pre>
               </div>
             </Link>
+
+            <Link className={styles.card} href="/automation-intelligence">
+              <h2>Automation Intelligence &rarr;</h2>
+              <p>Edge API (v4) bot/agent detection from request metadata</p>
+              <div>
+                <pre>subId: sub_AHhMVKY0HFYj3W</pre>
+                <pre>env: prod</pre>
+              </div>
+            </Link>
           </div>
 
           <h2>Server API v3</h2>

@@ -23,6 +23,11 @@
 
 - [x] 5.1 Treat a missing or unrecognized `FINGERPRINT_REGION` as a visible configuration error with no API call, normalizing case and whitespace. Verify with the unit tests for `resolveBaseUrl` and `callEdgeApi`, `npx tsc --noEmit`, and a `curl` against `next dev` with `FINGERPRINT_REGION` unset showing the error and no `ai-event-id`.
 
+## 6. Content cleanup and index listing
+
+- [x] 6.1 Replace the placeholder storefront copy in `page.tsx` (currently a fake "Atlas Outdoor Supply" catalog) with neutral filler text per the new content requirement. Verify the Playwright test still passes.
+- [x] 6.2 Add a card for `/automation-intelligence` to `next-app/pages/index.tsx` in the "Identification API v3" section, labeled `subId: sub_AHhMVKY0HFYj3W` / `env: prod` like the other cards there. Verify by loading `/` locally and following the link.
+
 ## Workflow follow-up
 
 - Run `/opsx:verify` (if enabled) and then `/opsx:archive` once the page is deployed and checked.

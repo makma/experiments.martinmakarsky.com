@@ -61,6 +61,20 @@ The system SHALL display the analyzed request's `event_id`, the `bot_info` field
 - **WHEN** the API response has no `bot_info`
 - **THEN** the page states that no bot was detected and still shows the IP, proxy, VPN and raw JSON sections
 
+### Requirement: Page content is neutral filler
+The system SHALL present the page's visible, non-result content as plain, generic text that does not represent any real or fictional business, brand or storefront, so the page cannot be mistaken for commercial content.
+
+#### Scenario: No fabricated brand
+- **WHEN** the page is rendered
+- **THEN** its content contains no company name, product listing, or pricing presented as a storefront
+
+### Requirement: Page listed on the experiments index
+The system SHALL list `/automation-intelligence` on the experiments index page (`next-app/pages/index.tsx`), in the "Identification API v3" section, labeled with `subId: sub_AHhMVKY0HFYj3W` and `env: prod` the same way the other cards in that section are labeled.
+
+#### Scenario: Index lists the page
+- **WHEN** the experiments index page is rendered
+- **THEN** the "Identification API v3" section contains a card linking to `/automation-intelligence` with `subId: sub_AHhMVKY0HFYj3W` and `env: prod`
+
 ### Requirement: Test runs can be labeled
 The system SHALL accept an optional `agent` query parameter, send it to the API as the `agent` tag together with a per-request generated `linked_id`, and display both on the page. A label MUST be limited to 64 characters of letters, digits, `.`, `_` and `-`; any other value SHALL be ignored.
 
