@@ -34,7 +34,7 @@ Headers are forwarded in the order `headers()` yields them. Names arrive lowerca
 *Alternative:* a custom server to read `req.rawHeaders` for exact casing. Rejected: it would replace the standard Next start command on Digital Ocean for marginal benefit.
 
 **4. Client IP and URL derivation.**
-IP: first non-empty of the platform client-IP header, then the first entry of `x-forwarded-for`. The exact platform header on Digital Ocean App Platform is not assumed: the page displays which header supplied the IP (`#ai-ip-source`), and this is confirmed on the first deploy (task 4.1). The user pushes to `main` and Digital Ocean builds automatically. IPv4 goes to `ipv4_address`; IPv6 (including IPv4-mapped) to `ipv6_address`. If none can be derived, skip the API call and show why.
+IP: first non-empty of the platform client-IP header, then the first entry of `x-forwarded-for`. The exact platform header on Digital Ocean App Platform is not assumed: the page displays which header supplied the IP (`#ai-ip-source`). Confirmed on the live deploy at `experiments.martinmakarsky.com/automation-intelligence` (task 4.1): Digital Ocean App Platform sets `do-connecting-ip`, which is the header actually used. The user pushes to `main` and Digital Ocean builds automatically. IPv4 goes to `ipv4_address`; IPv6 (including IPv4-mapped) to `ipv6_address`. If none can be derived, skip the API call and show why.
 URL: `x-forwarded-proto` (default `https`) + `host` header + request path and query, no fragment.
 
 **5. Configuration.**

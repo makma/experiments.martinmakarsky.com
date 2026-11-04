@@ -16,7 +16,7 @@
 
 ## 4. Deploy and observe
 
-- [ ] 4.1 Hand off to the user: they push and merge to `main`, and Digital Ocean builds automatically. Do not push, merge or deploy from the agent. Tell the user that `FINGERPRINT_SECRET_API_KEY` and `FINGERPRINT_REGION` must be set on the Digital Ocean app (never read or print their values). Verify, once the user confirms the deploy, by loading the deployed `/automation-intelligence` and checking that an `event_id` is shown and that the displayed client-IP header source is the platform's real client-IP header; record that finding in design.md Decision 4.
+- [x] 4.1 Hand off to the user: they push and merge to `main`, and Digital Ocean builds automatically. Do not push, merge or deploy from the agent. Tell the user that `FINGERPRINT_SECRET_API_KEY` and `FINGERPRINT_REGION` must be set on the Digital Ocean app (never read or print their values). Verify, once the user confirms the deploy, by loading the deployed `/automation-intelligence` and checking that an `event_id` is shown and that the displayed client-IP header source is the platform's real client-IP header; record that finding in design.md Decision 4. Verified live: `event_id` present, `#ai-ip-source` = `do-connecting-ip`; recorded in design.md Decision 4.
 - [x] 4.2 Add the new page and env var usage to the repo's docs (a short section in `README.md`: URL, `?agent=` usage, required env vars). Verify the documented URL and param work as written.
 
 ## 5. Region validation (follow-up from first deploy)
