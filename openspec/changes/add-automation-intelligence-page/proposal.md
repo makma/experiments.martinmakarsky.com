@@ -6,7 +6,8 @@ Fingerprint's Automation Intelligence API (public preview, `POST /v4/edge`) clas
 
 ## What Changes
 
-- Add a new dynamic page in `next-app` (`/automation-intelligence`) with ordinary content for agents to land on.
+- Add a new dynamic page in `next-app` (`/automation-intelligence`) with neutral, generic filler content for agents to land on — plain descriptive text about the page's purpose, not a fabricated storefront, brand or business.
+- List the page on the experiments index (`next-app/pages/index.tsx`), the same way other experiment pages are listed there.
 - On every request to that page, the server calls the Automation Intelligence API directly via its HTTP contract (no Fingerprint SDK), forwarding the incoming request's headers, method, URL and client IP.
 - Render the detection result on the page: `bot_info` (category, provider, name, identity, confidence), IP info (geo, ASN, datacenter), proxy and VPN results, the `event_id`, and the raw JSON response, so a human or an agent can see the outcome immediately.
 - Allow an optional `?agent=<label>` query param, sent to the API as a tag, so a test run can be matched to an agent in the Fingerprint dashboard. Every request also gets a generated `linked_id`.
