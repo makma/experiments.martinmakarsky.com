@@ -1,10 +1,11 @@
 import { test, expect } from '@playwright/test';
 
-// Needs a running server with FINGERPRINT_SECRET_API_KEY / FINGERPRINT_REGION set;
-// the page calls the real Automation Intelligence API. Usage:
+// Runs against the deployed site by default, like the other specs. The page calls the
+// real Automation Intelligence API. To test a local server (needs
+// FINGERPRINT_SECRET_API_KEY / FINGERPRINT_REGION set):
 //   BASE_URL=http://localhost:3000 npx playwright test tests/automation-intelligence --project=chromium
 // Asserts structure only: whether this browser is detected as a bot is what the page is for observing.
-const baseUrl = process.env.BASE_URL ?? 'http://localhost:3000';
+const baseUrl = process.env.BASE_URL ?? 'https://experiments.martinmakarsky.com';
 const isLocal = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(baseUrl);
 
 // Locally there is no proxy adding a client-IP header, so supply one.
